@@ -1,0 +1,209 @@
+[
+  {
+    "firstname": "Seun",
+    "lastname": "kujebe",
+    "email": "OlisanugoChukwuraenye@teleworm.us",
+    "classes": ["creche", "nursery", "primary"],
+    "address": "Bariga Street, Shomolu, Lagos",
+    "gender": "male",
+    "experience": "5-plus-years",
+    "education": ["B.Sc", "B.Ed"],
+    "skills": [
+      {
+        "subject": "english",
+        "experience": "5-plus-years"
+      },
+      {
+        "subject": "mathematics",
+        "experience": "6-plus-years"
+      },
+      {
+        "subject": "home economics",
+        "experience": "2-plus-years"
+      }
+    ],
+    "memberSince": "2018-09-03"
+  },
+
+  {
+    "firstname": "Michael",
+    "lastname": "Owen",
+    "email": "ChidiebeleEberegbulam@rhyta.com",
+    "classes": ["secondary"],
+    "address": "Olujobi Street, Shomolu, Lagos",
+    "gender": "male",
+    "experience": "9-plus-years",
+    "education": ["B.Ed"],
+    "skills": [
+      {
+        "subject": "chemistry",
+        "experience": "7-plus-years"
+      },
+      {
+        "subject": "physics",
+        "experience": "9-plus-years"
+      }
+    ],
+    "memberSince": "2019-10-10"
+  },
+
+  {
+    "firstname": "Fausat",
+    "lastname": "Mohammed",
+    "email": "ChukwumaobimKamdibe@jourrapide.com",
+    "classes": ["pre-school", "creche", "montesorri"],
+    "address": "Oyefeso Street, Shomolu, Lagos",
+    "gender": "female",
+    "experience": "3-plus-years",
+    "education": ["NCE"],
+    "skills": [
+      {
+        "subject": "wording",
+        "experience": "3-plus-years"
+      },
+      {
+        "subject": "writing",
+        "experience": "3-plus-years"
+      },
+      {
+        "subject": "reading",
+        "experience": "3-plus-years"
+      }
+    ],
+    "memberSince": "2019-11-12"
+  },
+
+  {
+    "firstname": "Oghechi",
+    "lastname": "Chukwu",
+    "email": "AimeeFerguson@armyspy.com",
+    "classes": ["secondary"],
+    "address": "Selesi Street, Shomolu, Lagos",
+    "gender": "female",
+    "experience": "6-plus-years",
+    "education": ["M.Sc", "B.Ed"],
+    "skills": [
+      {
+        "subject": "social studies",
+        "experience": "6-plus-years"
+      },
+      {
+        "subject": "agriculture",
+        "experience": "5-plus-years"
+      },
+      {
+        "subject": "economics",
+        "experience": "6-plus-years"
+      }
+    ],
+    "memberSince": "2017-11-12"
+  },
+
+  {
+    "firstname": "Gbemi",
+    "lastname": "Oginni",
+    "email": "DylanNelson@teleworm.us",
+    "classes": ["primary", "secondary"],
+    "address": "Kalejaiye Street, Shomolu, Lagos",
+    "gender": "female",
+    "experience": "12-plus-years",
+    "education": ["M.Sc", "B.Sc"],
+    "skills": [
+      {
+        "subject": "business studies",
+        "experience": "12-plus-years"
+      },
+      {
+        "subject": "Government",
+        "experience": "10-plus-years"
+      },
+      {
+        "subject": "History",
+        "experience": "8-plus-years"
+      },
+      {
+        "subject": "Literature in English",
+        "experience": "12-plus-years"
+      }
+    ],
+    "memberSince": "2019-01-06"
+  },
+
+  {
+    "firstname": "Jonathan",
+    "lastname": "Imasuen",
+    "email": "TomaszBruce@dayrep.com",
+    "classes": ["primary"],
+    "address": "Adeleye Street, Shomolu, Lagos",
+    "gender": "male",
+    "experience": "2-plus-years",
+    "education": ["OND"],
+    "skills": [
+      {
+        "subject": "Elementary Science",
+        "experience": "2-years"
+      }
+    ],
+    "memberSince": "2019-01-06"
+  },
+
+  {
+    "firstname": "bolu",
+    "lastname": "balogun",
+    "email": "SylvieMilne@rhyta.com",
+    "classes": ["Playgroup class 2 - 3 years", "Preparatory class 3 - 4 years"],
+    "address": "Ajayi Street, Shomolu, Lagos",
+    "gender": "female",
+    "experience": "4-plus-years",
+    "education": ["M.Sc", "HND"],
+    "skills": [
+      {
+        "subject": "Reading Readiness",
+        "experience": "4-years"
+      },
+      {
+        "subject": "Number Readiness",
+        "experience": "3-plus-years"
+      },
+      {
+        "subject": "Elementary Science",
+        "experience": "4-years"
+      },
+      {
+        "subject": "Rhymes",
+        "experience": "2-plus-years"
+      },
+      {
+        "subject": "Story telling",
+        "experience": "4-years"
+      }
+    ],
+    "memberSince": "2018-06-01"
+  },
+
+  {
+    "firstname": "bolaji",
+    "lastname": "johnson",
+    "email": "KenechiNebeuwa@armyspy.com",
+    "classes": ["primary"],
+    "address": "Mabinuori Street, Shomolu, Lagos",
+    "gender": "male",
+    "experience": "5-plus-years",
+    "education": ["HND"],
+    "skills": [
+      {
+        "subject": "Elementary Science",
+        "experience": "4-plus-years"
+      },
+      {
+        "subject": "Health Education",
+        "experience": "5-years"
+      },
+      {
+        "subject": "Verbal Reasoning",
+        "experience": "5-years"
+      }
+    ],
+    "memberSince": "2017-11-11"
+  }
+]
