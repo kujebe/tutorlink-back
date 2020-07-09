@@ -4,9 +4,11 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const compression = require("compression");
 const connectDb = require("./config/db");
+const morgan = require("morgan");
 
 //Import routes
 const homePageRouter = require("./routes/api/public-routes/home-page.route");
+const teachersRouter = require("./routes/api/public-routes/teachers.route");
 
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 
@@ -14,6 +16,7 @@ if (process.env.NODE_ENV !== "production") require("dotenv").config();
 connectDb();
 
 const app = express();
+app.use(morgan("combined"));
 const port = process.env.PORT || 5000;
 /** Set up middlewares */
 app.use(compression());
@@ -22,6 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 /** Routes */
 app.use("/api/v1/home", homePageRouter);
+app.use("/api/v1/teachers", teachersRouter);
 /** End routes */
 
 if (process.env.NODE_ENV === "production") {

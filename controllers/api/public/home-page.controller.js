@@ -1,28 +1,60 @@
-const Teacher = require("../../../models/Teachers.model");
+const Teacher = require("../../../models/Teacher.model");
 
-const teachersData = require("../../../data.json");
+/** Util function for teching nearest teachers */
+async function findNearestTeachers(distance, longitude, latitude) {
+  const nearestTeachers = await Teacher.find({
+    location: {
+      $near: {
+        $maxDistance: distance,
+        $geometry: {
+          type: "Point",
+          coordinates: [longitude, latitude],
+        },
+      },
+    },
+  });
+  if (nearestTeachers.length <= 2 && distance < 40000) {
+    return findNearestTeachers(distance + 200, longitude, latitude);
+  }
+  return { nearestTeachers, distance };
+}
 
 //@desc get request to index route
 //@route /api/v1/home
 //@access public
-exports.getHomePageData = async (req, res) => {
-  try {
-    const getNearTeachers = await Teacher.find({
-      location: {
-        $near: {
-          $maxDistance: 5000,
-          $geometry: {
-            type: "Point",
-            coordinates: [3.38521, 6.53449],
-          },
-        },
-      },
+exports.getMapPopupData = (req, res) => {
+  findNearestTeachers(100, req.query.longitude, req.query.latitude)
+    // .select("location _id")
+    // .exec()
+    .then(({ nearestTeachers, distance }) => {
+      res.status(200).json({
+        // nearbyTeachers: nearestTeachers,
+        count: nearestTeachers.length,
+        distance: distance / 1000, //in Kilometers
+        mapPopupData: nearestTeachers
+          .filter((teacher, idx) => idx < 2)
+          .map((teacher) => {
+            return {
+              _id: teacher._id,
+              name: teacher.firstname + " " + teacher.lastname,
+              rating: teacher.rating,
+              experience: teacher.experience,
+              classes: teacher.classes,
+              profile: teacher.profile,
+              // request: {
+              //   type: "GET",
+              //   url: "http://localhost:3000/orders/" + doc._id,
+              // },
+            };
+          }),
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        error: err,
+      });
     });
-    return res.status(200).json({ nearbyTeachers: getNearTeachers });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Server error" });
-  }
 };
 
 // @desc post to teacher
@@ -62,7 +94,7 @@ exports.seedTeachersData = (req, res, next) => {
       if (error.code === 11000) {
         return res.status(400).json({ error: "This teacher already exist" });
       }
-      res.status(500).json({ error: "Server error" });
+      res.status(500).json({ error: "Server error", error });
     }
   });
 };

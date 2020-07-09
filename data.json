@@ -6,20 +6,32 @@
     "classes": ["creche", "nursery", "primary"],
     "address": "Bariga Street, Shomolu, Lagos",
     "gender": "male",
-    "experience": "5-plus-years",
+    "experience": 5,
     "education": ["B.Sc", "B.Ed"],
+    "rating": 2.4,
+    "profile": "kujebe.jpg",
     "skills": [
       {
         "subject": "english",
-        "experience": "5-plus-years"
+        "experience": 5
       },
       {
         "subject": "mathematics",
-        "experience": "6-plus-years"
+        "experience": 4
       },
       {
         "subject": "home economics",
-        "experience": "2-plus-years"
+        "experience": 5
+      }
+    ],
+    "teck_skills": [
+      {
+        "resource": "Doddle",
+        "experience": 1
+      },
+      {
+        "resource": "Purple Marsh",
+        "experience": 1
       }
     ],
     "memberSince": "2018-09-03"
@@ -32,42 +44,66 @@
     "classes": ["secondary"],
     "address": "Olujobi Street, Shomolu, Lagos",
     "gender": "male",
-    "experience": "9-plus-years",
+    "experience": 9,
     "education": ["B.Ed"],
+    "rating": 5,
+    "profile": "owen.jpg",
     "skills": [
       {
         "subject": "chemistry",
-        "experience": "7-plus-years"
+        "experience": 7
       },
       {
         "subject": "physics",
-        "experience": "9-plus-years"
+        "experience": 9
+      }
+    ],
+    "teck_skills": [
+      {
+        "resource": "Doddle",
+        "experience": 4
+      },
+      {
+        "resource": "Purple Marsh",
+        "experience": 4
       }
     ],
     "memberSince": "2019-10-10"
   },
 
   {
-    "firstname": "Fausat",
-    "lastname": "Mohammed",
+    "firstname": "Mary",
+    "lastname": "Simon",
     "email": "ChukwumaobimKamdibe@jourrapide.com",
     "classes": ["pre-school", "creche", "montesorri"],
     "address": "Oyefeso Street, Shomolu, Lagos",
     "gender": "female",
-    "experience": "3-plus-years",
+    "experience": 3,
     "education": ["NCE"],
+    "rating": 3,
+    "profile": "mary.jpg",
     "skills": [
       {
         "subject": "wording",
-        "experience": "3-plus-years"
+        "experience": 3
       },
       {
         "subject": "writing",
-        "experience": "3-plus-years"
+        "experience": 3
       },
       {
         "subject": "reading",
-        "experience": "3-plus-years"
+        "experience": "3"
+      }
+    ],
+    "teck_skills": [
+      {
+        "resource": "Doddle",
+        "experience": 3
+      },
+      {
+        "resource": "Purple Marsh",
+        "experience": 3
       }
     ],
     "memberSince": "2019-11-12"
@@ -80,50 +116,74 @@
     "classes": ["secondary"],
     "address": "Selesi Street, Shomolu, Lagos",
     "gender": "female",
-    "experience": "6-plus-years",
+    "experience": 6,
     "education": ["M.Sc", "B.Ed"],
+    "rating": 1,
+    "profile": "ogechi.jpg",
     "skills": [
       {
         "subject": "social studies",
-        "experience": "6-plus-years"
+        "experience": 6
       },
       {
         "subject": "agriculture",
-        "experience": "5-plus-years"
+        "experience": 6
       },
       {
         "subject": "economics",
-        "experience": "6-plus-years"
+        "experience": 6
+      }
+    ],
+    "teck_skills": [
+      {
+        "resource": "Doddle",
+        "experience": 1
+      },
+      {
+        "resource": "Purple Marsh",
+        "experience": 3
       }
     ],
     "memberSince": "2017-11-12"
   },
 
   {
-    "firstname": "Gbemi",
-    "lastname": "Oginni",
+    "firstname": "Kenny",
+    "lastname": "Oyekunle",
     "email": "DylanNelson@teleworm.us",
     "classes": ["primary", "secondary"],
     "address": "Kalejaiye Street, Shomolu, Lagos",
     "gender": "female",
-    "experience": "12-plus-years",
+    "experience": 12,
     "education": ["M.Sc", "B.Sc"],
+    "rating": 5,
+    "profile": "gbemi.jpeg",
     "skills": [
       {
         "subject": "business studies",
-        "experience": "12-plus-years"
+        "experience": 11
       },
       {
         "subject": "Government",
-        "experience": "10-plus-years"
+        "experience": 12
       },
       {
         "subject": "History",
-        "experience": "8-plus-years"
+        "experience": 8
       },
       {
         "subject": "Literature in English",
-        "experience": "12-plus-years"
+        "experience": 12
+      }
+    ],
+    "teck_skills": [
+      {
+        "resource": "Doddle",
+        "experience": 3
+      },
+      {
+        "resource": "Purple Marsh",
+        "experience": 2
       }
     ],
     "memberSince": "2019-01-06"
@@ -136,12 +196,24 @@
     "classes": ["primary"],
     "address": "Adeleye Street, Shomolu, Lagos",
     "gender": "male",
-    "experience": "2-plus-years",
+    "experience": 2,
     "education": ["OND"],
+    "rating": 3.3,
+    "profile": "teacher-profile-1.jpg",
     "skills": [
       {
         "subject": "Elementary Science",
-        "experience": "2-years"
+        "experience": 2
+      }
+    ],
+    "teck_skills": [
+      {
+        "resource": "Doddle",
+        "experience": 0
+      },
+      {
+        "resource": "Purple Marsh",
+        "experience": 0
       }
     ],
     "memberSince": "2019-01-06"
@@ -154,28 +226,40 @@
     "classes": ["Playgroup class 2 - 3 years", "Preparatory class 3 - 4 years"],
     "address": "Ajayi Street, Shomolu, Lagos",
     "gender": "female",
-    "experience": "4-plus-years",
+    "experience": 4,
     "education": ["M.Sc", "HND"],
+    "rating": 3.9,
+    "profile": "teacher-profile-0.jpg",
     "skills": [
       {
         "subject": "Reading Readiness",
-        "experience": "4-years"
+        "experience": 4
       },
       {
         "subject": "Number Readiness",
-        "experience": "3-plus-years"
+        "experience": 3
       },
       {
         "subject": "Elementary Science",
-        "experience": "4-years"
+        "experience": 4
       },
       {
         "subject": "Rhymes",
-        "experience": "2-plus-years"
+        "experience": 2
       },
       {
         "subject": "Story telling",
-        "experience": "4-years"
+        "experience": 4
+      }
+    ],
+    "teck_skills": [
+      {
+        "resource": "Doddle",
+        "experience": 1
+      },
+      {
+        "resource": "Purple Marsh",
+        "experience": 1
       }
     ],
     "memberSince": "2018-06-01"
@@ -188,22 +272,296 @@
     "classes": ["primary"],
     "address": "Mabinuori Street, Shomolu, Lagos",
     "gender": "male",
-    "experience": "5-plus-years",
+    "experience": 5,
     "education": ["HND"],
+    "rating": 2.2,
+    "profile": "teacher-profile-0.jpg",
     "skills": [
       {
         "subject": "Elementary Science",
-        "experience": "4-plus-years"
+        "experience": 4
       },
       {
         "subject": "Health Education",
-        "experience": "5-years"
+        "experience": 4
       },
       {
         "subject": "Verbal Reasoning",
-        "experience": "5-years"
+        "experience": 5
+      }
+    ],
+    "teck_skills": [
+      {
+        "resource": "Doddle",
+        "experience": 2
+      },
+      {
+        "resource": "Purple Marsh",
+        "experience": 2
       }
     ],
     "memberSince": "2017-11-11"
+  },
+
+  {
+    "firstname": "Adejoke",
+    "lastname": "ojo",
+    "email": "AnnabelleDWalker@dayrep.com",
+    "classes": ["primary", "nursery"],
+    "address": "19A Kenneth Agbakuru St, Eti-Osa 105102, Lekki",
+    "gender": "female",
+    "experience": 6,
+    "education": ["OND", "HND"],
+    "rating": 4,
+    "profile": "adejoke.jpg",
+    "skills": [
+      {
+        "subject": "wording",
+        "experience": 6
+      },
+      {
+        "subject": "writing",
+        "experience": 6
+      }
+    ],
+    "teck_skills": [
+      {
+        "resource": "Doddle",
+        "experience": 1
+      },
+      {
+        "resource": "Purple Marsh",
+        "experience": 4
+      }
+    ],
+    "memberSince": "2017-11-11"
+  },
+
+  {
+    "firstname": "Adewale",
+    "lastname": "Adelaja",
+    "email": "dewale99@dayrep.com",
+    "classes": ["secondary"],
+    "address": "Christ Avenue off Admiralty Road, Victoria Island",
+    "gender": "male",
+    "experience": 3,
+    "education": ["BSc", "MSc"],
+    "rating": 4,
+    "profile": "wale.jpg",
+    "skills": [
+      {
+        "subject": "English",
+        "experience": 3
+      },
+      {
+        "subject": "Literature",
+        "experience": 3
+      }
+    ],
+    "teck_skills": [
+      {
+        "resource": "Doddle",
+        "experience": 4
+      },
+      {
+        "resource": "Purple Marsh",
+        "experience": 4
+      }
+    ],
+    "memberSince": "2019-10-03"
+  },
+
+  {
+    "firstname": "Samuel",
+    "lastname": "Oyelola",
+    "email": "sammy_oye@samasam.com",
+    "classes": ["secondary"],
+    "address": "5 - 7 Kusenla Street, Chisco Bustop, Ikate - Elegushi, Off Lekki Epe, Expressway, 101001, Lagos",
+    "gender": "male",
+    "experience": 8,
+    "education": ["BEd"],
+    "rating": 4.8,
+    "profile": "samuel.jpg",
+    "skills": [
+      {
+        "subject": "Biology",
+        "experience": 8
+      },
+      {
+        "subject": "Geography",
+        "experience": 8
+      },
+      {
+        "subject": "Chemistry",
+        "experience": 8
+      },
+      {
+        "subject": "Physics",
+        "experience": 4
+      }
+    ],
+    "teck_skills": [
+      {
+        "resource": "Doddle",
+        "experience": 1
+      },
+      {
+        "resource": "Purple Marsh",
+        "experience": 2
+      }
+    ],
+    "memberSince": "2018-03-09"
+  },
+
+  {
+    "firstname": "Adenike",
+    "lastname": "Femiloju",
+    "email": "nikky_fem@00000.com",
+    "classes": ["pre-school", "elementary"],
+    "address": "Plot 6 Providence Street Off Admiralty Way Lekki Phase 1 Eti-Osa, 100001",
+    "gender": "female",
+    "experience": 4,
+    "education": ["BEd"],
+    "rating": 4.8,
+    "profile": "nike.jpg",
+    "skills": [
+      {
+        "subject": "reading",
+        "experience": 4
+      },
+      {
+        "subject": "writing",
+        "experience": 4
+      },
+      {
+        "subject": "montessor",
+        "experience": 4
+      }
+    ],
+    "teck_skills": [
+      {
+        "resource": "Doddle",
+        "experience": 2
+      },
+      {
+        "resource": "Purple Marsh",
+        "experience": 3
+      }
+    ],
+    "memberSince": "2017-06-04"
+  },
+
+  {
+    "firstname": "Joy",
+    "lastname": "Osamekhe",
+    "email": "joyjaygirl333@ggmotors.co",
+    "classes": ["Primary"],
+    "address": "12-14 Alhaji Yekini Bakare Avenue, 12-14 Alhaji Yekini Olawale Bakare Ave, Lekki",
+    "gender": "female",
+    "experience": 6,
+    "education": ["NCE", "BSc"],
+    "rating": 3.3,
+    "profile": "joy.jpg",
+    "skills": [
+      {
+        "subject": "Social Studies",
+        "experience": 6
+      },
+      {
+        "subject": "Moral Classes",
+        "experience": 6
+      }
+    ],
+    "teck_skills": [
+      {
+        "resource": "Doddle",
+        "experience": 2
+      },
+      {
+        "resource": "Purple Marsh",
+        "experience": 3
+      }
+    ],
+    "memberSince": "2020-02-05"
+  },
+
+  {
+    "firstname": "Adekunle",
+    "lastname": "Ogundele",
+    "email": "ogdeleAdy@ogundele.com",
+    "classes": ["Primary", "Secondary"],
+    "address": "7 Chief Onitana St, Yaba, Lagos",
+    "gender": "male",
+    "experience": 9,
+    "education": ["BSc"],
+    "rating": 2,
+    "profile": "adekunle.jpg",
+    "skills": [
+      {
+        "subject": "Vocational",
+        "experience": 9
+      },
+      {
+        "subject": "Physical & health",
+        "experience": 7
+      },
+      {
+        "subject": "Religious Studies",
+        "experience": 9
+      }
+    ],
+    "teck_skills": [
+      {
+        "resource": "Doddle",
+        "experience": 1
+      },
+      {
+        "resource": "Purple Marsh",
+        "experience": 2
+      }
+    ],
+    "memberSince": "2018-07-07"
+  },
+
+  {
+    "firstname": "Felicia",
+    "lastname": "Ike",
+    "email": "feliciaike@yuhuu.com",
+    "classes": ["Nursery"],
+    "address": "308 Murtala Muhammed Way, Yaba 100001, Lagos",
+    "gender": "female",
+    "experience": 5,
+    "education": ["Creche", "Nursery", "Primary"],
+    "rating": 3.9,
+    "profile": "felicia.jpg",
+    "skills": [
+      {
+        "subject": "Communication and language",
+        "experience": 5
+      },
+      {
+        "subject": "Personal, social and emotional development",
+        "experience": 4
+      },
+      {
+        "subject": "Physical development",
+        "experience": 5
+      },
+      {
+        "subject": "Mathematics",
+        "experience": 5
+      }
+    ],
+    "teck_skills": [
+      {
+        "resource": "Doddle",
+        "experience": 2
+      },
+      {
+        "resource": "Purple Marsh",
+        "experience": 2
+      }
+    ],
+    "memberSince": "2018-02-02"
   }
 ]

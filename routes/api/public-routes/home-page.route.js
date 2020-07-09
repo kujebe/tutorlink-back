@@ -1,12 +1,12 @@
 const router = require("express").Router();
 
 const {
-  getHomePageData,
+  getMapPopupData,
   addTeacher,
   seedTeachersData,
 } = require("../../../controllers/api/public/home-page.controller");
 
-router.route("/").get(getHomePageData).post(addTeacher);
+router.route("/").get(getMapPopupData).post(addTeacher);
 
 router.get("/seed-data", seedTeachersData);
 

@@ -34,10 +34,19 @@ const TeacherSchema = mongoose.Schema(
     },
     gender: String,
     experience: String,
+    profile: String,
     education: [String],
+    rating: Number,
     skills: {
       type: Array,
       subject: {
+        type: String,
+      },
+      experience: { type: String },
+    },
+    teck_skills: {
+      type: Array,
+      resource: {
         type: String,
       },
       experience: { type: String },
