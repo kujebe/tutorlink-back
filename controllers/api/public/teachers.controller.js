@@ -1,4 +1,5 @@
 const Teacher = require("../../../models/Teacher.model");
+const colors = require("../../../utils/colors");
 
 //@desc get request to fetch teachers data
 //@route /api/v1/teachers
@@ -8,16 +9,22 @@ exports.getTeacher = (req, res) => {
     .then((teacher) => {
       res.status(200).json({
         teacher,
-        subjectSkills: teacher.skills.map(
-          (skill) => ({
+        subjectSkills: teacher.skills.map((skill, idx) => {
+          console.log(idx);
+          return {
             title: skill.subject,
             value: parseInt(skill.experience),
-            color: "#E38627",
-          })
-          // { title: "One", value: 10, color: "#E38627" },
-          //   { title: "Two", value: 15, color: "#C13C37" },
-          //   { title: "Three", value: 20, color: "#6A2135" },
-        ),
+            color: colors[idx],
+          };
+        }),
+        techSkills: teacher.teck_skills.map((techSkill, idx) => {
+          console.log(idx);
+          return {
+            title: techSkill.resource,
+            value: parseInt(techSkill.experience),
+            color: colors[idx],
+          };
+        }),
       });
     })
     .catch((err) => {
