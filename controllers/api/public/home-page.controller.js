@@ -41,6 +41,7 @@ exports.getMapPopupData = (req, res) => {
               experience: teacher.experience,
               classes: teacher.classes,
               profile: teacher.profile,
+              slug: teacher.slug,
               // request: {
               //   type: "GET",
               //   url: "http://localhost:3000/orders/" + doc._id,

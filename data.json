@@ -338,6 +338,40 @@
   },
 
   {
+    "firstname": "Adejoke",
+    "lastname": "ojo",
+    "email": "AnnabelleDWalker2@dayrep.com",
+    "classes": ["primary", "nursery"],
+    "address": "Obalende, 71 A Forsythe St, Lagos",
+    "gender": "female",
+    "experience": 6,
+    "education": ["OND", "HND"],
+    "rating": 4,
+    "profile": "adejoke.jpg",
+    "skills": [
+      {
+        "subject": "wording",
+        "experience": 6
+      },
+      {
+        "subject": "writing",
+        "experience": 6
+      }
+    ],
+    "teck_skills": [
+      {
+        "resource": "Doddle",
+        "experience": 1
+      },
+      {
+        "resource": "Purple Marsh",
+        "experience": 4
+      }
+    ],
+    "memberSince": "2017-11-11"
+  },
+
+  {
     "firstname": "Adewale",
     "lastname": "Adelaja",
     "email": "dewale99@dayrep.com",
@@ -531,7 +565,7 @@
     "address": "308 Murtala Muhammed Way, Yaba 100001, Lagos",
     "gender": "female",
     "experience": 5,
-    "education": ["Creche", "Nursery", "Primary"],
+    "education": ["OND"],
     "rating": 3.9,
     "profile": "felicia.jpg",
     "skills": [
@@ -563,5 +597,73 @@
       }
     ],
     "memberSince": "2018-02-02"
+  },
+
+  {
+    "firstname": "Felicia",
+    "lastname": "Ike",
+    "email": "feliciaike2@yuhuu.com",
+    "classes": ["Secondary"],
+    "address": "2-3 Olokun Cl, Ikoyi, Lagos",
+    "gender": "female",
+    "experience": 3,
+    "education": ["BSC"],
+    "rating": 3.9,
+    "profile": "felicia.jpg",
+    "skills": [
+      {
+        "subject": "English",
+        "experience": 3
+      },
+      {
+        "subject": "Reading",
+        "experience": 3
+      },
+      {
+        "subject": "Physical development",
+        "experience": 3
+      }
+    ],
+    "teck_skills": [
+      {
+        "resource": "Doddle",
+        "experience": 2
+      },
+      {
+        "resource": "Purple Marsh",
+        "experience": 2
+      }
+    ],
+    "memberSince": "2020-02-02"
+  },
+
+  {
+    "firstname": "Felicia",
+    "lastname": "Ike",
+    "email": "feliciaike3@yuhuu.com",
+    "classes": ["Primary"],
+    "address": "19a Idejo St, Victoria Island, Lagos",
+    "gender": "female",
+    "experience": 6,
+    "education": ["HND", "BSc", "MSc"],
+    "rating": 4,
+    "profile": "felicia.jpg",
+    "skills": [
+      {
+        "subject": "Agricultural Science",
+        "experience": 6
+      }
+    ],
+    "teck_skills": [
+      {
+        "resource": "Doddle",
+        "experience": 2
+      },
+      {
+        "resource": "Purple Marsh",
+        "experience": 2
+      }
+    ],
+    "memberSince": "2020-02-02"
   }
 ]

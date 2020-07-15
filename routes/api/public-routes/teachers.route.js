@@ -1,9 +1,11 @@
 const router = require("express").Router();
 
 const {
-  getTeacher,
+  getAllTeachers,
+  getTeacherBySlug,
 } = require("../../../controllers/api/public/teachers.controller");
 
-router.get("/:teacher_id", getTeacher);
+router.get("/", getAllTeachers);
+router.get("/:slug", getTeacherBySlug);
 
 module.exports = router;

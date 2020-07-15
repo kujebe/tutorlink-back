@@ -1,16 +1,30 @@
 const Teacher = require("../../../models/Teacher.model");
 const colors = require("../../../utils/colors");
 
-//@desc get request to fetch teachers data
+//@desc get request to fetch all teachers
 //@route /api/v1/teachers
 //@access public
-exports.getTeacher = (req, res) => {
-  Teacher.findById(req.params.teacher_id)
+exports.getAllTeachers = (req, res) => {
+  Teacher.find()
+    .then((teachers) => res.status(200).json(teachers))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        error: err,
+      });
+    });
+};
+
+//@desc get request to fetch a teacher's  data by slug
+//@route /api/v1/teachers/fname-lname
+//@access public
+exports.getTeacherBySlug = (req, res) => {
+  Teacher.findOne({ slug: req.params.slug })
     .then((teacher) => {
       res.status(200).json({
         teacher,
         subjectSkills: teacher.skills.map((skill, idx) => {
-          console.log(idx);
+          // console.log(idx);
           return {
             title: skill.subject,
             value: parseInt(skill.experience),
@@ -18,7 +32,7 @@ exports.getTeacher = (req, res) => {
           };
         }),
         techSkills: teacher.teck_skills.map((techSkill, idx) => {
-          console.log(idx);
+          // console.log(idx);
           return {
             title: techSkill.resource,
             value: parseInt(techSkill.experience),

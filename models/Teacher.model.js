@@ -1,5 +1,8 @@
 const mongoose = require("mongoose");
 const geocoder = require("../utils/geocoder");
+const slug = require("mongoose-slug-generator");
+
+mongoose.plugin(slug);
 
 const TeacherSchema = mongoose.Schema(
   {
@@ -37,6 +40,12 @@ const TeacherSchema = mongoose.Schema(
     profile: String,
     education: [String],
     rating: Number,
+    slug: {
+      type: String,
+      slug: ["firstname", "lastname"],
+      slug_padding_size: 4,
+      unique: true,
+    },
     skills: {
       type: Array,
       subject: {
@@ -61,14 +70,11 @@ TeacherSchema.index({ location: "2dsphere" });
 //Geocode create location
 TeacherSchema.pre("save", async function (next) {
   const loc = await geocoder.geocode(this.address);
-  console.log("Locationtype: ", loc);
   this.location = {
     type: "Point",
     coordinates: [loc[0].longitude, loc[0].latitude],
     formattedAddress: loc[0].formattedAddress,
   };
-  //do not save address into the database
-  // this.address = undefined;
   next();
 });
 
