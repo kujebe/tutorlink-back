@@ -1,10 +1,10 @@
 import React from "react";
-import useSwr from "swr";
+import useRequest from "@/utils/swr-hook";
 import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
-  const { data, error } = useSwr(`/api/v1/teachers`);
+  const { data, error } = useRequest("/teachers");
   if (data) {
     console.log(data);
   }
