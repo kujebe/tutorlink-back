@@ -1,8 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import useSwr from "swr";
+import "./App.css";
+
+const fetcher = (...args) => fetch(...args).then((response) => response.json());
 
 function App() {
+  const { data, error } = useSwr(`/teachers`, {
+    fetcher,
+  });
+  if (data) {
+    console.log(data);
+  }
+  if (error) {
+    console.log(error);
+  }
   return (
     <div className="App">
       <header className="App-header">

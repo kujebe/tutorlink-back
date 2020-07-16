@@ -1,5 +1,5 @@
 {
-  "name": "tutorlink-back",
+  "name": "tutorlink-server",
   "version": "1.0.0",
   "description": "Backend application of tutor link, comprised of API and Admin",
   "author": "SSNG Tech Labs",
