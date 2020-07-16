@@ -1,14 +1,10 @@
 import React from "react";
+import useSWR from "swr";
 import logo from "./logo.svg";
-import useSwr from "swr";
 import "./App.css";
 
-const fetcher = (...args) => fetch(...args).then((response) => response.json());
-
 function App() {
-  const { data, error } = useSwr(`/api/v1/teachers`, {
-    fetcher,
-  });
+  const { data, error } = useSwr(`/api/v1/teachers`);
   if (data) {
     console.log(data);
   }
