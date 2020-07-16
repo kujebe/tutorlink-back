@@ -1,0 +1,25 @@
+$body_background: #edeef6;
+$white: #ffffff;
+$black: #111010;
+$menu_color: #8a8a8e;
+$grey: #aaaaaa;
+$dark-border: #5d5d5d;
+$menu_bullet_blue: #b9b9e6;
+$very_light_blue: #e2e2ec;
+$theme_blue: #006ab6;
+$star-color: #febf00;
+
+@mixin profile-thumbnail($width, $height, $border_color) {
+  width: $width;
+  height: $height;
+  margin-right: 7px;
+  border-radius: 50%;
+  border: 3px solid $border_color;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    object-fit: contain;
+  }
+}
