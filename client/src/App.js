@@ -12,9 +12,9 @@ function App() {
   if (data) {
     console.log(data);
   }
-  if (error) {
-    console.log(error);
-  }
+  // if (error) {
+  //   console.log(error);
+  // }
   return (
     <div className="App">
       <header className="App-header">
