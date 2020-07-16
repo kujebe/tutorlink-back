@@ -6,15 +6,15 @@ import "./App.css";
 const fetcher = (...args) => fetch(...args).then((response) => response.json());
 
 function App() {
-  const { data, error } = useSwr(`/teachers`, {
+  const { data, error } = useSwr(`http://localhost:5000/api/v1/teachers`, {
     fetcher,
   });
   if (data) {
     console.log(data);
   }
-  // if (error) {
-  //   console.log(error);
-  // }
+  if (error) {
+    console.log(error);
+  }
   return (
     <div className="App">
       <header className="App-header">
