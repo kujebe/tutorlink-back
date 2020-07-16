@@ -6,7 +6,7 @@ import "./App.css";
 const fetcher = (...args) => fetch(...args).then((response) => response.json());
 
 function App() {
-  const { data, error } = useSwr(`http://localhost:5000/api/v1/teachers`, {
+  const { data, error } = useSwr(`/api/v1/teachers`, {
     fetcher,
   });
   if (data) {
