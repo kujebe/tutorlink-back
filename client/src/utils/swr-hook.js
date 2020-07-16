@@ -1,6 +1,6 @@
 import useSwr from "swr";
 
-const apiUrl = "/api/v2"; //root is in proxy property in package.json
+const apiUrl = "/api/v1"; //root is in proxy property in package.json
 
 const useRequest = (path, params) => {
   if (!path) {
