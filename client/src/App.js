@@ -1,5 +1,5 @@
 import React from "react";
-import useRequest from "@/utils/swr-hook";
+import useRequest from "utils/swr-hook";
 import logo from "./logo.svg";
 import "./App.css";
 

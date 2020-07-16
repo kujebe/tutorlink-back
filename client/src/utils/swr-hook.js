@@ -2,7 +2,7 @@ import useSwr from "swr";
 
 const apiUrl = "/api/v2"; //root is in proxy property in package.json
 
-export const useRequest = (path, params) => {
+const useRequest = (path, params) => {
   if (!path) {
     throw new Error("Path is required");
   }
@@ -12,3 +12,5 @@ export const useRequest = (path, params) => {
 
   return { data, error };
 };
+
+export default useRequest;
