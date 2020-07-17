@@ -1,19 +1,22 @@
-import React from "react";
-import useRequest from "utils/swr-hook";
+import React, { lazy, Suspense } from "react";
+import { Switch, Route } from "react-router-dom";
 
+import Spinner from "components/spinner/spinner.component";
+import ErrorBoundary from "components/error-boundary/error-boundary.component";
 import Layout from "components/layout/layout.component";
 
+const HomePage = lazy(() => import("pages/homepage/homepage.component"));
+
 function App() {
-  const { data, error } = useRequest("/teachers");
-  if (data) {
-    console.log(data);
-  }
-  if (error) {
-    console.log(error);
-  }
   return (
     <Layout>
-      <div> Welcome</div>
+      <Switch>
+        <ErrorBoundary>
+          <Suspense fallback={<Spinner />}>
+            <Route exact path="/" component={HomePage} />
+          </Suspense>
+        </ErrorBoundary>
+      </Switch>
     </Layout>
   );
 }
