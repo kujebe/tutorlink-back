@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
 import { SWRConfig } from "swr";
 
 import App from "./App";
@@ -10,9 +11,11 @@ const fetcher = (...args) => fetch(...args).then((response) => response.json());
 
 ReactDOM.render(
   <React.StrictMode>
-    <SWRConfig value={{ fetcher }}>
-      <App />
-    </SWRConfig>
+    <BrowserRouter>
+      <SWRConfig value={{ fetcher }}>
+        <App />
+      </SWRConfig>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );
