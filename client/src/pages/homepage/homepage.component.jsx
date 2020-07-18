@@ -1,5 +1,5 @@
 import React from "react";
-import useRequest from "utils/swr-hook";
+import useRequest from "custom-hooks/swr-hoc";
 
 const HomePage = () => {
   const { data, error } = useRequest("/teachers");
@@ -9,7 +9,7 @@ const HomePage = () => {
   if (error) {
     console.log(error);
   }
-  return <div>{`I am home page ${data.johnson}`}</div>;
+  return <div>Home Page</div>;
 };
 
 export default HomePage;
