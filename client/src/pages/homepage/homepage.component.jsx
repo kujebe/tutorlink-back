@@ -9,7 +9,11 @@ const HomePage = () => {
   if (error) {
     console.log(error);
   }
-  return <div>Home Page</div>;
+  return (
+    <div>
+      <span>Home Page</span>
+    </div>
+  );
 };
 
 export default HomePage;

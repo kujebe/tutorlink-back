@@ -8,7 +8,6 @@
 }
 .error-image-container {
   display: inline-block;
-  // background-image: ${({ imageUrl }) => `url(${imageUrl})`};
   background-image: url("https://i.imgur.com/yW2W9SC.png");
   background-size: cover;
   background-position: center;

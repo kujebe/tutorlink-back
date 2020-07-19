@@ -5,18 +5,24 @@ import Spinner from "components/spinner/spinner.component";
 import ErrorBoundary from "components/error-boundary/error-boundary.component";
 import Layout from "components/layout/layout.component";
 
+import NoMatch from "components/no-match/NoMatch.component";
 const HomePage = lazy(() => import("pages/homepage/homepage.component"));
 
 function App() {
   return (
     <Layout>
-      <Switch>
-        <ErrorBoundary>
-          <Suspense fallback={<Spinner />}>
-            <Route exact path="/" component={HomePage} />
-          </Suspense>
-        </ErrorBoundary>
-      </Switch>
+      <ErrorBoundary>
+        <Suspense fallback={<Spinner />}>
+          <Switch>
+            <Route exact path="/">
+              <HomePage />
+            </Route>
+            <Route path="*">
+              <NoMatch />
+            </Route>
+          </Switch>
+        </Suspense>
+      </ErrorBoundary>
     </Layout>
   );
 }
