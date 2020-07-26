@@ -7,7 +7,7 @@ import mapDataReducer from "./map/map-reducer";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["mapData"],
+  whitelist: [],
 };
 
 const rootReducer = combineReducers({

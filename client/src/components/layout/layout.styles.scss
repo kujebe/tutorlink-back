@@ -118,7 +118,7 @@
     position: absolute;
     top: 9%;
     left: 160px;
-    z-index: 9;
+    z-index: 999;
     transition: all 0.5s;
     &:hover {
       cursor: pointer;
@@ -144,7 +144,7 @@
     background-color: $white;
     border-radius: 10px;
     padding: 7px;
-    z-index: 9;
+    z-index: 999;
     transition: all 0.5s;
     img {
       width: 80px;

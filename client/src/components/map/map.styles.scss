@@ -1,0 +1,33 @@
+.marker_containter {
+  background: none;
+  border: none;
+  // &::before {
+  //   content: "";
+  //   width: 70px;
+  //   height: 70px;
+  //   background-color: red;
+  // }
+  img {
+    width: 40px;
+  }
+  &::before {
+    content: "";
+    width: 400px;
+    height: 200px;
+    border-radius: 50%;
+    background: red;
+  }
+}
+
+.my-popup {
+  .leaflet-popup-close-button {
+    display: none;
+  }
+  .leaflet-popup-content-wrapper {
+    background: none;
+    box-shadow: none;
+  }
+  .leaflet-popup-tip-container {
+    display: none;
+  }
+}

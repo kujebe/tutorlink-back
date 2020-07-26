@@ -1,18 +1,17 @@
-import React from "react";
-import useRequest from "custom-hooks/swr-hoc";
+import React, { Fragment } from "react";
+import { useSelector } from "react-redux";
+
+import Map from "components/map/map.component";
+import MapTeacherDetails from "components/map-teacher-details/map-teacher-details.component";
 
 const HomePage = () => {
-  const { data, error } = useRequest("/teachers");
-  if (data) {
-    console.log(data);
-  }
-  if (error) {
-    console.log(error);
-  }
+  const selectedTeacher = useSelector((state) => state.mapData.selectedTeacher);
+
   return (
-    <div>
-      <span>Home Page</span>
-    </div>
+    <Fragment>
+      <Map />
+      {selectedTeacher && <MapTeacherDetails />}
+    </Fragment>
   );
 };
 

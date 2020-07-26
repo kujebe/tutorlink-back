@@ -7,26 +7,11 @@ import { mapActionTypes } from "./map-action-types";
 
 export function* getUserLocation() {
   try {
-    let currentPosition = {};
-    let currentPositionError = null;
-    yield getCurrentPositionPromise({
-      enableHighAccuracy: true,
-      // maximumAge: 1000,
-      // timeout: 100000,
-    })
-      .then(({ coords }) => {
-        currentPosition.latitude = coords.latitude;
-        currentPosition.longitude = coords.longitude;
-      })
-      .catch((err) => {
-        currentPositionError = err.message;
-      });
-
-    if (currentPositionError) {
-      yield put(getUserLocationFailure(currentPositionError));
-    } else {
-      yield put(getUserLocationSuccess(currentPosition));
-    }
+    let currentPosition = [];
+    yield getCurrentPositionPromise().then((latlong) => {
+      currentPosition = latlong;
+    });
+    yield put(getUserLocationSuccess(currentPosition));
   } catch (error) {
     yield put(getUserLocationFailure(error.message));
   }

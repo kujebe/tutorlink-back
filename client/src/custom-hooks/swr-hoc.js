@@ -7,7 +7,7 @@ const useRequest = (path, params) => {
     throw new Error("Path is required");
   }
 
-  const url = params ? apiUrl + path + "/" + params : apiUrl + path;
+  const url = params ? apiUrl + path + params : apiUrl + path;
   const { data, error } = useSwr(url);
 
   return { data, error };

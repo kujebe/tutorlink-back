@@ -1,7 +1,7 @@
 import { mapActionTypes } from "./map-action-types";
 
 const INITIAL_STATE = {
-  userLocation: null,
+  userLocation: [],
   userLocationError: null,
   selectedTeacher: "",
 };

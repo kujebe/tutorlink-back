@@ -1,0 +1,38 @@
+@import "theme/theme.scss";
+
+.close {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  overflow: hidden;
+  background: $black;
+  border-radius: 50%;
+  left: -28px;
+  top: 2px;
+  cursor: pointer;
+  cursor: pointer;
+  &:hover {
+    background: $white;
+    &::before,
+    &::after {
+      background: $black;
+    }
+  }
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    height: 3px;
+    width: 58%;
+    top: 42%;
+    left: 20%;
+    background: $white;
+    border-radius: 5px;
+  }
+  &::before {
+    transform: rotate(45deg);
+  }
+  &::after {
+    transform: rotate(-45deg);
+  }
+}

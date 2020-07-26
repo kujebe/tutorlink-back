@@ -1,0 +1,94 @@
+@import "theme/theme.scss";
+
+@mixin popup-text {
+  text-transform: capitalize;
+  color: $grey;
+  font-size: 13px;
+}
+
+@mixin header-footer {
+  text-align: center;
+  padding: 10px;
+}
+
+.popup_container {
+  font-family: "Source Sans Pro", sans-serif;
+  height: auto;
+  width: 195px;
+  background: $white;
+  // position: absolute;
+  // left: -55px;
+  // top: -240px;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 2px 16px 0px #000000;
+  -webkit-box-shadow: 0px 2px 16px 0px #000000;
+  -moz-box-shadow: 0px 2px 16px 0px #000000;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 95%;
+    border-style: solid;
+    border-width: 8px 8px 0 8px;
+    border-color: $white transparent transparent transparent;
+    line-height: 0px;
+    left: 48%;
+  }
+  .count {
+    @include popup-text;
+    @include header-footer;
+    background: $theme_blue;
+    color: $white;
+    font-size: 14px;
+  }
+  .teacher_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 3px 8px;
+    align-items: center;
+    border-top: 1px $dark_border solid;
+    &.active {
+      background: $black;
+      & .teacher_data {
+        .teacher_name {
+          color: $white;
+        }
+      }
+    }
+    cursor: pointer;
+    &:nth-child(3) {
+      border-bottom: 1px $dark_border solid;
+    }
+    .teacher_photo {
+      @include profile-thumbnail(22%, 40px, $theme_blue);
+      img {
+        width: 63px;
+      }
+    }
+    .teacher_data {
+      flex-grow: 1;
+      .teacher_name {
+        font-weight: 600;
+        font-size: 14px;
+      }
+      .teacher_level,
+      .teacher_experience,
+      .teacher_rating {
+        @include popup-text;
+      }
+    }
+  }
+  .show_more {
+    @include popup-text;
+    @include header-footer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    img {
+      margin-right: 5px;
+      width: 25px;
+    }
+  }
+}
