@@ -10,6 +10,9 @@ import Tags from "components/tags/tags.component";
 import Spinner from "components/spinner/spinner.component";
 import CloseIcon from "components/close-icon/close-icon.component";
 
+import hiredIcom from "assets/images/hired-icon.png";
+import achievementIcon from "assets/images/achievement-icon.png";
+
 import styles from "./map-teacher-details.module.scss";
 
 const MapTeacherDetails = () => {
@@ -137,7 +140,7 @@ const MapTeacherDetails = () => {
           <div>
             <img
               className={styles.activities_icon}
-              src="/images/hired-icon.png"
+              src={hiredIcom}
               alt="Number of times hired"
             />
             <span>Hired 40 times</span>
@@ -145,7 +148,7 @@ const MapTeacherDetails = () => {
           <div>
             <img
               className={styles.activities_icon}
-              src="/images/achievement-icon.png"
+              src={achievementIcon}
               alt="Number of times hired"
             />
             <span>60 students tutored</span>
