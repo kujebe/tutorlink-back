@@ -1,5 +1,13 @@
 import React from "react";
 
-const TeacherPage = () => <div>Single Teacher page</div>;
+import InnerPagesLayout from "components/layout/inner-pages-layout.component";
+
+import "./teacher.styles.scss";
+
+const TeacherPage = () => (
+  <InnerPagesLayout>
+    <div>Single Teacher page</div>
+  </InnerPagesLayout>
+);
 
 export default TeacherPage;
