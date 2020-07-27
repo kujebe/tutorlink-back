@@ -7,6 +7,7 @@ import Layout from "components/layout/layout.component";
 
 import NoMatch from "components/no-match/NoMatch.component";
 const HomePage = lazy(() => import("pages/homepage/homepage.component"));
+const TeacherPage = lazy(() => import("pages/teacher/teacher.component"));
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
           <Switch>
             <Route exact path="/">
               <HomePage />
+            </Route>
+            <Route path="/teacher">
+              <TeacherPage />
             </Route>
             <Route path="*">
               <NoMatch />
