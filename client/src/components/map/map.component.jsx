@@ -29,7 +29,7 @@ const mapApiEndpoint =
   "https://api.mapbox.com/styles/v1/ssngtechlabs/ckcz14gv7055a1iun9soav7zf/tiles/256/{z}/{x}/{y}@2x?access_token=" +
   process.env.REACT_APP_MAPBOX_API_KEY;
 
-const MapContainer = (props) => {
+const MapContainer = () => {
   const dispatch = useDispatch();
   const userLocation = useSelector((state) => state.mapData.userLocation);
 
@@ -39,7 +39,7 @@ const MapContainer = (props) => {
 
   return (
     <Fragment>
-      {userLocation && (
+      {userLocation.length > 0 && (
         <Map
           center={userLocation}
           zoom={15}

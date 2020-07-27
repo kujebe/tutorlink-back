@@ -4,7 +4,7 @@ import StarRatings from "react-star-ratings";
 
 import useRequest from "custom-hooks/swr-hoc";
 
-import { selectTeacherForDetails } from "store/map/map-actions";
+import { selectTeacherSlug } from "store/teacher/teacher-actions";
 
 import seeMore from "assets/images/see-more.png";
 
@@ -14,7 +14,9 @@ import styles from "./marker-popup.module.scss";
 
 const MarkerPopup = () => {
   const dispatch = useDispatch();
-  const selectedTeacher = useSelector((state) => state.mapData.selectedTeacher);
+  const selectedTeacherSlug = useSelector(
+    (state) => state.teacher.selectedTeacherSlug
+  );
   const userLocation = useSelector((state) => state.mapData.userLocation);
 
   const { data, error } = useRequest(
@@ -37,9 +39,9 @@ const MarkerPopup = () => {
           <div
             key={teacher._id}
             className={`${styles.teacher_wrapper} ${
-              selectedTeacher === teacher.slug && styles.active
+              selectedTeacherSlug === teacher.slug && styles.active
             }`}
-            onClick={() => dispatch(selectTeacherForDetails(teacher.slug))}
+            onClick={() => dispatch(selectTeacherSlug(teacher.slug))}
           >
             <div className={styles.teacher_photo}>
               <img

@@ -24,9 +24,11 @@ const MapTeacherDetails = () => {
     pointerEvents: "none",
   };
 
-  const selectedTeacher = useSelector((state) => state.mapData.selectedTeacher);
+  const selectedTeacherSlug = useSelector(
+    (state) => state.teacher.selectedTeacherSlug
+  );
 
-  const { data, error } = useRequest("/teachers", `/${selectedTeacher}`);
+  const { data, error } = useRequest("/teachers", `/${selectedTeacherSlug}`);
 
   if (!data) {
     return (

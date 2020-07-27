@@ -13,8 +13,3 @@ export const getUserLocationFailure = (errorMessage) => ({
   type: mapActionTypes.GET_USER_LOCATION_FAILURE,
   payload: errorMessage,
 });
-
-export const selectTeacherForDetails = (teacherSlug) => ({
-  type: mapActionTypes.SELECT_TEACHER_FOR_DETAILS,
-  payload: teacherSlug,
-});

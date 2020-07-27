@@ -3,10 +3,9 @@ import { mapActionTypes } from "./map-action-types";
 const INITIAL_STATE = {
   userLocation: [],
   userLocationError: null,
-  selectedTeacher: "",
 };
 
-const mapDataReducer = (state = INITIAL_STATE, { type, payload }) => {
+const mapDataReducer = (state = INITIAL_STATE, { payload, type }) => {
   switch (type) {
     case mapActionTypes.GET_USER_LOCATION_SUCCESS:
       return {
@@ -20,16 +19,8 @@ const mapDataReducer = (state = INITIAL_STATE, { type, payload }) => {
         userLocationError: payload,
       };
 
-    case mapActionTypes.SELECT_TEACHER_FOR_DETAILS:
-      return {
-        ...state,
-        selectedTeacher: payload,
-      };
-
     default:
-      return {
-        state,
-      };
+      return state;
   }
 };
 
