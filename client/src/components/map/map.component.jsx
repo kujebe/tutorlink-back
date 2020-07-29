@@ -26,8 +26,10 @@ const MyMarker = (props) => {
 };
 
 const mapApiEndpoint =
-  "https://api.mapbox.com/styles/v1/ssngtechlabs/ckcz14gv7055a1iun9soav7zf/tiles/256/{z}/{x}/{y}@2x?access_token=" +
-  process.env.REACT_APP_MAPBOX_API_KEY;
+  "https://api.mapbox.com/styles/v1/ssngtechlabs/ckcz14gv7055a1iun9soav7zf/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic3NuZ3RlY2hsYWJzIiwiYSI6ImNrY3owOXpuZzA4bWIyeW83a2s3OW1qcjUifQ._w4L8WUK5FjnqrK-p4a9hw";
+// const mapApiEndpoint =
+//   "https://api.mapbox.com/styles/v1/ssngtechlabs/ckcz14gv7055a1iun9soav7zf/tiles/256/{z}/{x}/{y}@2x?access_token=" +
+//   process.env.REACT_APP_MAPBOX_API_KEY;
 
 const MapContainer = () => {
   const dispatch = useDispatch();
