@@ -20,11 +20,11 @@ exports.getAllTeachers = (req, res) => {
 //@access public
 exports.getTeacherBySlug = (req, res) => {
   Teacher.findOne({ slug: req.params.slug })
+    .orFail({ notFound: "Not Found" })
     .then((teacher) => {
       res.status(200).json({
         teacher,
         subjectSkills: teacher.skills.map((skill, idx) => {
-          // console.log(idx);
           return {
             title: skill.subject,
             value: parseInt(skill.experience),
@@ -32,7 +32,6 @@ exports.getTeacherBySlug = (req, res) => {
           };
         }),
         techSkills: teacher.teck_skills.map((techSkill, idx) => {
-          // console.log(idx);
           return {
             title: techSkill.resource,
             value: parseInt(techSkill.experience),
