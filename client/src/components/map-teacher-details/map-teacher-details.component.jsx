@@ -14,16 +14,10 @@ import hiredIcon from "assets/images/hired-icon.png";
 import achievementIcon from "assets/images/achievement-icon.png";
 
 import "react-tabs/style/react-tabs.scss";
+import { chartLabelStyles } from "helpers/style-helpers";
 import styles from "./map-teacher-details.module.scss";
 
 const MapTeacherDetails = () => {
-  const defaultLabelStyle = {
-    fontSize: "8px",
-    fontFamily: "sans-serif",
-    fill: "#fff",
-    pointerEvents: "none",
-  };
-
   const selectedTeacherSlug = useSelector(
     (state) => state.teacher.selectedTeacherSlug
   );
@@ -94,7 +88,7 @@ const MapTeacherDetails = () => {
                 lengthAngle={-360}
                 animate
                 labelStyle={{
-                  ...defaultLabelStyle,
+                  ...chartLabelStyles,
                 }}
               />
               <div className={styles.legends}>
@@ -122,7 +116,7 @@ const MapTeacherDetails = () => {
                 lengthAngle={-360}
                 animate
                 labelStyle={{
-                  ...defaultLabelStyle,
+                  ...chartLabelStyles,
                 }}
               />
               <div className={styles.legends}>
