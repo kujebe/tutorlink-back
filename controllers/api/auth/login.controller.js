@@ -1,22 +1,25 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../../../models/User.model");
+const {
+  Unauthorized,
+  UnprocessableEntity,
+} = require("../../../helpers/errors");
 
-exports.loginController = (req, res) => {
+exports.loginController = (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
-    return res
-      .status(422)
-      .json({ message: "Email or password cannot be empty" });
+    throw new UnprocessableEntity("Email or password cannot be empt");
   }
   User.find({ email: email })
+    .exec()
     .then((user) => {
       if (user.length < 1) {
-        return res.status(401).json({ message: "Unauthorized" });
+        throw new Unauthorized("Unauthorized");
       }
       bcrypt.compare(password, user[0].password, (err, result) => {
         if (err) {
-          return res.status(401).json({ message: "Unauthorized" });
+          throw new Unauthorized("Unauthorized");
         }
         if (result) {
           const token = jwt.sign(
@@ -28,11 +31,10 @@ exports.loginController = (req, res) => {
             .status(200)
             .json({ token, message: "Authentication successful" });
         }
-        res.status(401).json({ message: "Unauthorized" });
+        throw new Unauthorized("Unauthorized");
       });
     })
     .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
+      next(err);
     });
 };

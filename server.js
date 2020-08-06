@@ -5,6 +5,7 @@ const path = require("path");
 const compression = require("compression");
 const connectDb = require("./config/db");
 const morgan = require("morgan");
+const handleErrors = require("./middlewares/error-handler"); // Custome error handler middleware
 
 //Import routes
 const homePageRouter = require("./routes/api/public/home-page.route");
@@ -29,12 +30,13 @@ app.use(cors());
  */
 app.use("/api/v1/home", homePageRouter);
 app.use("/api/v1/teachers", teachersRouter);
-/** Public routes */
+/** End public routes */
 
 /**
  * Auth routes
  */
 app.use("/api/v1/auth", authRouter);
+/** End auth routes */
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));
@@ -43,6 +45,8 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(__dirname, "client/build", "index.html"));
   });
 }
+
+app.use(handleErrors);
 
 app.listen(port, (err) => {
   if (err) throw err;
