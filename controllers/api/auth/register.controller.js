@@ -1,6 +1,6 @@
 const User = require("../../../models/User.model");
 
-exports.register = (req, res) => {
+exports.registerController = (req, res) => {
   User.find({ email: req.body.email })
     .exec()
     .then((user) => {
