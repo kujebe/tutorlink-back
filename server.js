@@ -7,8 +7,9 @@ const connectDb = require("./config/db");
 const morgan = require("morgan");
 
 //Import routes
-const homePageRouter = require("./routes/api/public-routes/home-page.route");
-const teachersRouter = require("./routes/api/public-routes/teachers.route");
+const homePageRouter = require("./routes/api/public/home-page.route");
+const teachersRouter = require("./routes/api/public/teachers.route");
+const authRouter = require("./routes/api/auth/auth.routes");
 
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 
@@ -23,10 +24,17 @@ app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-/** Routes */
+/**
+ * Public routes
+ */
 app.use("/api/v1/home", homePageRouter);
 app.use("/api/v1/teachers", teachersRouter);
-/** End routes */
+/** Public routes */
+
+/**
+ * Auth routes
+ */
+app.use("/api/v1/auth", authRouter);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));
