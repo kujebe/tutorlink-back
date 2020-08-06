@@ -4,6 +4,11 @@ const User = require("../../../models/User.model");
 
 exports.loginController = (req, res) => {
   const { email, password } = req.body;
+  if (!email || !password) {
+    return res
+      .status(422)
+      .json({ message: "Email or password cannot be empty" });
+  }
   User.find({ email: email })
     .then((user) => {
       if (user.length < 1) {
