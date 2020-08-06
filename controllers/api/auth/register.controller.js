@@ -1,13 +1,18 @@
 const User = require("../../../models/User.model");
 
 exports.registerController = (req, res) => {
+  const { email, password, role } = req.body;
+  if (!email || !password) {
+    return res
+      .status(422)
+      .json({ message: "Email or password cannot be empty" });
+  }
   User.find({ email: req.body.email })
     .exec()
     .then((user) => {
       if (user.length >= 1) {
         res.status(409).json({ message: "User with same already exist" });
       } else {
-        const { email, password, role } = req.body;
         const user = new User({
           email: email,
           password: password,
@@ -17,13 +22,9 @@ exports.registerController = (req, res) => {
         user
           .save()
           .then((result) => {
-            console.log(result);
-            res
-              .status(201)
-              .json({ user: result, message: "User registered successfully" });
+            res.status(201).json({ message: "User registered successfully" });
           })
           .catch((err) => {
-            console.log(err);
             res.status(500).json(err);
           });
       }
