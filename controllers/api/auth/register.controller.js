@@ -10,7 +10,7 @@ exports.register = (req, res) => {
         const { email, password, role } = req.body;
         const user = new User({
           email: email,
-          password: req.body.password,
+          password: password,
           role: role,
           status: role === "client" ? 1 : 0, //Activate user is it's client
         });

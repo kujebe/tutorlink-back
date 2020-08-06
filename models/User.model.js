@@ -11,12 +11,18 @@ const UserSchema = mongoose.Schema(
       unique: true,
       match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
     },
-    password: { type: String, required: true },
+    password: {
+      type: String,
+      required: true,
+      match: [
+        /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/,
+        "Password must contain one capital letter",
+      ],
+      minlength: 8,
+    },
     role: {
       type: String,
       required: true,
-      match: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/,
-      minlength: 5,
     },
     status: { type: String },
   },
