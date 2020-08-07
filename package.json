@@ -27,7 +27,8 @@
     "mongoose": "^5.9.20",
     "mongoose-slug-generator": "^1.0.4",
     "morgan": "^1.10.0",
-    "node-geocoder": "^3.27.0"
+    "node-geocoder": "^3.27.0",
+    "nodemailer": "^6.4.11"
   },
   "devDependencies": {
     "concurrently": "^4.0.1"

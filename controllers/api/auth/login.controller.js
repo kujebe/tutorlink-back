@@ -23,7 +23,7 @@ exports.loginController = (req, res, next) => {
         }
         if (result) {
           const token = jwt.sign(
-            { email: user[0].email, userId: user[0]._id },
+            { userId: user[0]._id, email: user[0].email, role: user[0].role },
             process.env.JWT_KEY,
             { expiresIn: "1h" }
           );
