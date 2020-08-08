@@ -3,19 +3,20 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const path = require("path");
 const compression = require("compression");
-const connectDb = require("./config/db");
+const connectDb = require("./config/db.config");
 const morgan = require("morgan");
 const handleErrors = require("./middlewares/error-handler"); // Custome error handler middleware
+
+// if (process.env.NODE_ENV !== "production") require("dotenv").config();
+require("dotenv").config();
+
+//Connect to database
+connectDb();
 
 //Import routes
 const homePageRouter = require("./routes/api/public/home-page.route");
 const teachersRouter = require("./routes/api/public/teachers.route");
 const authRouter = require("./routes/api/auth/auth.routes");
-
-if (process.env.NODE_ENV !== "production") require("dotenv").config();
-
-//Connect to database
-connectDb();
 
 const app = express();
 app.use(morgan("combined"));

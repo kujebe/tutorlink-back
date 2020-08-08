@@ -9,7 +9,7 @@ const {
 exports.loginController = (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
-    throw new UnprocessableEntity("Email or password cannot be empt");
+    throw new UnprocessableEntity("Email or password cannot be empty");
   }
   User.find({ email: email })
     .exec()
