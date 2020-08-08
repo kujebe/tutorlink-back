@@ -21,6 +21,15 @@ const UserSchema = mongoose.Schema(
       ],
       minlength: 8,
     },
+    lastLogin: {
+      default: Date.now(),
+      required: true,
+      type: Date,
+    },
+    loginCount: {
+      default: 0,
+      type: Number,
+    },
     role: {
       type: String,
       required: true,
@@ -52,16 +61,6 @@ UserSchema.methods.generateUserToken = () => {
     expiresIn: 3600, // 1 hour
   });
   return token;
-};
-
-UserSchema.methods.isCorrectPassword = function (password, callback) {
-  bcrypt.compare(password, this.password, function (err, same) {
-    if (err) {
-      callback(err);
-    } else {
-      callback(err, same);
-    }
-  });
 };
 
 module.exports = mongoose.model("User", UserSchema);
