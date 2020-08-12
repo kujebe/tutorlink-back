@@ -6,10 +6,12 @@ const {
 const {
   loginController,
 } = require("../../../controllers/api/auth/login.controller");
-const sendPasswordRecoveryMailController = require("../../../controllers/api/auth/send-password-recovery-mail.controller");
+const forgotPasswordController = require("../../../controllers/api/auth/forgot-password.controller");
+const resetPasswordController = require("../../../controllers/api/auth/reset-password.controller");
 
 authRouter.post("/register", registerController);
 authRouter.post("/login", loginController);
-authRouter.post("/forgot-password", sendPasswordRecoveryMailController);
+authRouter.post("/forgot-password", forgotPasswordController);
+authRouter.post("/reset-password/:userId/:token", resetPasswordController);
 
 module.exports = authRouter;

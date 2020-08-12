@@ -4,7 +4,7 @@ const { UnprocessableEntity, Conflict } = require("../../../helpers/errors");
 exports.registerController = (req, res, next) => {
   const { email, password, role } = req.body;
   if (!email || !password) {
-    throw new UnprocessableEntity("Email or password cannot be empt");
+    throw new UnprocessableEntity("Email or password cannot be empty");
   }
   User.find({ email: req.body.email })
     .exec()
@@ -16,7 +16,7 @@ exports.registerController = (req, res, next) => {
         email: email,
         password: password,
         role: role,
-        status: role === "client" ? 1 : 0, //Activate user is it's client
+        status: role === "client" ? 1 : 0, //Activate user if it's client
       });
       newUser
         .save()

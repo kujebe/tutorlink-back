@@ -55,10 +55,28 @@ UserSchema.pre("save", function (next) {
   }
 });
 
-UserSchema.methods.generateUserToken = () => {
+UserSchema.methods.loginUser = function (password, cb) {
+  const doc = this;
+  bcrypt.compare(password, this.password, function (err, same) {
+    if (err) {
+      cb(err);
+    } else if (same) {
+      const token = jwt.sign(
+        { userId: doc._id, email: doc.email, role: doc.role },
+        process.env.JWT_KEY,
+        { expiresIn: "1h" }
+      );
+      cb(err, same, token);
+    } else {
+      cb(err, same);
+    }
+  });
+};
+
+UserSchema.methods.generatePasswordResetToken = function () {
   const secret = this.password + "-" + this.createdAt;
   const token = jwt.sign({ userId: this._id }, secret, {
-    expiresIn: 3600, // 1 hour
+    expiresIn: "1h", // 1 hour
   });
   return token;
 };

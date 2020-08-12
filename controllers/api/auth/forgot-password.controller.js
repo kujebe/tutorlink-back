@@ -9,7 +9,7 @@ const {
   UnprocessableEntity,
 } = require("../../../helpers/errors");
 
-const sendPasswordRecoveryMailController = (req, res, next) => {
+const ForgotPasswordController = (req, res, next) => {
   const email = req.body.email;
 
   if (!email) {
@@ -23,17 +23,19 @@ const sendPasswordRecoveryMailController = (req, res, next) => {
         throw new Unauthorized("Unauthorized");
       }
       /** If user found, generate token and send email */
-      const token = user.generateUserToken();
+      const token = user.generatePasswordResetToken(user._id);
+      /** TO-DO => CHECK IF TOKEN RETURNS ERROR OR PASS CALLBACK TO TOKEN METHOD */
       mailTransport
         .sendMail(
           mailHelperOptions(
             [user.email], // In case you want to send to send to multiple recipients
             "Reset password instructions for TutorLink account", //Subject
-            passwordResetEmailTemplate(user.email, token) //Email template
+            passwordResetEmailTemplate(user._id, user.email, token) //Email template
           )
         )
         .then((info) => {
           res.status(200).json({
+            token, // to be removed
             mailInfo: info,
             message: "Password reset email sent successfully",
           });
@@ -47,4 +49,4 @@ const sendPasswordRecoveryMailController = (req, res, next) => {
     });
 };
 
-module.exports = sendPasswordRecoveryMailController;
+module.exports = ForgotPasswordController;
