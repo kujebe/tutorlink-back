@@ -39,7 +39,7 @@ const TeacherPage = () => {
       );
     }
     const { teacher, subjectSkills, techSkills } = data;
-    console.log(data);
+    // console.log(data);
 
     return (
       <InnerPagesLayout>
