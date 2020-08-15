@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 const TopbarPublic = () => (
   <div className="topbar-public-wrapper">
     <Link to="#">How It works</Link>
-    <Link to="#">Log In</Link>
-    <Link to="#">Sign Up</Link>
+    <Link to="/account?action=login">Log In</Link>
+    <Link to="/account/?action=signup">Sign Up</Link>
   </div>
 );
 

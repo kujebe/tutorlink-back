@@ -6,8 +6,11 @@ import ErrorBoundary from "components/error-boundary/error-boundary.component";
 import Layout from "components/layout/layout.component";
 
 import NoMatch from "components/no-match/NoMatch.component";
-const HomePage = lazy(() => import("pages/homepage/homepage.component"));
-const TeacherPage = lazy(() => import("pages/teacher/teacher.component"));
+const HomePage = lazy(() => import("pages/home/home.page"));
+const TeacherPage = lazy(() => import("pages/teacher/teacher.page"));
+const SignInSignOut = lazy(() =>
+  import("pages/sign-in-sign-out/sign-in-sign-out.page")
+);
 
 function App() {
   return (
@@ -18,8 +21,11 @@ function App() {
             <Route exact path="/">
               <HomePage />
             </Route>
-            <Route path="/teacher/:slug">
+            <Route exact path="/teacher/:slug">
               <TeacherPage />
+            </Route>
+            <Route exact path="/account">
+              <SignInSignOut />
             </Route>
             <Route path="*">
               <NoMatch />

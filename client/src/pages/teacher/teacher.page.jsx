@@ -28,7 +28,7 @@ const TeacherPage = () => {
   }
 
   if (data && !error) {
-    console.log(data);
+    // console.log(data);
     if (data.error && data.error.notFound) {
       return (
         <InnerPagesLayout>
