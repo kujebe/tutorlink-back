@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import useQuery from "custom-hooks/use-query";
 
@@ -8,16 +8,6 @@ import styles from "components/account/account.module.scss";
 const SignInSignOut = () => {
   const [signupActive, setSignupActive] = useState(false);
   const query = useQuery();
-
-  // useEffect(() => {
-  //   if (query.get("action") === "signup") {
-  //     setSignupActive(true);
-  //   } else if (query.get("action") === "login") {
-  //     setSignupActive(false);
-  //   } else {
-  //     setSignupActive(false);
-  //   }
-  // }, []);
 
   console.log(signupActive);
 
