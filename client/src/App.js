@@ -9,7 +9,7 @@ import NoMatch from "components/no-match/NoMatch.component";
 const HomePage = lazy(() => import("pages/home/home.page"));
 const TeacherPage = lazy(() => import("pages/teacher/teacher.page"));
 const SignInSignOut = lazy(() =>
-  import("pages/sign-in-sign-out/sign-in-sign-out.page")
+  import("pages/sign-in-sign-up/sign-in-sign-up.page")
 );
 
 function App() {

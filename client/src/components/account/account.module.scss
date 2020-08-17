@@ -24,7 +24,10 @@
         .fade_toggler {
           margin-bottom: 15px;
           cursor: pointer;
-          color: #f44336;
+          color: $theme_blue;
+          &:hover {
+            text-decoration: underline;
+          }
         }
         &.fade_out {
           visibility: hidden;
@@ -59,20 +62,20 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      input {
-        background: $menu_bullet_blue;
-        border: none;
-        padding: 12px 15px;
-        margin: 8px 0;
-        width: 100%;
-        border-radius: 5px;
-        &:active,
-        &:focus {
-          background: #ffffff;
-          outline: none;
-          border: 2px solid $menu_bullet_blue;
-        }
-      }
+      // input {
+      //   background: $menu_bullet_blue;
+      //   border: none;
+      //   padding: 12px 15px;
+      //   margin: 8px 0;
+      //   width: 100%;
+      //   border-radius: 5px;
+      //   &:active,
+      //   &:focus {
+      //     background: #ffffff;
+      //     outline: none;
+      //     border: 2px solid $menu_bullet_blue;
+      //   }
+      // }
     }
   }
   .overlay_container {
