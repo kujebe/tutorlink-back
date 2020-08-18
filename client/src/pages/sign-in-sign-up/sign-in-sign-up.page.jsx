@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+import { emailSignInStart } from "store/user/user-actions";
 
 import InnerPagesLayout from "components/layout/inner-pages-layout.component";
 import Overlay from "components/account/overlay.component";
@@ -13,18 +16,21 @@ const SignInSignOut = () => {
     email: "",
     password: "",
   });
-  const [isLoading, setIsLoading] = useState(false);
   const [signupActive, setSignupActive] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
+
+  const { isAuthenticating } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setState({ ...state, [name]: value });
   };
 
-  const signUp = (e) => {
+  const handleSigninWithEmail = (e) => {
     e.preventDefault();
-    setIsLoading(true);
+    const { email, password } = state;
+    dispatch(emailSignInStart({ email, password }));
   };
 
   const handleSignupToggle = (status) => {
@@ -70,8 +76,8 @@ const SignInSignOut = () => {
               type="submit"
               buttonType="submit"
               label="Sign Up"
-              onClick={(e) => signUp(e)}
-              isLoading={isLoading}
+              onClick={(e) => console.log("Clicked")}
+              // isLoading={isLoading}
             />
           </form>
         </div>
@@ -109,8 +115,8 @@ const SignInSignOut = () => {
                 type="submit"
                 buttonType="submit"
                 label="Sign In"
-                onClick={(e) => signUp(e)}
-                isLoading={isLoading}
+                onClick={handleSigninWithEmail}
+                isLoading={isAuthenticating}
               />
             </form>
             <form
@@ -137,8 +143,8 @@ const SignInSignOut = () => {
                 type="submit"
                 buttonType="submit"
                 label="Reset Password"
-                onClick={(e) => signUp(e)}
-                isLoading={isLoading}
+                onClick={(e) => console.log("Clicked")}
+                // isLoading={isLoading}
               />
             </form>
           </div>

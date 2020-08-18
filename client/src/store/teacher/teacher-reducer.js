@@ -1,4 +1,4 @@
-import { teacherActionTypes } from "./teacher-action-types";
+import teacherActionTypes from "./teacher-action-types";
 
 const INITIAL_STATE = {
   selectedTeacherSlug: "",
