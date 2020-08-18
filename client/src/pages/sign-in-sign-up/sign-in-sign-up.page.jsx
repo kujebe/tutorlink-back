@@ -5,7 +5,7 @@ import Overlay from "components/account/overlay.component";
 import FormInput from "components/form-input/form-input.component";
 import Button from "components/button/button.component";
 
-import styles from "components/account/account.module.scss";
+import styles from "./account.module.scss";
 
 const SignInSignOut = () => {
   const [state, setState] = useState({
