@@ -1,22 +1,22 @@
 class AuthService {
   static API_URL = "/api/v1/auth/login";
+  static headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+  };
 
   async login(email, password) {
     try {
       const result = await fetch(this.constructor.API_URL, {
         method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
+        headers: this.constructor.headers,
         body: JSON.stringify({ email, password }),
       });
 
       const data = await result.json();
       return data;
-    } catch (e) {
-      console.warn(e);
-      return [];
+    } catch (error) {
+      throw new Error(error);
     }
   }
 
