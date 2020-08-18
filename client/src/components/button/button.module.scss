@@ -1,0 +1,79 @@
+@import "theme/theme.scss";
+
+button {
+  border-radius: 20px;
+  border: 1px solid $menu_bullet_blue;
+  background: $theme_blue;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 12px 35px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: all 1s;
+  &:not(.spin) {
+    transition: transform 80ms ease-in;
+  }
+  &:disabled {
+    border: 1px solid $grey;
+    background: grey;
+    color: #d4d4d4;
+    cursor: default;
+    &.spin {
+      span.spinner {
+        &::before {
+          border: solid 5px #afafaf;
+          border-bottom-color: #ffffff;
+        }
+      }
+    }
+  }
+
+  &.spin {
+    padding-left: 50px;
+    display: block;
+    span.spinner {
+      left: -3px;
+      top: 7px;
+      width: 35px;
+      position: absolute;
+      &::before {
+        content: "";
+        width: 14px;
+        height: 14px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: 50%;
+        border: solid 5px #a8bbc7;
+        border-bottom-color: #ffffff;
+        animation: spinner 0.8s linear infinite; /* speed of spinner */
+        transform: translate(-50%, -50%);
+        will-change: transform;
+      }
+    }
+  }
+  &.ghost {
+    background: transparent;
+    border-color: #ffffff;
+  }
+  &:active {
+    transform: scale(0.95);
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+/* spinner animation */
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

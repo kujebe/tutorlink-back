@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import InnerPagesLayout from "components/layout/inner-pages-layout.component";
 import Overlay from "components/account/overlay.component";
 import FormInput from "components/form-input/form-input.component";
+import Button from "components/button/button.component";
 
 import styles from "components/account/account.module.scss";
 
@@ -12,6 +13,7 @@ const SignInSignOut = () => {
     email: "",
     password: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
   const [signupActive, setSignupActive] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
 
@@ -20,7 +22,14 @@ const SignInSignOut = () => {
     setState({ ...state, [name]: value });
   };
 
-  console.log(state);
+  const signUp = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+  };
+
+  const handleSignupToggle = (status) => {
+    setSignupActive(status);
+  };
 
   return (
     <InnerPagesLayout>
@@ -57,7 +66,13 @@ const SignInSignOut = () => {
               label="Password"
               required
             />
-            <button type="button">Sign Up</button>
+            <Button
+              type="submit"
+              buttonType="submit"
+              label="Sign Up"
+              onClick={(e) => signUp(e)}
+              isLoading={isLoading}
+            />
           </form>
         </div>
 
@@ -90,7 +105,13 @@ const SignInSignOut = () => {
               >
                 Forgot your password?
               </div>
-              <button type="button">Sign in</button>
+              <Button
+                type="submit"
+                buttonType="submit"
+                label="Sign In"
+                onClick={(e) => signUp(e)}
+                isLoading={isLoading}
+              />
             </form>
             <form
               className={showForgotPassword ? styles.fade_in : styles.fade_out}
@@ -112,12 +133,18 @@ const SignInSignOut = () => {
               >
                 Have an account? Login
               </div>
-              <button type="button">Submit</button>
+              <Button
+                type="submit"
+                buttonType="submit"
+                label="Reset Password"
+                onClick={(e) => signUp(e)}
+                isLoading={isLoading}
+              />
             </form>
           </div>
         </div>
 
-        <Overlay setSignupActive={setSignupActive} />
+        <Overlay handleSignupToggle={handleSignupToggle} />
       </div>
     </InnerPagesLayout>
   );

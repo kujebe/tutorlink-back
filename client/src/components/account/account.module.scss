@@ -62,20 +62,6 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      // input {
-      //   background: $menu_bullet_blue;
-      //   border: none;
-      //   padding: 12px 15px;
-      //   margin: 8px 0;
-      //   width: 100%;
-      //   border-radius: 5px;
-      //   &:active,
-      //   &:focus {
-      //     background: #ffffff;
-      //     outline: none;
-      //     border: 2px solid $menu_bullet_blue;
-      //   }
-      // }
     }
   }
   .overlay_container {
@@ -116,35 +102,10 @@
           right: 0;
           transform: translateX(0);
         }
-        // &.overlay_left {
-        //     transform: translate(-20%);
-        // }
       }
     }
   }
 
-  button {
-    border-radius: 20px;
-    border: 1px solid $menu_bullet_blue;
-    background: $theme_blue;
-    color: #ffffff;
-    font-weight: 700;
-    padding: 12px 45px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: transform 80ms ease-in;
-    &.ghost {
-      background: transparent;
-      border-color: #ffffff;
-    }
-    &:active {
-      transform: scale(0.95);
-    }
-    &:focus {
-      outline: none;
-    }
-  }
   /** Animation **/
   &.signup_active {
     .sign_in_container,
