@@ -27,6 +27,7 @@ const userReducer = (state = INITIAL_STATE, { payload, type }) => {
         currentUser: null,
         errorMessage: undefined,
         isAuthenticating: false,
+        hideMenu: true,
       };
     case userActionTypes.SIGN_IN_FAILURE:
     case userActionTypes.SIGN_OUT_FAILURE:
