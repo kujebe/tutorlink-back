@@ -11,7 +11,7 @@ const UserMenuDropdown = () => {
 
   const logout = () => {
     dispatch(signOutStart());
-    history.push("/");
+    history.push("/account");
   };
 
   return (
