@@ -1,6 +1,11 @@
 import { takeLatest, call, all, put } from "redux-saga/effects";
 
-import { signInSuccess, signInFailure } from "./user-actions";
+import {
+  signInSuccess,
+  signInFailure,
+  signOutSuccess,
+  signOutFailure,
+} from "./user-actions";
 
 import userActionTypes from "./user-action-types";
 
@@ -19,11 +24,25 @@ export function* signInWithEmail({ payload: { email, password } }) {
   }
 }
 
+export function* signOutUser() {
+  try {
+    yield put(signOutSuccess());
+  } catch (error) {
+    put(signOutFailure(error.message));
+  }
+}
+
+/********* SAGAS TRIGGERS **********/
+
 export function* onEmailSignInStart() {
   yield takeLatest(userActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
 }
 
+export function* onSignOutStart() {
+  yield takeLatest(userActionTypes.SIGN_OUT_START, signOutUser);
+}
+
 /** All user sagas */
 export function* userSagas() {
-  yield all([call(onEmailSignInStart)]);
+  yield all([call(onEmailSignInStart), call(onSignOutStart)]);
 }

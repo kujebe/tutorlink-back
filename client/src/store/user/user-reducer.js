@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   currentUser: null,
   isAuthenticating: false,
   errorMessage: undefined,
+  hideMenu: true,
 };
 
 const userReducer = (state = INITIAL_STATE, { payload, type }) => {
@@ -28,12 +29,17 @@ const userReducer = (state = INITIAL_STATE, { payload, type }) => {
         isAuthenticating: false,
       };
     case userActionTypes.SIGN_IN_FAILURE:
-      // case userActionTypes.SIGN_OUT_FAILURE:
+    case userActionTypes.SIGN_OUT_FAILURE:
       // case userActionTypes.SIGN_UP_FAILURE:
       return {
         ...state,
         errorMessage: payload,
         isAuthenticating: false,
+      };
+    case userActionTypes.TOGGLE_USER_MENU:
+      return {
+        ...state,
+        hideMenu: !state.hideMenu,
       };
     default:
       return state;

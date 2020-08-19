@@ -9,6 +9,7 @@ const userActionTypes = {
   SIGN_UP_SUCCESS: "SIGN_UP_SUCCESS",
   SIGN_UP_FAILURE: "SIGN_UP_FAILURE",
   CHECK_USER_SESSION: "CHECK_USER_SESSION",
+  TOGGLE_USER_MENU: "TOGGLE_USER_MENU",
 };
 
 export default userActionTypes;

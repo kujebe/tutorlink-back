@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { emailSignInStart } from "store/user/user-actions";
 
 import InnerPagesLayout from "components/layout/inner-pages-layout.component";
-import Overlay from "components/account/overlay.component";
+import Overlay from "components/account-signin-signout-overlay/signin-signout-overlay.component";
 import FormInput from "components/form-input/form-input.component";
 import Button from "components/button/button.component";
 

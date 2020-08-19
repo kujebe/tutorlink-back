@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import Spinner from "components/spinner/spinner.component";
 import ErrorBoundary from "components/error-boundary/error-boundary.component";
@@ -13,6 +14,7 @@ const SignInSignOut = lazy(() =>
 );
 
 function App() {
+  const currentUser = useSelector((state) => state.user.currentUser);
   return (
     <Layout>
       <ErrorBoundary>
@@ -24,9 +26,13 @@ function App() {
             <Route exact path="/teacher/:slug">
               <TeacherPage />
             </Route>
-            <Route exact path="/account">
-              <SignInSignOut />
-            </Route>
+            <Route
+              exact
+              path="/account"
+              render={() =>
+                currentUser ? <Redirect to="/" /> : <SignInSignOut />
+              }
+            />
             <Route path="*">
               <NoMatch />
             </Route>

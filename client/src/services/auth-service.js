@@ -20,9 +20,9 @@ class AuthService {
     }
   }
 
-  //   logout() {
-  //     localStorage.removeItem("user");
-  //   }
+  // logout() {
+  //   localStorage.removeItem("user");
+  // }
 
   //   register(username, email, password) {
   //     return axios.post(API_URL + "signup", {
