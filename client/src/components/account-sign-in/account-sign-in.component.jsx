@@ -30,6 +30,7 @@ const SignIn = () => {
     const { email, password } = state;
     dispatch(emailSignInStart({ email, password }));
   };
+
   return (
     <div className={`${styles.form_container} ${styles.sign_in_container}`}>
       <div className={styles.signin_and_forgot}>

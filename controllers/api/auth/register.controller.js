@@ -2,21 +2,22 @@ const User = require("../../../models/User.model");
 const { UnprocessableEntity, Conflict } = require("../../../helpers/errors");
 
 exports.registerController = (req, res, next) => {
-  const { email, password, role } = req.body;
-  if (!email || !password) {
+  const { fullname, email, password, role } = req.body;
+  if (!fullname || !email || !password) {
     throw new UnprocessableEntity("Email or password cannot be empty");
   }
-  User.find({ email: req.body.email })
+  User.find({ email })
     .exec()
     .then((user) => {
       if (user.length >= 1) {
-        throw new Conflict("User with same already exist");
+        throw new Conflict("User with same email address already exist");
       }
       const newUser = new User({
+        fullname: fullname,
         email: email,
         password: password,
         role: role,
-        status: role === "client" ? 1 : 0, //Activate user if it's client
+        status: role === "customer" ? 1 : 0, //Activate user if it's client
       });
       newUser
         .save()

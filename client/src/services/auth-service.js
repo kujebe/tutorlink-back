@@ -1,5 +1,5 @@
 class AuthService {
-  static API_URL = "/api/v1/auth/login";
+  static API_URL = "/api/v1/auth/";
   static headers = {
     Accept: "application/json",
     "Content-Type": "application/json",
@@ -7,7 +7,7 @@ class AuthService {
 
   async login(email, password) {
     try {
-      const result = await fetch(this.constructor.API_URL, {
+      const result = await fetch(this.constructor.API_URL + "login", {
         method: "POST",
         headers: this.constructor.headers,
         body: JSON.stringify({ email, password }),
@@ -20,9 +20,20 @@ class AuthService {
     }
   }
 
-  // logout() {
-  //   localStorage.removeItem("user");
-  // }
+  async signUp(fullname, email, password, role) {
+    try {
+      const result = await fetch(this.constructor.API_URL + "register", {
+        method: "POST",
+        headers: this.constructor.headers,
+        body: JSON.stringify({ fullname, email, password, role }),
+      });
+
+      const data = await result.json();
+      return data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 
   //   register(username, email, password) {
   //     return axios.post(API_URL + "signup", {

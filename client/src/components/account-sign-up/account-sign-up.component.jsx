@@ -1,7 +1,11 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+import { signUpStart } from "store/user/user-actions";
 
 import FormInput from "components/form-input/form-input.component";
 import Button from "components/button/button.component";
+import ErrorDisplay from "components/error-display/error-display.component";
 
 import styles from "pages/sign-in-sign-up/sign-in-sign-up.module.scss";
 
@@ -10,17 +14,27 @@ export const SignUp = () => {
     fullname: "",
     email: "",
     password: "",
-    userType: "customer",
+    role: "customer",
   });
+
+  const { isAuthenticating, errorMessage } = useSelector((state) => state.user);
+
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setState({ ...state, [name]: value });
   };
 
-  const handleUserTypeSelect = (e) => {
+  const handleRoleSelect = (e) => {
     const { name } = e.target;
-    setState({ ...state, userType: name });
+    setState({ ...state, role: name });
+  };
+
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    const { fullname, email, password, role } = state;
+    dispatch(signUpStart({ fullname, email, password, role }));
   };
 
   return (
@@ -57,8 +71,8 @@ export const SignUp = () => {
             <input
               name="teacher"
               type="checkbox"
-              checked={state.userType === "teacher" ? true : false}
-              onChange={handleUserTypeSelect}
+              checked={state.role === "teacher" ? true : false}
+              onChange={handleRoleSelect}
             />
             I am a teacher
           </label>
@@ -66,18 +80,19 @@ export const SignUp = () => {
             <input
               name="customer"
               type="checkbox"
-              checked={state.userType === "customer" ? true : false}
-              onChange={handleUserTypeSelect}
+              checked={state.role === "customer" ? true : false}
+              onChange={handleRoleSelect}
             />
             I am a customer
           </label>
         </div>
+        {errorMessage ? <ErrorDisplay value={errorMessage} /> : ""}
         <Button
           type="submit"
           buttonType="submit"
           label="Sign Up"
-          onClick={(e) => console.log("Clicked")}
-          // isLoading={isLoading}
+          onClick={handleSignUp}
+          isLoading={isAuthenticating}
         />
       </form>
     </div>

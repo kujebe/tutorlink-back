@@ -15,12 +15,19 @@ const userReducer = (state = INITIAL_STATE, { payload, type }) => {
         isAuthenticating: true,
       };
     case userActionTypes.SIGN_IN_SUCCESS:
+    case userActionTypes.SIGN_UP_SUCCESS:
       return {
         ...state,
         currentUser: payload,
         errorMessage: undefined,
         isAuthenticating: false,
       };
+    case userActionTypes.SIGN_UP_START:
+      return {
+        ...state,
+        isAuthenticating: true,
+      };
+
     case userActionTypes.SIGN_OUT_SUCCESS:
       return {
         ...state,
@@ -31,7 +38,7 @@ const userReducer = (state = INITIAL_STATE, { payload, type }) => {
       };
     case userActionTypes.SIGN_IN_FAILURE:
     case userActionTypes.SIGN_OUT_FAILURE:
-      // case userActionTypes.SIGN_UP_FAILURE:
+    case userActionTypes.SIGN_UP_FAILURE:
       return {
         ...state,
         errorMessage: payload,
