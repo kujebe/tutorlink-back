@@ -7,6 +7,7 @@ import InnerPagesLayout from "components/layout/inner-pages-layout.component";
 import Overlay from "components/account-sign-in-sign-up-overlay/sign-in-sign-up-overlay.component";
 import FormInput from "components/form-input/form-input.component";
 import Button from "components/button/button.component";
+import ErrorDisplay from "components/error-display/error-display.component";
 
 import styles from "./sign-in-sign-up.module.scss";
 
@@ -19,7 +20,7 @@ const SignInSignOut = () => {
   const [signupActive, setSignupActive] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
 
-  const { isAuthenticating } = useSelector((state) => state.user);
+  const { isAuthenticating, errorMessage } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -105,12 +106,14 @@ const SignInSignOut = () => {
                 label="Password"
                 required
               />
+              {errorMessage ? <ErrorDisplay value={errorMessage} /> : ""}
               <div
                 className={styles.fade_toggler}
                 onClick={() => setShowForgotPassword(true)}
               >
                 Forgot your password?
               </div>
+
               <Button
                 type="submit"
                 buttonType="submit"
