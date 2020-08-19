@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "./erroe-display.module.scss";
+import styles from "./error-display.module.scss";
 
 const ErrorDisplay = ({ value }) => {
   const text = value === "Unauthorized" ? "Incorrect login" : value;
