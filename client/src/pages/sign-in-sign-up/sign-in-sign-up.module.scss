@@ -63,6 +63,25 @@
       align-items: center;
       text-align: center;
     }
+    .user_type_wrapper {
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 15px;
+      width: 100%;
+      justify-content: space-evenly;
+      align-items: center;
+      color: $dark-border;
+      .user_type {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        cursor: pointer;
+        input[type="checkbox"] {
+          margin-right: 5px;
+        }
+      }
+    }
   }
   .overlay_container {
     position: absolute;

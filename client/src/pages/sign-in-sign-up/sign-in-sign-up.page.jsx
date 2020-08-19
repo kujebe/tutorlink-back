@@ -16,6 +16,7 @@ const SignInSignOut = () => {
     fullname: "",
     email: "",
     password: "",
+    userType: "customer",
   });
   const [signupActive, setSignupActive] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
@@ -28,6 +29,11 @@ const SignInSignOut = () => {
     setState({ ...state, [name]: value });
   };
 
+  const handleUserTypeSelect = (e) => {
+    const { name } = e.target;
+    setState({ ...state, userType: name });
+  };
+
   const handleSigninWithEmail = (e) => {
     e.preventDefault();
     const { email, password } = state;
@@ -37,6 +43,8 @@ const SignInSignOut = () => {
   const handleSignupToggle = (status) => {
     setSignupActive(status);
   };
+
+  console.log(state);
 
   return (
     <InnerPagesLayout>
@@ -73,6 +81,26 @@ const SignInSignOut = () => {
               label="Password"
               required
             />
+            <div className={styles.user_type_wrapper}>
+              <label className={styles.user_type}>
+                <input
+                  name="teacher"
+                  type="checkbox"
+                  checked={state.userType === "teacher" ? true : false}
+                  onChange={handleUserTypeSelect}
+                />
+                I am a teacher
+              </label>
+              <label className={styles.user_type}>
+                <input
+                  name="customer"
+                  type="checkbox"
+                  checked={state.userType === "customer" ? true : false}
+                  onChange={handleUserTypeSelect}
+                />
+                I am a customer
+              </label>
+            </div>
             <Button
               type="submit"
               buttonType="submit"
