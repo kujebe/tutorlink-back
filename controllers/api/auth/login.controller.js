@@ -19,7 +19,7 @@ exports.loginController = (req, res, next) => {
       if (!user) {
         throw new Unauthorized("Unauthorized");
       }
-      user.loginUser(password, function (err, same, token) {
+      user.loginUser(password, function (err, same, token, user) {
         try {
           if (err) {
             throw new Error(err.message);
@@ -28,7 +28,7 @@ exports.loginController = (req, res, next) => {
           } else {
             res
               .status(200)
-              .json({ token, message: "Authentication successful" });
+              .json({ user, token, message: "Authentication successful" });
           }
         } catch (error) {
           next(error);

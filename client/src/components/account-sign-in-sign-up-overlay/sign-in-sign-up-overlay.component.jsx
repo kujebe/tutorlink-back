@@ -2,7 +2,7 @@ import React from "react";
 
 import Button from "components/button/button.component";
 
-import styles from "pages/sign-in-sign-up/account.module.scss";
+import styles from "pages/sign-in-sign-up/sign-in-sign-up.module.scss";
 
 const Overlay = ({ handleSignupToggle }) => {
   return (

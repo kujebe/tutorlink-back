@@ -6,6 +6,10 @@ const saltRounds = 10;
 
 const UserSchema = mongoose.Schema(
   {
+    fullname: {
+      type: String,
+      required: true,
+    },
     email: {
       type: String,
       required: true,
@@ -34,7 +38,7 @@ const UserSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    status: { type: String },
+    status: { type: Number, default: 0 },
   },
   { timestamps: true }
 );
@@ -61,12 +65,10 @@ UserSchema.methods.loginUser = function (password, cb) {
     if (err) {
       cb(err);
     } else if (same) {
-      const token = jwt.sign(
-        { userId: doc._id, email: doc.email, role: doc.role },
-        process.env.JWT_KEY,
-        { expiresIn: "1h" }
-      );
-      cb(err, same, token);
+      const token = jwt.sign({ userId: doc._id }, process.env.JWT_KEY, {
+        expiresIn: "1h",
+      });
+      cb(err, same, token, (user = doc));
     } else {
       cb(err, same);
     }
