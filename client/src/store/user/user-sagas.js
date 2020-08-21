@@ -33,7 +33,7 @@ export function* signInWithEmail({ payload: { email, password } }) {
     yield put(signInFailure()); // Disable isAuthentication loading option
     yield put(
       setErrors({
-        type: "signinServerFail",
+        type: "serverFail",
         ...error,
       })
     );
@@ -67,7 +67,7 @@ export function* signUpUser({
     yield put(signUpFailure()); // Disable isAuthentication loading option
     yield put(
       setErrors({
-        type: "signupServerFail",
+        type: "serverFail",
         ...error,
       })
     );
