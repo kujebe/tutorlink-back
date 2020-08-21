@@ -3,7 +3,6 @@ import userActionTypes from "./user-action-types";
 const INITIAL_STATE = {
   currentUser: null,
   isAuthenticating: false,
-  errorMessage: undefined,
   hideMenu: true,
 };
 
@@ -19,7 +18,6 @@ const userReducer = (state = INITIAL_STATE, { payload, type }) => {
       return {
         ...state,
         currentUser: payload,
-        errorMessage: undefined,
         isAuthenticating: false,
       };
     case userActionTypes.SIGN_UP_START:
@@ -32,7 +30,6 @@ const userReducer = (state = INITIAL_STATE, { payload, type }) => {
       return {
         ...state,
         currentUser: null,
-        errorMessage: undefined,
         isAuthenticating: false,
         hideMenu: true,
       };
@@ -41,7 +38,6 @@ const userReducer = (state = INITIAL_STATE, { payload, type }) => {
     case userActionTypes.SIGN_UP_FAILURE:
       return {
         ...state,
-        errorMessage: payload,
         isAuthenticating: false,
       };
     case userActionTypes.TOGGLE_USER_MENU:

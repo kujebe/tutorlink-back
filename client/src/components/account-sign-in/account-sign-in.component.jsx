@@ -16,7 +16,8 @@ const SignIn = () => {
     password: "",
   });
   const [showForgotPassword, setShowForgotPassword] = useState(false);
-  const { isAuthenticating, errorMessage } = useSelector((state) => state.user);
+  const { isAuthenticating } = useSelector((state) => state.user);
+  const errors = useSelector((state) => state.errors);
 
   const dispatch = useDispatch();
 
@@ -53,7 +54,7 @@ const SignIn = () => {
             label="Password"
             required
           />
-          {errorMessage ? <ErrorDisplay value={errorMessage} /> : ""}
+          {errors && errors.type === "signinFail" ? <ErrorDisplay /> : ""}
           <div
             className={styles.fade_toggler}
             onClick={() => setShowForgotPassword(true)}

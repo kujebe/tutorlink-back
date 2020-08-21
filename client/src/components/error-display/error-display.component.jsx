@@ -1,10 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import styles from "./error-display.module.scss";
 
-const ErrorDisplay = ({ value }) => {
-  const text = value === "Unauthorized" ? "Incorrect login" : value;
-  return <div className={styles.error}>{text}</div>;
+const ErrorDisplay = () => {
+  const errors = useSelector((state) => state.errors);
+  return <div className={styles.error}>{errors.message}</div>;
 };
 
 export default ErrorDisplay;

@@ -5,11 +5,12 @@ module.exports = (err, req, res, next) => {
     return res.status(err.getCode()).json({
       status: "error",
       message: err.message,
+      errors: err,
     });
   }
-
   return res.status(500).json({
     status: "error",
     message: err.message,
+    errors: err.errors ? err.errors : err,
   });
 };

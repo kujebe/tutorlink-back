@@ -2,9 +2,12 @@ const User = require("../../../models/User.model");
 const { UnprocessableEntity, Conflict } = require("../../../helpers/errors");
 
 exports.registerController = (req, res, next) => {
-  const { fullname, email, password, role } = req.body;
+  const { fullname, email, password, password_confirm, role } = req.body;
   if (!fullname || !email || !password) {
     throw new UnprocessableEntity("Email or password cannot be empty");
+  }
+  if (password !== password_confirm) {
+    throw new UnprocessableEntity("Passwors is not the same");
   }
   User.find({ email })
     .exec()
@@ -29,7 +32,8 @@ exports.registerController = (req, res, next) => {
             status: result.status,
           };
           res.status(201).json({
-            userData,
+            status: "ok",
+            data: userData,
             message: "User registered successfully",
           });
         })

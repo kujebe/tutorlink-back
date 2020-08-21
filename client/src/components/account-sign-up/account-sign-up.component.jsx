@@ -14,10 +14,16 @@ export const SignUp = () => {
     fullname: "",
     email: "",
     password: "",
+    password_confirm: "",
     role: "customer",
+    errors: {
+      same_password: "",
+      emptyFields: "",
+    },
   });
 
-  const { isAuthenticating, errorMessage } = useSelector((state) => state.user);
+  const { isAuthenticating } = useSelector((state) => state.user);
+  const errors = useSelector((state) => state.errors);
 
   const dispatch = useDispatch();
 
@@ -33,13 +39,15 @@ export const SignUp = () => {
 
   const handleSignUp = (e) => {
     e.preventDefault();
-    const { fullname, email, password, role } = state;
-    dispatch(signUpStart({ fullname, email, password, role }));
+    const { fullname, email, password, password_confirm, role } = state;
+    dispatch(
+      signUpStart({ fullname, email, password, password_confirm, role })
+    );
   };
 
   return (
     <div className={`${styles.form_container} ${styles.sign_up_container}`}>
-      <form>
+      <form className={styles.signup_form}>
         <h1>Create Account</h1>
         <span>Register to experience awesomeness</span>
         <FormInput
@@ -66,6 +74,14 @@ export const SignUp = () => {
           label="Password"
           required
         />
+        <FormInput
+          type="password"
+          name="password_confirm"
+          value={state.password_confirm}
+          handleChange={handleChange}
+          label="Confirm Password"
+          required
+        />
         <div className={styles.user_type_wrapper}>
           <label className={styles.user_type}>
             <input
@@ -86,7 +102,7 @@ export const SignUp = () => {
             I am a customer
           </label>
         </div>
-        {errorMessage ? <ErrorDisplay value={errorMessage} /> : ""}
+        {errors && errors.type === "signupFail" ? <ErrorDisplay /> : ""}
         <Button
           type="submit"
           buttonType="submit"

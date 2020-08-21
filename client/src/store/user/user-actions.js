@@ -25,9 +25,8 @@ export const signInSuccess = (token) => ({
   payload: token,
 });
 
-export const signInFailure = (error) => ({
+export const signInFailure = () => ({
   type: userActionTypes.SIGN_IN_FAILURE,
-  payload: error,
 });
 
 export const signOutStart = () => ({

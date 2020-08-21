@@ -30,8 +30,9 @@ const resetPasswordController = (req, res, next) => {
                 status: result.status,
               };
               res.status(201).json({
-                userData,
-                message: "Password updated successfully",
+                status: "ok",
+                data: userData,
+                message: "User authenticated successfully",
               });
             })
             .catch((err) => {

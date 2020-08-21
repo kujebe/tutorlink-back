@@ -17,18 +17,20 @@ exports.loginController = (req, res, next) => {
     .exec()
     .then((user) => {
       if (!user) {
-        throw new Unauthorized("Unauthorized");
+        throw new Unauthorized("Incorrect email or password");
       }
       user.loginUser(password, function (err, same, token, user) {
         try {
           if (err) {
             throw new Error(err.message);
           } else if (!same) {
-            throw new Unauthorized("Unauthorized");
+            throw new Unauthorized("Incorrect email or password");
           } else {
-            res
-              .status(200)
-              .json({ user, token, message: "Authentication successful" });
+            res.status(200).json({
+              status: "ok",
+              data: { user, token },
+              message: "User authenticated successfully",
+            });
           }
         } catch (error) {
           next(error);

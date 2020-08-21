@@ -20,12 +20,18 @@ class AuthService {
     }
   }
 
-  async signUp(fullname, email, password, role) {
+  async signUp(fullname, email, password, password_confirm, role) {
     try {
       const result = await fetch(this.constructor.API_URL + "register", {
         method: "POST",
         headers: this.constructor.headers,
-        body: JSON.stringify({ fullname, email, password, role }),
+        body: JSON.stringify({
+          fullname,
+          email,
+          password,
+          password_confirm,
+          role,
+        }),
       });
 
       const data = await result.json();

@@ -8,6 +8,7 @@ import {
   signOutSuccess,
   signOutFailure,
 } from "./user-actions";
+import { setErrors, clearErrors } from "store/errors/error-actions";
 
 import userActionTypes from "./user-action-types";
 
@@ -15,32 +16,61 @@ import AuthService from "services/auth-service";
 
 export function* signInWithEmail({ payload: { email, password } }) {
   try {
-    const userData = yield AuthService.login(email, password);
-    if (userData.status === "error") {
-      yield put(signInFailure(userData.message));
+    const response = yield AuthService.login(email, password);
+    if (response.status === "error") {
+      yield put(signInFailure()); // Disable isAuthentication loading option
+      yield put(
+        setErrors({
+          type: "signinFail",
+          ...response,
+        })
+      );
       return;
     }
-    yield put(signInSuccess(userData));
+    yield put(signInSuccess(response.data));
+    yield put(clearErrors()); //Clear errors
   } catch (error) {
-    yield put(signInFailure(error.message));
+    yield put(signInFailure()); // Disable isAuthentication loading option
+    yield put(
+      setErrors({
+        type: "signinServerFail",
+        ...error,
+      })
+    );
   }
 }
 
-export function* signUpUser({ payload: { fullname, email, password, role } }) {
+export function* signUpUser({
+  payload: { fullname, email, password, password_confirm, role },
+}) {
   try {
-    const signUpResult = yield AuthService.signUp(
+    const signUpResponse = yield AuthService.signUp(
       fullname,
       email,
       password,
+      password_confirm,
       role
     );
-    if (signUpResult.status === "error") {
-      yield put(signUpFailure(signUpResult.message));
+    if (signUpResponse.status === "error") {
+      yield put(signUpFailure()); // Disable isAuthentication loading option
+      yield put(
+        setErrors({
+          type: "signupFail",
+          ...signUpResponse,
+        })
+      );
       return;
     }
-    yield put(signUpSuccess(signUpResult));
+    yield put(signUpSuccess(signUpResponse));
+    yield put(clearErrors()); //Clear errors
   } catch (error) {
-    yield put(signUpFailure(error.message));
+    yield put(signUpFailure()); // Disable isAuthentication loading option
+    yield put(
+      setErrors({
+        type: "signupServerFail",
+        ...error,
+      })
+    );
   }
 }
 
