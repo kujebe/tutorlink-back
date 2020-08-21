@@ -1,8 +1,8 @@
 import { takeLatest, call, all, put } from "redux-saga/effects";
 
 import {
-  signInSuccess,
-  signInFailure,
+  emailSignInSuccess,
+  emailSignInFailure,
   signUpSuccess,
   signUpFailure,
   signOutSuccess,
@@ -18,7 +18,7 @@ export function* signInWithEmail({ payload: { email, password } }) {
   try {
     const response = yield AuthService.login(email, password);
     if (response.status === "error") {
-      yield put(signInFailure()); // Disable isAuthentication loading option
+      yield put(emailSignInFailure()); // Disable isAuthentication loading option
       yield put(
         setErrors({
           type: "signinFail",
@@ -27,10 +27,10 @@ export function* signInWithEmail({ payload: { email, password } }) {
       );
       return;
     }
-    yield put(signInSuccess(response.data));
+    yield put(emailSignInSuccess(response.data));
     yield put(clearErrors()); //Clear errors
   } catch (error) {
-    yield put(signInFailure()); // Disable isAuthentication loading option
+    yield put(emailSignInFailure()); // Disable isAuthentication loading option
     yield put(
       setErrors({
         type: "serverFail",

@@ -13,7 +13,7 @@ const userReducer = (state = INITIAL_STATE, { payload, type }) => {
         ...state,
         isAuthenticating: true,
       };
-    case userActionTypes.SIGN_IN_SUCCESS:
+    case userActionTypes.EMAIL_SIGN_IN_SUCCESS:
     case userActionTypes.SIGN_UP_SUCCESS:
       return {
         ...state,
@@ -33,7 +33,7 @@ const userReducer = (state = INITIAL_STATE, { payload, type }) => {
         isAuthenticating: false,
         hideMenu: true,
       };
-    case userActionTypes.SIGN_IN_FAILURE:
+    case userActionTypes.EMAIL_SIGN_IN_FAILURE:
     case userActionTypes.SIGN_OUT_FAILURE:
     case userActionTypes.SIGN_UP_FAILURE:
       return {
