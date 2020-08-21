@@ -40,6 +40,21 @@ class AuthService {
       throw new Error(error);
     }
   }
+
+  async sendPasswordResetMail(email) {
+    try {
+      const result = await fetch(this.constructor.API_URL + "forgot-password", {
+        method: "POST",
+        headers: this.constructor.headers,
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await result.json();
+      return data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 }
 
 export default new AuthService();

@@ -1,18 +1,32 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+import { sendForgotPasswordMailStart } from "store/user/user-actions";
 
 import FormInput from "components/form-input/form-input.component";
 import Button from "components/button/button.component";
 
+import ErrorDisplay from "components/error-display/error-display.component";
+
 import styles from "pages/sign-in-sign-up/sign-in-sign-up.module.scss";
 
 const ForgotPassword = ({ show, setShow }) => {
-  const [state, setState] = useState({
-    email: "",
-  });
+  const [email, setEmail] = useState("");
+
+  const { isAuthenticating, forgotPasswordStatus } = useSelector(
+    (state) => state.user
+  );
+  const errors = useSelector((state) => state.errors);
+
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setState({ ...state, [name]: value });
+    setEmail(e.target.value);
+  };
+
+  const HandleSendEmail = (e) => {
+    e.preventDefault();
+    dispatch(sendForgotPasswordMailStart(email));
   };
 
   return (
@@ -22,7 +36,7 @@ const ForgotPassword = ({ show, setShow }) => {
       <FormInput
         type="email"
         name="email"
-        value={state.email}
+        value={email}
         handleChange={handleChange}
         label="Email"
         required
@@ -31,12 +45,18 @@ const ForgotPassword = ({ show, setShow }) => {
       <div className={styles.fade_toggler} onClick={() => setShow(false)}>
         Have an account? Login
       </div>
+      {forgotPasswordStatus && <div>{forgotPasswordStatus}</div>}
+      {errors.type === "passwordResetFail" || errors.type === "serverFail" ? (
+        <ErrorDisplay />
+      ) : (
+        ""
+      )}
       <Button
         type="submit"
         buttonType="submit"
         label="Reset Password"
-        onClick={(e) => console.log("Clicked")}
-        // isLoading={isLoading}
+        onClick={HandleSendEmail}
+        isLoading={isAuthenticating}
       />
     </form>
   );

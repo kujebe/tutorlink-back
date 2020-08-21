@@ -25,11 +25,7 @@ const ForgotPasswordController = (req, res, next) => {
       /** If user found, generate token and send email */
       const token = user.generatePasswordResetToken(user._id);
       /** TO-DO => CHECK IF TOKEN RETURNS ERROR OR PASS CALLBACK TO TOKEN METHOD */
-      // mailTransport.verify((err, success) => {
-      //   if (err) res.json(err);
-      //   // res.json("Your config is correct");
-      //   return;
-      // });
+
       mailTransport
         .sendMail(
           mailHelperOptions(
@@ -41,7 +37,6 @@ const ForgotPasswordController = (req, res, next) => {
         .then((info) => {
           res.status(200).json({
             status: "ok",
-            mailInfo: info,
             data: {},
             message: "Password reset email sent successfully",
           });

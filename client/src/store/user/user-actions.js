@@ -10,9 +10,8 @@ export const signUpSuccess = (data) => ({
   payload: data,
 });
 
-export const signUpFailure = (error) => ({
+export const signUpFailure = () => ({
   type: userActionTypes.SIGN_UP_FAILURE,
-  payload: error,
 });
 
 export const emailSignInStart = (emailAndPassword) => ({
@@ -27,6 +26,20 @@ export const emailSignInSuccess = (token) => ({
 
 export const emailSignInFailure = () => ({
   type: userActionTypes.EMAIL_SIGN_IN_FAILURE,
+});
+
+export const sendForgotPasswordMailStart = (email) => ({
+  type: userActionTypes.SEND_FORGOT_PASSWORD_EMAIL_START,
+  payload: email,
+});
+
+export const sendForgotPasswordMailSuccess = (data) => ({
+  type: userActionTypes.SEND_FORGOT_PASSWORD_EMAIL_SUCCESS,
+  payload: data,
+});
+
+export const sendForgotPasswordMailFailure = () => ({
+  type: userActionTypes.SEND_FORGOT_PASSWORD_EMAIL_FAILURE,
 });
 
 export const signOutStart = () => ({

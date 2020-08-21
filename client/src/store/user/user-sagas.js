@@ -5,6 +5,8 @@ import {
   emailSignInFailure,
   signUpSuccess,
   signUpFailure,
+  sendForgotPasswordMailSuccess,
+  sendForgotPasswordMailFailure,
   signOutSuccess,
   signOutFailure,
 } from "./user-actions";
@@ -74,6 +76,32 @@ export function* signUpUser({
   }
 }
 
+export function* sendForgotPasswordEmail({ payload }) {
+  try {
+    const response = yield AuthService.sendPasswordResetMail(payload);
+    if (response.status === "error") {
+      yield put(sendForgotPasswordMailFailure()); // Disable isAuthentication loading option
+      yield put(
+        setErrors({
+          type: "passwordResetFail",
+          ...response,
+        })
+      );
+      return;
+    }
+    yield put(sendForgotPasswordMailSuccess(response));
+    yield put(clearErrors()); //Clear errors
+  } catch (error) {
+    yield put(sendForgotPasswordMailFailure()); // Disable isAuthentication loading option
+    yield put(
+      setErrors({
+        type: "serverFail",
+        ...error,
+      })
+    );
+  }
+}
+
 export function* signOutUser() {
   try {
     yield put(signOutSuccess());
@@ -92,6 +120,13 @@ export function* onSignUpStart() {
   yield takeLatest(userActionTypes.SIGN_UP_START, signUpUser);
 }
 
+export function* onSendForgotPasswordEmail() {
+  yield takeLatest(
+    userActionTypes.SEND_FORGOT_PASSWORD_EMAIL_START,
+    sendForgotPasswordEmail
+  );
+}
+
 export function* onSignOutStart() {
   yield takeLatest(userActionTypes.SIGN_OUT_START, signOutUser);
 }
@@ -102,5 +137,6 @@ export function* userSagas() {
     call(onEmailSignInStart),
     call(onSignOutStart),
     call(onSignUpStart),
+    call(onSendForgotPasswordEmail),
   ]);
 }

@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   currentUser: null,
   isAuthenticating: false,
   hideMenu: true,
+  forgotPasswordStatus: null,
 };
 
 const userReducer = (state = INITIAL_STATE, { payload, type }) => {
@@ -21,11 +22,11 @@ const userReducer = (state = INITIAL_STATE, { payload, type }) => {
         isAuthenticating: false,
       };
     case userActionTypes.SIGN_UP_START:
+    case userActionTypes.SEND_FORGOT_PASSWORD_EMAIL_START:
       return {
         ...state,
         isAuthenticating: true,
       };
-
     case userActionTypes.SIGN_OUT_SUCCESS:
       return {
         ...state,
@@ -33,9 +34,16 @@ const userReducer = (state = INITIAL_STATE, { payload, type }) => {
         isAuthenticating: false,
         hideMenu: true,
       };
+    case userActionTypes.SEND_FORGOT_PASSWORD_EMAIL_SUCCESS:
+      return {
+        ...state,
+        isAuthenticating: false,
+        forgotPasswordStatus: payload.message,
+      };
     case userActionTypes.EMAIL_SIGN_IN_FAILURE:
     case userActionTypes.SIGN_OUT_FAILURE:
     case userActionTypes.SIGN_UP_FAILURE:
+    case userActionTypes.SEND_FORGOT_PASSWORD_EMAIL_FAILURE:
       return {
         ...state,
         isAuthenticating: false,
