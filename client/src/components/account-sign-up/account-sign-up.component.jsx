@@ -102,7 +102,11 @@ export const SignUp = () => {
             I am a customer
           </label>
         </div>
-        {errors && errors.type === "signupFail" ? <ErrorDisplay /> : ""}
+        {errors.type === "signupFail" || errors.type === "serverFail" ? (
+          <ErrorDisplay />
+        ) : (
+          ""
+        )}
         <Button
           type="submit"
           buttonType="submit"

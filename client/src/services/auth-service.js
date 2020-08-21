@@ -40,18 +40,6 @@ class AuthService {
       throw new Error(error);
     }
   }
-
-  //   register(username, email, password) {
-  //     return axios.post(API_URL + "signup", {
-  //       username,
-  //       email,
-  //       password,
-  //     });
-  //   }
-
-  //   getCurrentUser() {
-  //     return JSON.parse(localStorage.getItem("user"));
-  //   }
 }
 
 export default new AuthService();
