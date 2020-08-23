@@ -26,6 +26,16 @@ const ForgotPasswordController = (req, res, next) => {
       const token = user.generatePasswordResetToken(user._id);
       /** TO-DO => CHECK IF TOKEN RETURNS ERROR OR PASS CALLBACK TO TOKEN METHOD */
 
+      // mailTransport.verify(function (error, success) {
+      //   if (error) {
+      //     res.json(error);
+      //     return;
+      //   } else {
+      //     res.json(success);
+      //     return;
+      //   }
+      // });
+
       mailTransport
         .sendMail(
           mailHelperOptions(

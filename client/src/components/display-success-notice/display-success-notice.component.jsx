@@ -1,9 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 
-import styles from "./success-notification.module.scss";
+import styles from "./display-success-notice.module.scss";
 
-const SuccessNotification = ({ children, closeAction, value }) => {
+const DisplaySuccessNotice = ({ children, closeAction, value }) => {
   const dispatch = useDispatch();
   return (
     <div className={styles.notice_wrapper}>
@@ -16,4 +16,4 @@ const SuccessNotification = ({ children, closeAction, value }) => {
   );
 };
 
-export default SuccessNotification;
+export default DisplaySuccessNotice;

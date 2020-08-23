@@ -10,7 +10,7 @@ import FormInput from "components/form-input/form-input.component";
 import Button from "components/button/button.component";
 
 import ErrorDisplay from "components/error-display/error-display.component";
-import SuccessNotification from "components/success-notification/success-notification.component";
+import DisplaySuccessNotice from "components/display-success-notice/display-success-notice.component";
 
 import styles from "pages/sign-in-sign-up/sign-in-sign-up.module.scss";
 
@@ -50,12 +50,12 @@ const ForgotPassword = ({ show, setShow }) => {
         Have an account? Login
       </div>
       {forgotPasswordStatus && (
-        <SuccessNotification
+        <DisplaySuccessNotice
           closeAction={clearForgotPasswordSuccessNotice}
           value={null}
         >
           {forgotPasswordStatus}
-        </SuccessNotification>
+        </DisplaySuccessNotice>
       )}
       {errors.type === "passwordResetFail" || errors.type === "serverFail" ? (
         <ErrorDisplay />

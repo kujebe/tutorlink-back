@@ -1,18 +1,14 @@
 const nodemailer = require("nodemailer");
-const {
-  smtp_host,
-  smtp_port,
-  smtp_username,
-  smtp_password,
-} = require("./variables");
 
 const mailTransport = nodemailer.createTransport({
-  host: smtp_host,
-  port: smtp_port,
+  host: process.env.SMTP_HOST,
+  port: process.env.SMTP_PORT,
   auth: {
-    user: smtp_username,
-    pass: smtp_password,
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASSWORD,
   },
+  logger: false,
+  debug: false,
 });
 
 const mailHelperOptions = (recipients, subject, template) => {
@@ -21,8 +17,6 @@ const mailHelperOptions = (recipients, subject, template) => {
     to: recipients.join(", "),
     subject: subject,
     html: template,
-    debug: true, // show debug output
-    logger: true, // log information in console
   };
 };
 
