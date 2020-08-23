@@ -42,6 +42,10 @@ export const sendForgotPasswordMailFailure = () => ({
   type: userActionTypes.SEND_FORGOT_PASSWORD_EMAIL_FAILURE,
 });
 
+export const clearForgotPasswordSuccessNotice = () => ({
+  type: userActionTypes.CLEAR_FORGOT_PASSWORD_SUCCESS_NOTIFICATION,
+});
+
 export const signOutStart = () => ({
   type: userActionTypes.SIGN_OUT_START,
 });

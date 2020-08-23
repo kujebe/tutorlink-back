@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { sendForgotPasswordMailStart } from "store/user/user-actions";
+import {
+  sendForgotPasswordMailStart,
+  clearForgotPasswordSuccessNotice,
+} from "store/user/user-actions";
 
 import FormInput from "components/form-input/form-input.component";
 import Button from "components/button/button.component";
 
 import ErrorDisplay from "components/error-display/error-display.component";
+import SuccessNotification from "components/success-notification/success-notification.component";
 
 import styles from "pages/sign-in-sign-up/sign-in-sign-up.module.scss";
 
@@ -45,7 +49,14 @@ const ForgotPassword = ({ show, setShow }) => {
       <div className={styles.fade_toggler} onClick={() => setShow(false)}>
         Have an account? Login
       </div>
-      {forgotPasswordStatus && <div>{forgotPasswordStatus}</div>}
+      {forgotPasswordStatus && (
+        <SuccessNotification
+          closeAction={clearForgotPasswordSuccessNotice}
+          value={null}
+        >
+          {forgotPasswordStatus}
+        </SuccessNotification>
+      )}
       {errors.type === "passwordResetFail" || errors.type === "serverFail" ? (
         <ErrorDisplay />
       ) : (

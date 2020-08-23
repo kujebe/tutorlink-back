@@ -8,7 +8,7 @@ import useRequest from "custom-hooks/swr-hoc";
 
 import Tags from "components/tags/tags.component";
 import Spinner from "components/spinner/spinner.component";
-import CloseIcon from "components/close-icon/close-icon.component";
+import CloseModalIcon from "components/close-modal-icon/close-modal-icon.component";
 
 import hiredIcon from "assets/images/hired-icon.png";
 import achievementIcon from "assets/images/achievement-icon.png";
@@ -16,6 +16,8 @@ import achievementIcon from "assets/images/achievement-icon.png";
 import "react-tabs/style/react-tabs.scss";
 import { chartLabelStyles } from "helpers/style-helpers";
 import styles from "./map-teacher-details.module.scss";
+
+import { selectTeacherSlug } from "store/teacher/teacher-actions";
 
 const MapTeacherDetails = () => {
   const selectedTeacherSlug = useSelector(
@@ -37,7 +39,7 @@ const MapTeacherDetails = () => {
 
     return (
       <div className={`${styles.full_details_container} ${styles.opened}`}>
-        <CloseIcon />
+        <CloseModalIcon closeAction={selectTeacherSlug} value="" />
         <div className={styles.header_wrapper}>
           <div className={styles.thumbnail}>
             <img

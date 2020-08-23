@@ -1,0 +1,49 @@
+@import "theme/theme.scss";
+
+.notice_wrapper {
+  position: relative;
+  margin-bottom: 10px;
+  color: #5bbd90;
+  font-size: 14px;
+  text-align: center;
+  font-style: italic;
+  background: #e0f8ee;
+  padding: 5px 34px 5px 20px;
+  border-radius: 10px;
+
+  .close {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    overflow: hidden;
+    background: #8acbad;
+    border-radius: 50%;
+    right: 10px;
+    top: 7px;
+    cursor: pointer;
+    &:hover {
+      background: #62ac89;
+      &::before,
+      &::after {
+        background: #375346;
+      }
+    }
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      height: 3px;
+      width: 58%;
+      top: 42%;
+      left: 20%;
+      background: $white;
+      border-radius: 5px;
+    }
+    &::before {
+      transform: rotate(45deg);
+    }
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+}

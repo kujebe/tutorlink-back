@@ -40,6 +40,11 @@ const userReducer = (state = INITIAL_STATE, { payload, type }) => {
         isAuthenticating: false,
         forgotPasswordStatus: payload.message,
       };
+    case userActionTypes.CLEAR_FORGOT_PASSWORD_SUCCESS_NOTIFICATION:
+      return {
+        ...state,
+        forgotPasswordStatus: null,
+      };
     case userActionTypes.EMAIL_SIGN_IN_FAILURE:
     case userActionTypes.SIGN_OUT_FAILURE:
     case userActionTypes.SIGN_UP_FAILURE:
