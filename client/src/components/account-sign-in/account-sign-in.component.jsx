@@ -54,11 +54,6 @@ const SignIn = () => {
             label="Password"
             required
           />
-          {errors.type === "signinFail" || errors.type === "serverFail" ? (
-            <DisplayErrorNotice />
-          ) : (
-            ""
-          )}
           <div
             className={styles.fade_toggler}
             onClick={() => setShowForgotPassword(true)}
@@ -66,6 +61,11 @@ const SignIn = () => {
             Forgot your password?
           </div>
 
+          {errors.type === "signinFail" || errors.type === "serverFail" ? (
+            <DisplayErrorNotice />
+          ) : (
+              ""
+            )}
           <Button
             type="submit"
             buttonType="submit"
