@@ -9,7 +9,7 @@ import {
 import FormInput from "components/form-input/form-input.component";
 import Button from "components/button/button.component";
 
-import ErrorDisplay from "components/error-display/error-display.component";
+import DisplayErrorNotice from "components/display-error-notice/display-error-notice.component";
 import DisplaySuccessNotice from "components/display-success-notice/display-success-notice.component";
 
 import styles from "pages/sign-in-sign-up/sign-in-sign-up.module.scss";
@@ -58,7 +58,7 @@ const ForgotPassword = ({ show, setShow }) => {
         </DisplaySuccessNotice>
       )}
       {errors.type === "passwordResetFail" || errors.type === "serverFail" ? (
-        <ErrorDisplay />
+        <DisplayErrorNotice />
       ) : (
         ""
       )}

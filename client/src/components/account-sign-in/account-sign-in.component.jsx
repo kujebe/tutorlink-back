@@ -6,7 +6,7 @@ import { emailSignInStart } from "store/user/user-actions";
 import ForgotPassword from "components/account-forgot-password/account-forgot-password.component";
 import FormInput from "components/form-input/form-input.component";
 import Button from "components/button/button.component";
-import ErrorDisplay from "components/error-display/error-display.component";
+import DisplayErrorNotice from "components/display-error-notice/display-error-notice.component";
 
 import styles from "pages/sign-in-sign-up/sign-in-sign-up.module.scss";
 
@@ -55,7 +55,7 @@ const SignIn = () => {
             required
           />
           {errors.type === "signinFail" || errors.type === "serverFail" ? (
-            <ErrorDisplay />
+            <DisplayErrorNotice />
           ) : (
             ""
           )}

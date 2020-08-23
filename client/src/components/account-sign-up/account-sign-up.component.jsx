@@ -5,7 +5,7 @@ import { signUpStart } from "store/user/user-actions";
 
 import FormInput from "components/form-input/form-input.component";
 import Button from "components/button/button.component";
-import ErrorDisplay from "components/error-display/error-display.component";
+import DisplayErrorNotice from "components/display-error-notice/display-error-notice.component";
 
 import styles from "pages/sign-in-sign-up/sign-in-sign-up.module.scss";
 
@@ -103,7 +103,7 @@ export const SignUp = () => {
           </label>
         </div>
         {errors.type === "signupFail" || errors.type === "serverFail" ? (
-          <ErrorDisplay />
+          <DisplayErrorNotice />
         ) : (
           ""
         )}
