@@ -12,6 +12,6 @@ const resetPasswordController = require("../../../controllers/api/auth/reset-pas
 authRouter.post("/register", registerController);
 authRouter.post("/login", loginController);
 authRouter.post("/forgot-password", forgotPasswordController);
-authRouter.post("/reset-password/:userId/:token", resetPasswordController);
+authRouter.post("/reset-password", resetPasswordController);
 
 module.exports = authRouter;

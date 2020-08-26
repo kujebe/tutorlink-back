@@ -6,10 +6,11 @@ import Spinner from "components/spinner/spinner.component";
 import ErrorBoundary from "components/error-boundary/error-boundary.component";
 import Layout from "components/layout/layout.component";
 
+import ResetPassword from "pages/reset-password/reset-password.page";
 import NoMatch from "components/no-match/NoMatch.component";
 const HomePage = lazy(() => import("pages/home/home.page"));
 const TeacherPage = lazy(() => import("pages/teacher/teacher.page"));
-const SignInSignOut = lazy(() =>
+const SignInSignUp = lazy(() =>
   import("pages/sign-in-sign-up/sign-in-sign-up.page")
 );
 
@@ -30,9 +31,12 @@ function App() {
               exact
               path="/account"
               render={() =>
-                currentUser ? <Redirect to="/" /> : <SignInSignOut />
+                currentUser ? <Redirect to="/" /> : <SignInSignUp />
               }
             />
+            <Route exact path="/account/reset-password">
+              <ResetPassword />
+            </Route>
             <Route path="*">
               <NoMatch />
             </Route>

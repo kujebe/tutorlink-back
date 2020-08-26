@@ -55,6 +55,22 @@ class AuthService {
       throw new Error(error);
     }
   }
+
+  async resetPassword(resetData) {
+    try {
+      const result = await fetch(this.constructor.API_URL + "reset-password", {
+        method: "POST",
+        headers: this.constructor.headers,
+        body: JSON.stringify(resetData),
+      });
+
+      const data = await result.json();
+      return data;
+    } catch (error) {
+      console.log(error);
+      throw new Error(error);
+    }
+  }
 }
 
 export default new AuthService();

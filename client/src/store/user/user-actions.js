@@ -28,6 +28,20 @@ export const emailSignInFailure = () => ({
   type: userActionTypes.EMAIL_SIGN_IN_FAILURE,
 });
 
+export const resetPasswordStart = (resetData) => ({
+  type: userActionTypes.RESET_PASSWORD_START,
+  payload: resetData,
+});
+
+export const resetPasswordSuccess = (data) => ({
+  type: userActionTypes.RESET_PASSWORD_SUCCESS,
+  payload: data,
+});
+
+export const resetPasswordFailure = () => ({
+  type: userActionTypes.RESET_PASSWORD_FAILURE,
+});
+
 export const sendForgotPasswordMailStart = (email) => ({
   type: userActionTypes.SEND_FORGOT_PASSWORD_EMAIL_START,
   payload: email,
@@ -44,6 +58,10 @@ export const sendForgotPasswordMailFailure = () => ({
 
 export const clearForgotPasswordSuccessNotice = () => ({
   type: userActionTypes.CLEAR_FORGOT_PASSWORD_SUCCESS_NOTIFICATION,
+});
+
+export const clearResetPasswordSuccessNotice = () => ({
+  type: userActionTypes.CLEAR_RESET_PASSWORD_SUCCESS_NOTIFICATION,
 });
 
 export const signOutStart = () => ({

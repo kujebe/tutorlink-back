@@ -16,10 +16,6 @@ export const SignUp = () => {
     password: "",
     password_confirm: "",
     role: "customer",
-    errors: {
-      same_password: "",
-      emptyFields: "",
-    },
   });
 
   const { isAuthenticating } = useSelector((state) => state.user);

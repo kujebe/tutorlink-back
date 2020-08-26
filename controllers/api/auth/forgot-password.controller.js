@@ -11,7 +11,7 @@ const {
 
 const ForgotPasswordController = (req, res, next) => {
   const email = req.body.email;
-
+  const URL = process.env.BASE_URL;
   if (!email) {
     throw new UnprocessableEntity("Email cannot be empty");
   }
@@ -41,7 +41,7 @@ const ForgotPasswordController = (req, res, next) => {
           mailHelperOptions(
             [user.email], // In case you want to send to send to multiple recipients
             "Reset password instructions for TutorLink account", //Subject
-            passwordResetEmailTemplate(user._id, user.email, token) //Email template
+            passwordResetEmailTemplate(URL, user._id, user.email, token) //Email template
           )
         )
         .then((info) => {

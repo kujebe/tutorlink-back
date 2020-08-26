@@ -7,7 +7,7 @@ import Overlay from "components/account-sign-in-sign-up-overlay/sign-in-sign-up-
 
 import styles from "./sign-in-sign-up.module.scss";
 
-const SignInSignOut = () => {
+const SignInSignUp = () => {
   const [signupActive, setSignupActive] = useState(false);
 
   const handleSignupToggle = (status) => {
@@ -29,4 +29,4 @@ const SignInSignOut = () => {
   );
 };
 
-export default SignInSignOut;
+export default SignInSignUp;

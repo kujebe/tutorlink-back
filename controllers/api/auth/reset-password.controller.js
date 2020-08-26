@@ -3,11 +3,14 @@ const User = require("../../../models/User.model");
 const { UnprocessableEntity } = require("../../../helpers/errors");
 
 const resetPasswordController = (req, res, next) => {
-  const { userId, token } = req.params;
-  const { password } = req.body;
+  const { userId, token, password, password_confirm } = req.body;
 
   if (!password) {
     throw new UnprocessableEntity("Password cannot be empty");
+  }
+
+  if (password !== password_confirm) {
+    throw new UnprocessableEntity("Password is not the same");
   }
 
   User.findById(userId)
@@ -23,16 +26,16 @@ const resetPasswordController = (req, res, next) => {
           user
             .save()
             .then((result) => {
-              userData = {
-                _id: result._id,
-                email: result.email,
-                role: result.role,
-                status: result.status,
-              };
+              // userData = {
+              //   _id: result._id,
+              //   email: result.email,
+              //   role: result.role,
+              //   status: result.status,
+              // };
               res.status(201).json({
                 status: "ok",
-                data: userData,
-                message: "User authenticated successfully",
+                // data: userData,
+                message: "Password reset successful",
               });
             })
             .catch((err) => {
