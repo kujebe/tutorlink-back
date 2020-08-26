@@ -5,12 +5,13 @@ import useQuery from "custom-hooks/use-query";
 import InnerPagesLayout from "components/layout/inner-pages-layout.component";
 import FormInput from "components/form-input/form-input.component";
 import Button from "components/button/button.component";
+
 import DisplaySuccessNotice from "components/display-success-notice/display-success-notice.component";
 import DisplayErrorNotice from "components/display-error-notice/display-error-notice.component";
 
 import {
   resetPasswordStart,
-  clearForgotPasswordSuccessNotice,
+  clearResetPasswordSuccessNotice,
 } from "store/user/user-actions";
 
 import styles from "./reset-password.module.scss";
@@ -69,7 +70,7 @@ const PasswordReset = () => {
 
         {resetPasswordStatus && (
           <DisplaySuccessNotice
-            closeAction={clearForgotPasswordSuccessNotice}
+            closeAction={clearResetPasswordSuccessNotice}
             value={null}
           >
             {resetPasswordStatus}
