@@ -48,47 +48,52 @@ const PasswordReset = () => {
 
   return (
     <InnerPagesLayout>
-      <form>
-        <h1>Sign In</h1>
-        <span>Login with your username and password</span>
-        <FormInput
-          type="password"
-          name="password"
-          value={state.password}
-          handleChange={handleChange}
-          label="Password"
-          required
-        />
-        <FormInput
-          type="password"
-          name="password_confirm"
-          value={state.password_confirm}
-          handleChange={handleChange}
-          label="Confirm Password"
-          required
-        />
+      <div className={styles.wrapper}>
+        <div className={styles.form_container}>
+          <form>
+            <h1>Password Reset</h1>
+            <span>Enter new password below</span>
+            <FormInput
+              type="password"
+              name="password"
+              value={state.password}
+              handleChange={handleChange}
+              label="Password"
+              required
+            />
+            <FormInput
+              type="password"
+              name="password_confirm"
+              value={state.password_confirm}
+              handleChange={handleChange}
+              label="Confirm Password"
+              required
+            />
 
-        {resetPasswordStatus && (
-          <DisplaySuccessNotice
-            closeAction={clearResetPasswordSuccessNotice}
-            value={null}
-          >
-            {resetPasswordStatus}
-          </DisplaySuccessNotice>
-        )}
-        {errors.type === "resetPasswordFail" || errors.type === "serverFail" ? (
-          <DisplayErrorNotice />
-        ) : (
-          ""
-        )}
-        <Button
-          type="submit"
-          buttonType="submit"
-          label="Reset Password"
-          onClick={handleReset}
-          isLoading={isAuthenticating}
-        />
-      </form>
+            {resetPasswordStatus && (
+              <DisplaySuccessNotice
+                closeAction={clearResetPasswordSuccessNotice}
+                value={null}
+              >
+                {resetPasswordStatus}
+              </DisplaySuccessNotice>
+            )}
+            {errors.type === "resetPasswordFail" ||
+            errors.type === "serverFail" ? (
+              <DisplayErrorNotice />
+            ) : (
+              ""
+            )}
+            <Button
+              type="submit"
+              buttonType="submit"
+              label="Reset Password"
+              onClick={handleReset}
+              isLoading={isAuthenticating}
+            />
+          </form>
+        </div>
+      </div>
     </InnerPagesLayout>
   );
 };
