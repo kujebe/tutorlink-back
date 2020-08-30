@@ -1,0 +1,39 @@
+@import "theme/theme.scss";
+
+.right {
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  -webkit-align-self: auto;
+  -ms-flex-item-align: auto;
+  align-self: auto;
+  width: 20%;
+  padding: 0 10px;
+  margin-left: 15px;
+  display: flex;
+  flex-direction: column;
+  > div {
+    margin-bottom: 10px;
+  }
+  .user {
+    display: flex;
+    align-items: center;
+    .user_thumbnail {
+      @include profile-thumbnail(40px, 40px, $theme_blue);
+      align-items: normal;
+      img {
+        width: 35px;
+      }
+    }
+    .user_name {
+      font-weight: 600;
+    }
+  }
+  .section {
+    display: flex;
+    flex-direction: column;
+    .title {
+      font-weight: 700;
+    }
+  }
+}
