@@ -1,5 +1,4 @@
 import { takeLatest, call, put, all } from "redux-saga/effects";
-import useRequest from "custom-hooks/swr-hoc";
 
 import {
   fetchSelectedTeacherDetailsSuccess,

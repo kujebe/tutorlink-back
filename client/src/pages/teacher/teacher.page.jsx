@@ -1,8 +1,11 @@
 import React from "react";
+import {useDispatch} from "react-redux";
 import { useParams } from "react-router-dom";
 import StarRatings from "react-star-ratings";
 
-import useRequest from "custom-hooks/swr-hoc";
+import useRequest from "hooks/swr-hoc";
+
+import {showPaymentModal} from "store/customer/customer-actions";
 
 import InnerPagesLayout from "components/layout/inner-pages-layout.component";
 
@@ -22,6 +25,8 @@ import { ReactComponent as HiredIcon } from "assets/images/hired-icon.svg";
 const TeacherPage = () => {
   const { slug } = useParams();
   const { data, error } = useRequest("/teachers/", slug);
+
+  const dispatch = useDispatch();
 
   if (!data) {
     return "";
@@ -178,7 +183,7 @@ const TeacherPage = () => {
               <div className={styles.price}>
                 N40,000.00<span> / Month</span>
               </div>
-              <button>Hire Now</button>
+              <button onClick={() => dispatch(showPaymentModal())}>Hire Now</button>
             </div>
           </div>
         </div>

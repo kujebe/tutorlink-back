@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import useQuery from "custom-hooks/use-query";
+import useQuery from "hooks/use-query";
 
 import InnerPagesLayout from "components/layout/inner-pages-layout.component";
 import FormInput from "components/form-input/form-input.component";

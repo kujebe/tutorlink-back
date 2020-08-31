@@ -1,6 +1,6 @@
 import React from "react";
 
-import useRequest from "custom-hooks/swr-hoc";
+import useRequest from "hooks/swr-hoc";
 
 import TeacherProfileSummary from "components/teacher-profile-summary/teacher-profile-summary.component";
 import CustomerDashboardRight from "./customer-dashboard-right.component";

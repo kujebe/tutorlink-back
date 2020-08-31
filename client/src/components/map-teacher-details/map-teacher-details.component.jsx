@@ -4,7 +4,7 @@ import { PieChart } from "react-minimal-pie-chart";
 import StarRatings from "react-star-ratings";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { Link } from "react-router-dom";
-import useRequest from "custom-hooks/swr-hoc";
+import useRequest from "hooks/swr-hoc";
 
 import Tags from "components/tags/tags.component";
 import Spinner from "components/spinner/spinner.component";

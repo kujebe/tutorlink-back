@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import StarRatings from "react-star-ratings";
 
-import useRequest from "custom-hooks/swr-hoc";
+import useRequest from "hooks/swr-hoc";
 
 import { selectTeacherSlug } from "store/teacher/teacher-actions";
 
