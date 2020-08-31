@@ -6,13 +6,15 @@ import SearchForm from "components/search-form/search-form.component";
 
 import styles from "./dashboard-page.module.scss";
 
-const DashboardPage = () => (
-  <InnerPagesLayout>
-    <div className={styles.dashboard_container}>
-      <SearchForm />
-      <CustomerDashboard />
-    </div>
-  </InnerPagesLayout>
-);
+const DashboardPage = () => {
+  return (
+    <InnerPagesLayout>
+      <div className={styles.dashboard_container}>
+        <SearchForm />
+        <CustomerDashboard />
+      </div>
+    </InnerPagesLayout>
+  );
+};
 
 export default DashboardPage;

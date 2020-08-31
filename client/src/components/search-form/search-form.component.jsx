@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import FormInput from "components/form-input/form-input.component";
 import { ReactComponent as SearcIcon } from "assets/images/search-icon.svg";
@@ -6,14 +6,20 @@ import { ReactComponent as SearcIcon } from "assets/images/search-icon.svg";
 import styles from "./search-form.module.scss";
 
 const SearchForm = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const onChangeHandler = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
   return (
     <div className={styles.wrapper}>
       <SearcIcon />
       <FormInput
         type="text"
         name="search"
-        value=""
-        // handleChange={handleChange}
+        value={searchQuery}
+        handleChange={onChangeHandler}
         label="Search for teachers near you"
         required
       />

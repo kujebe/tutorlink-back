@@ -19,7 +19,72 @@
 .container {
   display: flex;
   flex-direction: column;
-
+  .top {
+    background: $white;
+    @include padding;
+    display: flex;
+    border-bottom: 1px solid $grey;
+    .photo {
+      width: 25%;
+      height: 200px;
+      align-self: center;
+      margin-right: 25px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        object-fit: contain;
+      }
+    }
+    .highlights {
+      width: 74%;
+      display: flex;
+      flex-direction: column;
+      .name_status_ratings {
+        display: flex;
+        align-items: center;
+        .name {
+          margin-right: 5px;
+        }
+        .status {
+          margin-left: 12px;
+          width: 22px;
+          height: 22px;
+        }
+      }
+      .metas {
+        display: flex;
+        color: $grey;
+        padding: 4px 0;
+        margin-bottom: 5px;
+        margin-top: 5px;
+        .education {
+          text-transform: uppercase;
+        }
+        .education,
+        .total_experience {
+          display: flex;
+          align-items: center;
+          margin-right: 28px;
+          .icon {
+            width: 17px;
+            height: 17px;
+            margin-right: 6px;
+          }
+        }
+      }
+      .levels {
+        display: flex;
+        text-transform: capitalize;
+        margin-bottom: 5px;
+        .level {
+          padding: 3px 12px;
+          margin-right: 6px;
+        }
+      }
+    }
+  }
   .iconic {
     display: flex;
     justify-content: space-evenly;
