@@ -4,13 +4,14 @@ import useRequest from "custom-hooks/swr-hoc";
 
 import TeacherProfileSummary from "components/teacher-profile-summary/teacher-profile-summary.component";
 import CustomerDashboardRight from "./customer-dashboard-right.component";
+import Spinner from "components/spinner/spinner.component";
 
 import styles from "./customer-dashboard.module.scss";
 
 const CustomerDashboard = () => {
   const { data, error } = useRequest("/teachers/");
   if (!data) {
-    return "";
+    return <Spinner />;
   }
 
   if (data && !error) {
