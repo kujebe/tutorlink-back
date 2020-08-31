@@ -1,7 +1,9 @@
-import React, { lazy, Suspense } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+import Modal from "components/modal/modal.component";
+import BookNowModal from "components/book-now-modal/book-now-modal.component";
 import Spinner from "components/spinner/spinner.component";
 import ErrorBoundary from "components/error-boundary/error-boundary.component";
 import Layout from "components/layout/layout.component";
@@ -15,8 +17,14 @@ const SignInSignUp = lazy(() =>
 );
 const DashboardPage = lazy(() => import("pages/dashboard/dashboard.page"));
 
-function App() {
+const App = () => {
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const currentUser = useSelector((state) => state.user.currentUser);
+
+  const toggleModal = () => {
+    setIsPaymentModalOpen(!isPaymentModalOpen);
+  };
+
   return (
     <Layout>
       <ErrorBoundary>
@@ -51,8 +59,13 @@ function App() {
           </Switch>
         </Suspense>
       </ErrorBoundary>
+      {isPaymentModalOpen && (
+        <Modal>
+          <BookNowModal toggleModal={toggleModal} />
+        </Modal>
+      )}
     </Layout>
   );
-}
+};
 
 export default App;
