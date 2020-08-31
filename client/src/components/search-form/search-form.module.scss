@@ -1,11 +1,9 @@
 @import "theme/theme.scss";
 
 .wrapper {
-  padding: 2px 30px;
-  margin-bottom: 20px;
-  //   @include shadowed-wrapper;
+  padding-left: 15px;
   position: relative;
-  width: 80%;
+  flex-grow: 1;
   svg {
     background: $theme_blue;
     padding: 5px;
@@ -13,8 +11,8 @@
     height: 35px;
     position: absolute;
     z-index: 1;
-    right: 30px;
-    top: 22px;
+    right: 0;
+    top: 20px;
     cursor: pointer;
     &:hover {
       background: $light_blue;

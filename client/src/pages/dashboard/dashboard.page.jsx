@@ -10,7 +10,10 @@ const DashboardPage = () => {
   return (
     <InnerPagesLayout>
       <div className={styles.dashboard_container}>
-        <SearchForm />
+        <div className={styles.search_box_container}>
+          <h2>Find Teachers</h2>
+          <SearchForm />
+        </div>
         <CustomerDashboard />
       </div>
     </InnerPagesLayout>
