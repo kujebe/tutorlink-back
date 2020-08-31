@@ -34,6 +34,11 @@
     flex-direction: column;
     .title {
       font-weight: 700;
+      color: $theme_blue;
+    }
+    span,
+    a {
+      padding: 3px 0;
     }
   }
 }

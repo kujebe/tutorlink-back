@@ -22,7 +22,7 @@ const TeacherProfileSummary = ({ teacher }) => {
             src={process.env.PUBLIC_URL + "/images/profile/" + teacher.profile}
             alt={teacher.firstname}
           />
-          <Link to="/" className={styles.name}>
+          <Link to={`/teacher/${teacher.slug}`} className={styles.name}>
             {teacher.firstname + " " + teacher.lastname}
           </Link>
           <StarRatings

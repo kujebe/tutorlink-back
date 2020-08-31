@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import styles from "./customer-dashboard-right.module.scss";
 
@@ -16,7 +17,21 @@ const DashboardTeacherProfile = () => {
       </div>
       <div className={styles.section}>
         <div className={styles.title}>Location</div>
-        <span>Lagos, Nigeria</span>
+        <span>5, Force Road, Onikan, Lagos, Nigeria</span>
+      </div>
+      <div className={styles.section}>
+        <div className={styles.title}>Member Since</div>
+        <span>August 2020</span>
+      </div>
+      <div className={styles.section}>
+        <div className={styles.title}>Last Login</div>
+        <span>Sept 5th, 2020</span>
+      </div>
+      <div className={styles.section}>
+        <div className={styles.title}>Recent Hires</div>
+        <Link to="/">Felicia Ike</Link>
+        <Link to="/">Bolaji Johnson</Link>
+        <Link to="/">Adejoke Ojo</Link>
       </div>
     </div>
   );
