@@ -6,6 +6,7 @@ import mapDataReducer from "./map/map-reducer";
 import teacherReducer from "./teacher/teacher-reducer";
 import userReducer from "./user/user-reducer";
 import errorReducer from "./errors/error-reducer";
+import customerReducer from "./customer/customer-reducer";
 
 const persistConfig = {
   key: "root",
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   teacher: teacherReducer,
   user: userReducer,
   errors: errorReducer,
+  customer: customerReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

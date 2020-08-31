@@ -1,9 +1,11 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import StarRatings from "react-star-ratings";
 
-import styles from "./teacher-profile-summary.module.scss";
+import { showPaymentModal } from "store/customer/customer-actions";
 
+import styles from "./teacher-profile-summary.module.scss";
 import { backgroundColors, textColors } from "helpers/style-helpers";
 
 import { ReactComponent as VerifiedIcon } from "assets/images/verified.svg";
@@ -13,6 +15,7 @@ import { ReactComponent as ViewIcon } from "assets/images/view-icon.svg";
 import { ReactComponent as HireIcon } from "assets/images/hire-now-icon.svg";
 
 const TeacherProfileSummary = ({ teacher }) => {
+  const dispatch = useDispatch();
   return (
     <div className={styles.summary_container}>
       <div className={styles.header_wrapper}>
@@ -35,14 +38,17 @@ const TeacherProfileSummary = ({ teacher }) => {
           <VerifiedIcon className={styles.status}></VerifiedIcon>
         </div>
         <div className={styles.header_right}>
-          <Link to="/" className={styles.view_details}>
+          <Link to={`/teacher/${teacher.slug}`} className={styles.view_details}>
             <ViewIcon />
             <span>View Details</span>
           </Link>
-          <Link to="/" className={styles.hire_now}>
+          <div
+            className={styles.hire_now}
+            onClick={() => dispatch(showPaymentModal())}
+          >
             <HireIcon />
             <span>Hire Now</span>
-          </Link>
+          </div>
         </div>
       </div>
       <div className={styles.metas}>

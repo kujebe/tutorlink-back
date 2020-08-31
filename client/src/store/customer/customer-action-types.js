@@ -1,0 +1,4 @@
+export const customerActionTypes = {
+  SHOW_PAYMENT_MODAL: "SHOW_PAYMENT_MODAL",
+  HIDE_PAYMENT_MODAL: "HIDE_PAYMENT_MODAL",
+};
