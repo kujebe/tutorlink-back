@@ -47,7 +47,7 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(__dirname, "client/build", "index.html"));
   });
 }
-
+//Error handler middleware
 app.use(handleErrors);
 
 app.listen(port, (err) => {
