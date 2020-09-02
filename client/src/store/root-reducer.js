@@ -11,13 +11,24 @@ import customerReducer from "./customer/customer-reducer";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["user", ["currentUser"]],
+  blacklist: ["user", "errors", "mapData", "teacher", "customer"],
+};
+
+const userPersistConfig = {
+  key: "user",
+  storage: storage,
+  blacklist: [
+    "hideMenu",
+    "forgotPasswordStatus",
+    "isAuthenticating",
+    "resetPasswordStatus",
+  ],
 };
 
 const rootReducer = combineReducers({
   mapData: mapDataReducer,
   teacher: teacherReducer,
-  user: userReducer,
+  user: persistReducer(userPersistConfig, userReducer),
   errors: errorReducer,
   customer: customerReducer,
 });

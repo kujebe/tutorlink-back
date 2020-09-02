@@ -1430,6 +1430,11 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-paystack@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/react-paystack/-/react-paystack-3.0.1.tgz#520d3011a3f73923fa01e40733f35aac9cb9a2cc"
+  integrity sha512-b9Cnw/oNTWSunlCFjSMCz4RYV1/yzQgt4PZ5u+nQyu/+2F9cIFFoxJVnmk96awc0cyfYr33rdjaaK1t2dYiW7g==
+
 read-pkg@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/read-pkg/-/read-pkg-4.0.1.tgz#963625378f3e1c4d48c85872b5a6ec7d5d093237"

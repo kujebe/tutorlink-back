@@ -10,6 +10,7 @@ const Button = ({ label, ghost, isLoading, buttonType, ...otherProps }) => {
       return "";
     }
   };
+
   const ghostClass = ghost ? styles.ghost : "";
 
   return (
