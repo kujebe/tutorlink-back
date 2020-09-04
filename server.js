@@ -6,12 +6,19 @@ const compression = require("compression");
 const connectDb = require("./config/db.config");
 const morgan = require("morgan");
 const handleErrors = require("./middlewares/error-handler"); // Custome error handler middleware
+const redis = require("redis");
 
 // if (process.env.NODE_ENV !== "production") require("dotenv").config();
 require("dotenv").config();
 
 //Connect to database
 connectDb();
+//Connet to Redis server
+const client = redis.createClient("6379", "localhost");
+
+// client.on("connect", () => {
+//   console.log("Redis conneted successfully");
+// });
 
 //Import routes
 const homePageRouter = require("./routes/api/public/home-page.route");
