@@ -2,7 +2,7 @@ const {
   getUserIdFromSession,
 } = require("../controllers/api/auth/login.controller");
 
-const checkAuth = (req, res, next) => {
+const checkSession = (req, res, next) => {
   const { authorization } = req.headers;
   getUserIdFromSession(authorization)
     .then((data) => {
@@ -11,4 +11,4 @@ const checkAuth = (req, res, next) => {
     .catch((err) => next(err));
 };
 
-module.exports = checkAuth;
+module.exports = checkSession;
