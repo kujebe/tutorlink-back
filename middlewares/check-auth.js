@@ -1,18 +1,14 @@
-const jwt = require("jsonwebtoken");
+const {
+  getUserIdFromSession,
+} = require("../controllers/api/auth/login.controller");
 
-module.exports = (req, res, next) => {
-  try {
-    const token =
-      req.headers.authorization.split(" ")[1] ||
-      req.headers["x-access-token"] ||
-      req.body.token ||
-      req.query.token ||
-      req.cookies.token;
-
-    const decoded = jwt.verify(token, process.env.JWT_KEY);
-    req.userData = decoded;
-    next();
-  } catch (error) {
-    return res.status(401).json({ message: "Authentication failed" });
-  }
+const checkAuth = (req, res, next) => {
+  const { authorization } = req.headers;
+  getUserIdFromSession(authorization)
+    .then((data) => {
+      next();
+    })
+    .catch((err) => next(err));
 };
+
+module.exports = checkAuth;
