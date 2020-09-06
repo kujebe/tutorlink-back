@@ -1,7 +1,9 @@
 import userActionTypes from "./user-action-types";
 
 const INITIAL_STATE = {
-  currentUser: null,
+  sessionData: null,
+  userData: null,
+  profile: null, //for testing. remove
   isAuthenticating: false,
   hideMenu: true,
   forgotPasswordStatus: null,
@@ -14,6 +16,7 @@ const userReducer = (state = INITIAL_STATE, { payload, type }) => {
     case userActionTypes.SIGN_UP_START:
     case userActionTypes.SEND_FORGOT_PASSWORD_EMAIL_START:
     case userActionTypes.RESET_PASSWORD_START:
+    case userActionTypes.GET_PROFILE_START:
       return {
         ...state,
         isAuthenticating: true,
@@ -22,13 +25,13 @@ const userReducer = (state = INITIAL_STATE, { payload, type }) => {
     case userActionTypes.SIGN_UP_SUCCESS:
       return {
         ...state,
-        currentUser: payload,
+        sessionData: payload,
         isAuthenticating: false,
       };
     case userActionTypes.SIGN_OUT_SUCCESS:
       return {
         ...state,
-        currentUser: null,
+        sessionData: null,
         isAuthenticating: false,
         hideMenu: true,
       };
@@ -56,6 +59,7 @@ const userReducer = (state = INITIAL_STATE, { payload, type }) => {
     case userActionTypes.SIGN_UP_FAILURE:
     case userActionTypes.SEND_FORGOT_PASSWORD_EMAIL_FAILURE:
     case userActionTypes.RESET_PASSWORD_FAILURE:
+    case userActionTypes.GET_PROFILE_FAILURE:
       return {
         ...state,
         isAuthenticating: false,
@@ -64,6 +68,11 @@ const userReducer = (state = INITIAL_STATE, { payload, type }) => {
       return {
         ...state,
         hideMenu: !state.hideMenu,
+      };
+    case userActionTypes.GET_PROFILE_SUCCESS:
+      return {
+        ...state,
+        profile: payload,
       };
     default:
       return state;

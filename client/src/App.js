@@ -16,9 +16,10 @@ const SignInSignUp = lazy(() =>
   import("pages/sign-in-sign-up/sign-in-sign-up.page")
 );
 const DashboardPage = lazy(() => import("pages/dashboard/dashboard.page"));
+const ProfilePage = lazy(() => import("pages/profile/profile.page"));
 
 const App = () => {
-  const currentUser = useSelector((state) => state.user.currentUser);
+  const sessionData = useSelector((state) => state.user.sessionData);
   const showPaymentModal = useSelector(
     (state) => state.customer.showPaymentModal
   );
@@ -38,7 +39,7 @@ const App = () => {
               exact
               path="/account"
               render={() =>
-                currentUser ? <Redirect to="/dashboard" /> : <SignInSignUp />
+                sessionData ? <Redirect to="/dashboard" /> : <SignInSignUp />
               }
             />
             <Route exact path="/account/reset-password">
@@ -48,9 +49,12 @@ const App = () => {
               exact
               path="/dashboard"
               render={() =>
-                currentUser ? <DashboardPage /> : <Redirect to="/account" />
+                sessionData ? <DashboardPage /> : <Redirect to="/account" />
               }
             />
+            <Route exact path="/profile">
+              <ProfilePage />
+            </Route>
             <Route path="*">
               <NoMatch />
             </Route>

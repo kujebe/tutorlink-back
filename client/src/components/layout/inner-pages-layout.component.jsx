@@ -6,10 +6,10 @@ import TopbarPrivate from "./topbar-private.component";
 import Footer from "./footer.component";
 
 const InnerPagesLayout = ({ children }) => {
-  const currentUser = useSelector((state) => state.user.currentUser);
+  const sessionData = useSelector((state) => state.user.sessionData);
   return (
     <Fragment>
-      {currentUser ? <TopbarPrivate /> : <TopbarPublic />}
+      {sessionData ? <TopbarPrivate /> : <TopbarPublic />}
 
       <div className="inner-pages-wrapper">{children}</div>
       <Footer />

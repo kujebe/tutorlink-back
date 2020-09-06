@@ -8,7 +8,6 @@ exports.getAllTeachers = (req, res) => {
   Teacher.find()
     .then((teachers) => res.status(200).json(teachers))
     .catch((err) => {
-      console.log(err);
       res.status(500).json({
         error: err,
       });

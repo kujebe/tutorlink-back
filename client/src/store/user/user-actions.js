@@ -76,10 +76,20 @@ export const signOutFailure = (error) => ({
   payload: error,
 });
 
-export const checkUserSession = () => ({
-  type: userActionTypes.CHECK_USER_SESSION,
-});
-
 export const toggleUserMenu = () => ({
   type: userActionTypes.TOGGLE_USER_MENU,
+});
+
+export const getProfileStart = (token) => ({
+  type: userActionTypes.GET_PROFILE_START,
+  payload: token,
+});
+
+export const getProfileSuccess = (profileData) => ({
+  type: userActionTypes.GET_PROFILE_SUCCESS,
+  payload: profileData,
+});
+
+export const getProfileFailure = () => ({
+  type: userActionTypes.GET_PROFILE_FAILURE,
 });

@@ -62,7 +62,10 @@ const handleLogin = (req, res, next) => {
     });
 };
 
-const getUserIdFromSession = (token) => {
+const checkSessionPromise = (token) => {
+  if (!token) {
+    return Promise.reject(new Unauthorized("Unathorized"));
+  }
   return new Promise((resolve, reject) => {
     redisClient.get(token, (error, reply) => {
       if (error || !reply) {
@@ -74,21 +77,10 @@ const getUserIdFromSession = (token) => {
 };
 
 const loginController = (req, res, next) => {
-  const { authorization } = req.headers;
-  authorization
-    ? getUserIdFromSession(authorization)
-        .then((userId) => {
-          res.json({
-            status: "ok",
-            data: { userId },
-            message: "User valid session",
-          });
-        })
-        .catch((err) => next(err))
-    : handleLogin(req, res, next);
+  handleLogin(req, res, next);
 };
 
 module.exports = {
   loginController,
-  getUserIdFromSession,
+  checkSessionPromise,
 };

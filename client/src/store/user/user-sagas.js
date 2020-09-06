@@ -11,6 +11,8 @@ import {
   resetPasswordFailure,
   signOutSuccess,
   signOutFailure,
+  getProfileSuccess,
+  getProfileFailure,
 } from "./user-actions";
 import { setErrors, clearErrors } from "store/errors/error-actions";
 
@@ -130,6 +132,34 @@ export function* resetPassword({ payload }) {
   }
 }
 
+export function* getUserProfile({ payload }) {
+  try {
+    const result = yield fetch("http://localhost:5000/api/v1/profile", {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: payload,
+      },
+    });
+    const data = yield result.json();
+    if (data.status === "error") {
+      yield put(getProfileFailure()); // Disable isAuthentication loading option
+      yield put(
+        setErrors({
+          type: "sessionError",
+          ...data,
+        })
+      );
+      return;
+    }
+
+    yield put(getProfileSuccess(data));
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export function* signOutUser() {
   try {
     yield put(signOutSuccess());
@@ -163,6 +193,10 @@ export function* onSignOutStart() {
   yield takeLatest(userActionTypes.SIGN_OUT_START, signOutUser);
 }
 
+export function* onGetProfileStart() {
+  yield takeLatest(userActionTypes.GET_PROFILE_START, getUserProfile);
+}
+
 /** All user sagas */
 export function* userSagas() {
   yield all([
@@ -171,5 +205,6 @@ export function* userSagas() {
     call(onSignUpStart),
     call(onSendForgotPasswordEmail),
     call(onResetPasswordStart),
+    call(onGetProfileStart),
   ]);
 }

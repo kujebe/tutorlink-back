@@ -17,6 +17,7 @@ connectDb();
 const homePageRouter = require("./routes/api/public/home-page.route");
 const teachersRouter = require("./routes/api/public/teachers.route");
 const authRouter = require("./routes/api/auth/auth.routes");
+const profileRoute = require("./routes/api/private/profile.route");
 
 const app = express();
 app.use(morgan("combined"));
@@ -32,6 +33,12 @@ app.use(cors());
  */
 app.use("/api/v1/auth", authRouter);
 /** End auth routes */
+
+/**
+ * Private routes
+ */
+
+app.use("/api/v1/profile", profileRoute);
 
 /**
  * Public routes
