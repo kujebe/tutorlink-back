@@ -2,6 +2,7 @@ import { customerActionTypes } from "./customer-action-types";
 
 const INITIAL_STATE = {
   showPaymentModal: false,
+  locationBeforeLogin: "",
 };
 
 const customerReducer = (state = INITIAL_STATE, { payload, type }) => {
@@ -15,6 +16,16 @@ const customerReducer = (state = INITIAL_STATE, { payload, type }) => {
       return {
         ...state,
         showPaymentModal: false,
+      };
+    case customerActionTypes.SET_LOCATION_BEFORE_LOGIN:
+      return {
+        ...state,
+        locationBeforeLogin: payload,
+      };
+    case customerActionTypes.CLEAR_LOCATION_BEFORE_LOGIN:
+      return {
+        ...state,
+        locationBeforeLogin: "",
       };
 
     default:

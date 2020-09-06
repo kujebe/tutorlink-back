@@ -12,12 +12,23 @@
   align-items: center;
   justify-content: center;
   transition: all 0.25s ease;
-  .payment_form {
+
+  .payment_wrapper {
     width: 35%;
     height: 300px;
     background: $white;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     @include shadowed-wrapper;
+    .notice {
+      .link {
+        color: $theme_blue;
+        padding: 0 5px;
+        cursor: pointer;
+      }
+    }
     .close_modal {
       font-size: 39px;
       font-weight: 600;

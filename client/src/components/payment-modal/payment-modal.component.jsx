@@ -1,17 +1,18 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory, useLocation } from "react-router-dom";
 import { PaystackButton } from "react-paystack";
+
+import { setLocationBeforeLogin } from "store/customer/customer-actions";
 
 import { hidepaymentModal } from "store/customer/customer-actions";
 
 import styles from "./payment-modal.module.scss";
 
 const PaymentModal = () => {
-  const publicKey = "pk_test_0f6783900b5b931dcc6518e048b6e35df4b85dab";
-  const amount = 1000000; // Remember, set in kobo!
-  const {
-    user: { fullname, email },
-  } = useSelector((state) => state.user.currentUser);
+  // const publicKey = "pk_test_0f6783900b5b931dcc6518e048b6e35df4b85dab";
+  // const amount = 1000000; // Remember, set in kobo!
+  const sessionData = useSelector((state) => state.user.sessionData);
 
   const componentProps = {
     email,
@@ -25,10 +26,40 @@ const PaymentModal = () => {
   };
 
   const dispatch = useDispatch();
+  let history = useHistory();
+  let location = useLocation();
+
+  const handleLogin = (e, value) => {
+    e.preventDefault();
+    dispatch(hidepaymentModal());
+    dispatch(setLocationBeforeLogin(location.pathname));
+    history.push(`/account?action=${value}`);
+  };
+
   return (
     <div className={styles.container}>
-      <div className={styles.payment_form}>
-        <PaystackButton {...componentProps} />
+      <div className={styles.payment_wrapper}>
+        {sessionData ? (
+          <PaystackButton {...componentProps} />
+        ) : (
+          <div className={styles.notice}>
+            Please
+            <span
+              className={styles.link}
+              onClick={(event) => handleLogin(event, "login")}
+            >
+              Login
+            </span>
+            or
+            <span
+              className={styles.link}
+              onClick={(event) => handleLogin(event, "register")}
+            >
+              Register
+            </span>
+          </div>
+        )}
+
         <div
           className={styles.close_modal}
           onClick={() => dispatch(hidepaymentModal())}
