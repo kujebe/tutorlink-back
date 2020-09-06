@@ -65,14 +65,16 @@ UserSchema.methods.loginUser = function (password, cb) {
     if (err) {
       cb(err);
     } else if (same) {
-      const token = jwt.sign({ userId: doc._id }, process.env.JWT_KEY, {
-        expiresIn: "1h",
-      });
+      const token = doc.generateToken(doc._id);
       cb(err, same, token, (user = doc));
     } else {
       cb(err, same);
     }
   });
+};
+
+UserSchema.methods.generateToken = function (userId) {
+  return (token = jwt.sign({ userId }, process.env.JWT_KEY));
 };
 
 UserSchema.methods.generatePasswordResetToken = function () {

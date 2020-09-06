@@ -25,17 +25,20 @@ exports.registerController = (req, res, next) => {
       newUser
         .save()
         .then((result) => {
-          userData = {
-            _id: result._id,
-            email: result.email,
-            role: result.role,
-            status: result.status,
-          };
-          res.status(201).json({
-            status: "ok",
-            data: userData,
-            message: "User registered successfully",
-          });
+          //if customer,send sessionData else if teacher, send verification Emailcustomer
+          if (result.role === "customer") {
+            res.status(201).json({
+              status: "ok",
+              data: {
+                _id: result._id,
+                email: result.email,
+                role: result.role,
+                status: result.status,
+                token: result.generateToken(result._id),
+              },
+              message: "User registered successfully",
+            });
+          }
         })
         .catch((err) => {
           next(err);
