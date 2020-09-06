@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
-
 import { getProfileStart } from "store/user/user-actions";
 
 const ProfilePage = () => {
