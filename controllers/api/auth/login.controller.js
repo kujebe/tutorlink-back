@@ -5,10 +5,7 @@ const User = require("../../../models/User.model");
 let redisClient;
 console.log(process.env.NODE_ENV);
 if (process.env.NODE_ENV === "production") {
-  redisClient = redis.createClient(
-    "19969",
-    "ec2-3-85-254-196.compute-1.amazonaws.com"
-  );
+  redisClient = redis.createClient(process.env.REDIS_URL);
 } else {
   redisClient = redis.createClient("6379", "localhost");
 }
