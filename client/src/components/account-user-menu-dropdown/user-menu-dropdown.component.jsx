@@ -1,17 +1,19 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { signOutStart } from "store/user/user-actions";
+import { logOutStart } from "store/user/user-actions";
 
 import styles from "./user-menu-dropdown.module.scss";
 
 const UserMenuDropdown = () => {
-  let history = useHistory();
+  const sessionToken = useSelector((state) => state.user.sessionData.token);
+
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const logout = () => {
-    dispatch(signOutStart());
+    dispatch(logOutStart(sessionToken));
     history.push("/account");
   };
 

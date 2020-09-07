@@ -4,13 +4,16 @@ import { getProfileStart } from "store/user/user-actions";
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
-  const { token } = useSelector((state) => state.user.sessionData);
+  const token = useSelector((state) => state.user.sessionData.token);
 
   useEffect(() => {
     dispatch(getProfileStart(token));
   });
-
-  return <div>Profile Page</div>;
+  if (token) {
+    return <h1>My profile</h1>;
+  } else {
+    return <div>Profile not found</div>;
+  }
 };
 
 export default ProfilePage;

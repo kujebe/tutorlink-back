@@ -64,16 +64,16 @@ export const clearResetPasswordSuccessNotice = () => ({
   type: userActionTypes.CLEAR_RESET_PASSWORD_SUCCESS_NOTIFICATION,
 });
 
-export const signOutStart = () => ({
-  type: userActionTypes.SIGN_OUT_START,
+export const logOutStart = (token) => ({
+  type: userActionTypes.LOG_OUT_START,
+  payload: token,
 });
-export const signOutSuccess = () => ({
-  type: userActionTypes.SIGN_OUT_SUCCESS,
+export const logOutSuccess = () => ({
+  type: userActionTypes.LOG_OUT_SUCCESS,
 });
 
-export const signOutFailure = (error) => ({
-  type: userActionTypes.SIGN_OUT_FAILURE,
-  payload: error,
+export const logOutFailure = () => ({
+  type: userActionTypes.LOG_OUT_FAILURE,
 });
 
 export const toggleUserMenu = () => ({

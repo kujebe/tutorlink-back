@@ -20,6 +20,21 @@ class AuthService {
     }
   }
 
+  async logOut(token) {
+    try {
+      const result = await fetch(this.constructor.API_URL + "logout", {
+        method: "POST",
+        headers: this.constructor.headers,
+        body: JSON.stringify({ token }),
+      });
+
+      const data = await result.json();
+      return data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
   async signUp(fullname, email, password, password_confirm, role) {
     try {
       const result = await fetch(this.constructor.API_URL + "register", {

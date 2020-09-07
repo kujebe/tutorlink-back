@@ -9,8 +9,8 @@ import {
   sendForgotPasswordMailFailure,
   resetPasswordSuccess,
   resetPasswordFailure,
-  signOutSuccess,
-  signOutFailure,
+  logOutSuccess,
+  logOutFailure,
   getProfileSuccess,
   getProfileFailure,
 } from "./user-actions";
@@ -160,11 +160,31 @@ export function* getUserProfile({ payload }) {
   }
 }
 
-export function* signOutUser() {
+export function* logOutUser({ payload }) {
   try {
-    yield put(signOutSuccess());
+    const logOutResponse = yield AuthService.logOut(payload);
+    if (logOutResponse.status === "error") {
+      yield put(logOutFailure()); // Disable isAuthentication loading option
+      yield put(
+        setErrors({
+          type: "logoutFail",
+          message: "Invalid session",
+        })
+      );
+      return;
+    }
+    if (logOutResponse.data.reply === 1) {
+      yield put(logOutSuccess());
+    }
+    yield put(clearErrors()); //Clear errors
   } catch (error) {
-    put(signOutFailure(error.message));
+    yield put(logOutFailure()); // Disable isAuthentication loading option
+    yield put(
+      setErrors({
+        type: "serverFail",
+        ...error,
+      })
+    );
   }
 }
 
@@ -189,22 +209,22 @@ export function* onResetPasswordStart() {
   yield takeLatest(userActionTypes.RESET_PASSWORD_START, resetPassword);
 }
 
-export function* onSignOutStart() {
-  yield takeLatest(userActionTypes.SIGN_OUT_START, signOutUser);
-}
-
 export function* onGetProfileStart() {
   yield takeLatest(userActionTypes.GET_PROFILE_START, getUserProfile);
+}
+
+export function* onLogOutStart() {
+  yield takeLatest(userActionTypes.LOG_OUT_START, logOutUser);
 }
 
 /** All user sagas */
 export function* userSagas() {
   yield all([
     call(onEmailSignInStart),
-    call(onSignOutStart),
     call(onSignUpStart),
     call(onSendForgotPasswordEmail),
     call(onResetPasswordStart),
     call(onGetProfileStart),
+    call(onLogOutStart),
   ]);
 }

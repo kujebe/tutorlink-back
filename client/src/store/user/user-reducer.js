@@ -17,6 +17,7 @@ const userReducer = (state = INITIAL_STATE, { payload, type }) => {
     case userActionTypes.SEND_FORGOT_PASSWORD_EMAIL_START:
     case userActionTypes.RESET_PASSWORD_START:
     case userActionTypes.GET_PROFILE_START:
+    case userActionTypes.LOG_OUT_START:
       return {
         ...state,
         isAuthenticating: true,
@@ -28,10 +29,11 @@ const userReducer = (state = INITIAL_STATE, { payload, type }) => {
         sessionData: payload,
         isAuthenticating: false,
       };
-    case userActionTypes.SIGN_OUT_SUCCESS:
+    case userActionTypes.LOG_OUT_SUCCESS:
       return {
         ...state,
         sessionData: null,
+        userProfile: null,
         isAuthenticating: false,
         hideMenu: true,
       };
@@ -55,7 +57,7 @@ const userReducer = (state = INITIAL_STATE, { payload, type }) => {
         resetPasswordStatus: null,
       };
     case userActionTypes.EMAIL_SIGN_IN_FAILURE:
-    case userActionTypes.SIGN_OUT_FAILURE:
+    case userActionTypes.LOG_OUT_FAILURE:
     case userActionTypes.SIGN_UP_FAILURE:
     case userActionTypes.SEND_FORGOT_PASSWORD_EMAIL_FAILURE:
     case userActionTypes.RESET_PASSWORD_FAILURE:
@@ -72,7 +74,7 @@ const userReducer = (state = INITIAL_STATE, { payload, type }) => {
     case userActionTypes.GET_PROFILE_SUCCESS:
       return {
         ...state,
-        profile: payload,
+        userProfile: payload,
       };
     default:
       return state;

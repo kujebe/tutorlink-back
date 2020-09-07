@@ -2,10 +2,12 @@ const redis = require("redis");
 const User = require("../../../models/User.model");
 
 //Connet to Redis server
-if (process.env.NODE_ENV === "production")
-  const redisClient = redis.createClient(process.env.REDIS_URL);
-if (process.env.NODE_ENV === "development")
-  const redisClient = redis.createClient("6379", "localhost");
+let redisClient;
+if (process.env.NODE_ENV === "production") {
+  redisClient = redis.createClient(process.env.REDIS_URL);
+} else {
+  redisClient = redis.createClient("6379", "localhost");
+}
 
 // redisClient.on("connect", () => {
 //   console.log("Redis conneted successfully");
@@ -84,4 +86,5 @@ const loginController = (req, res, next) => {
 module.exports = {
   loginController,
   checkSessionPromise,
+  redisClient,
 };
