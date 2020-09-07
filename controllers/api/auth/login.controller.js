@@ -3,6 +3,7 @@ const User = require("../../../models/User.model");
 
 //Connet to Redis server
 let redisClient;
+console.log(process.env.NODE_ENV);
 if (process.env.NODE_ENV === "production") {
   redisClient = redis.createClient(
     "19969",
