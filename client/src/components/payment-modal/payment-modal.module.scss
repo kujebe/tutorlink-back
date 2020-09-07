@@ -20,7 +20,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     padding: 20px;
     @include shadowed-wrapper;
@@ -35,17 +35,22 @@
       letter-spacing: 1px;
       color: $grey;
     }
-    .payment_info {
+    .payment_info_wrapper {
       display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      font-size: 18px;
-      text-transform: capitalize;
-      .info_left {
-        padding-right: 10px;
-        font-weight: 600;
-      }
-      .info_right {
+      flex-direction: column;
+      justify-content: flex-start;
+      .payment_info {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        font-size: 18px;
+        text-transform: capitalize;
+        .info_left {
+          padding-right: 10px;
+          font-weight: 600;
+        }
+        .info_right {
+        }
       }
     }
     .pay_button_wrapper {
