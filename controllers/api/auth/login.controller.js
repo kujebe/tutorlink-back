@@ -4,6 +4,7 @@ const User = require("../../../models/User.model");
 //Connet to Redis server
 let redisClient;
 if (process.env.REDIS_URL) {
+  alert("Redis environment available");
   redisClient = redis.createClient();
 } else {
   redisClient = redis.createClient("6379", "localhost");
