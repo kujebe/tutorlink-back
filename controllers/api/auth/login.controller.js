@@ -1,9 +1,15 @@
 const redis = require("redis");
 const User = require("../../../models/User.model");
-//Connet to Redis server
-const redisClient = redis.createClient("6379", "localhost");
 
-// client.on("connect", () => {
+//Connet to Redis server
+let redisClient;
+if (process.env.REDIS_URL) {
+  redisClient = redis.createClient();
+} else {
+  redisClient = redis.createClient("6379", "localhost");
+}
+
+// redisClient.on("connect", () => {
 //   console.log("Redis conneted successfully");
 // });
 
@@ -11,9 +17,6 @@ const {
   Unauthorized,
   UnprocessableEntity,
 } = require("../../../helpers/errors");
-
-// const createSession = (token, id) =>
-//   Promise.resolve(redisClient.set(token, id));
 
 const createSession = (token, id) =>
   Promise.resolve(redisClient.set(token, id));
