@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import useRequest from "hooks/swr-hoc";
 
 import { showPaymentModal } from "store/customer/customer-actions";
+import { selectTeacherFromMap } from "store/customer/customer-actions";
 
 import Tags from "components/tags/tags.component";
 import Spinner from "components/spinner/spinner.component";
@@ -19,15 +20,16 @@ import "react-tabs/style/react-tabs.scss";
 import { chartLabelStyles } from "helpers/style-helpers";
 import styles from "./map-teacher-details.module.scss";
 
-import { selectTeacher } from "store/customer/customer-actions";
-
 const MapTeacherDetails = () => {
   const dispatch = useDispatch();
-  const selectedTeacher = useSelector(
-    (state) => state.customer.selectedTeacher
+  const selectedTeacherFromMap = useSelector(
+    (state) => state.customer.selectedTeacherFromMap
   );
 
-  const { data, error } = useRequest("/teachers", `/${selectedTeacher.slug}`);
+  const { data, error } = useRequest(
+    "/teachers",
+    `/${selectedTeacherFromMap.slug}`
+  );
 
   if (!data) {
     return (
@@ -48,7 +50,7 @@ const MapTeacherDetails = () => {
 
     return (
       <div className={`${styles.full_details_container} ${styles.opened}`}>
-        <CloseModalIcon closeAction={selectTeacher} value="" />
+        <CloseModalIcon closeAction={selectTeacherFromMap} />
         <div className={styles.header_wrapper}>
           <div className={styles.thumbnail}>
             <img

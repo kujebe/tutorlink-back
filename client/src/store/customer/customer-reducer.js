@@ -3,16 +3,16 @@ import { customerActionTypes } from "./customer-action-types";
 const INITIAL_STATE = {
   showPaymentModal: false,
   locationBeforeLogin: "",
-  selectedTeacher: {},
+  selectedTeacherFromMap: {},
   selectedTeacherForPayment: {},
 };
 
 const customerReducer = (state = INITIAL_STATE, { payload, type }) => {
   switch (type) {
-    case customerActionTypes.SELECT_TEACHER:
+    case customerActionTypes.SELECT_TEACHER_FROM_MAP:
       return {
         ...state,
-        selectedTeacher: payload,
+        selectedTeacherFromMap: payload,
       };
 
     case customerActionTypes.SHOW_PAYMENT_MODAL:

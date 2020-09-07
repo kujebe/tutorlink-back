@@ -1,7 +1,7 @@
 import { customerActionTypes } from "./customer-action-types";
 
-export const selectTeacher = (teacherData) => ({
-  type: customerActionTypes.SELECT_TEACHER,
+export const selectTeacherFromMap = (teacherData) => ({
+  type: customerActionTypes.SELECT_TEACHER_FROM_MAP,
   payload: teacherData,
 });
 

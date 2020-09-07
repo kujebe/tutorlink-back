@@ -5,14 +5,14 @@ import Map from "components/map/map.component";
 import MapTeacherDetails from "components/map-teacher-details/map-teacher-details.component";
 
 const HomePage = () => {
-  const selectedTeacher = useSelector(
-    (state) => state.customer.selectedTeacher
+  const selectedTeacherFromMap = useSelector(
+    (state) => state.customer.selectedTeacherFromMap
   );
 
   return (
     <Fragment>
       <Map />
-      {selectedTeacher.slug && <MapTeacherDetails />}
+      {selectedTeacherFromMap.slug && <MapTeacherDetails />}
     </Fragment>
   );
 };
