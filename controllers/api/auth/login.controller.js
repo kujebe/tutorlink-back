@@ -7,7 +7,7 @@ console.log(process.env.NODE_ENV);
 if (process.env.NODE_ENV === "production") {
   redisClient = redis.createClient(
     "19969",
-    "redis://h:p8fabf3e0025dd856c0afb37c7bbf9313d1ee23775ac246085510235ca40f3d38@ec2-3-85-254-196.compute-1.amazonaws.com:19969"
+    "ec2-3-85-254-196.compute-1.amazonaws.com"
   );
 } else {
   redisClient = redis.createClient("6379", "localhost");
