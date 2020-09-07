@@ -1,11 +1,11 @@
 import React from "react";
-import {useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import StarRatings from "react-star-ratings";
 
 import useRequest from "hooks/swr-hoc";
 
-import {showPaymentModal} from "store/customer/customer-actions";
+import { showPaymentModal } from "store/customer/customer-actions";
 
 import InnerPagesLayout from "components/layout/inner-pages-layout.component";
 
@@ -44,7 +44,12 @@ const TeacherPage = () => {
       );
     }
     const { teacher, subjectSkills, techSkills } = data;
-    // console.log(data);
+    const TeacherDataForPayment = {
+      id: teacher._id,
+      fullname: teacher.firstname + " " + teacher.lastname,
+      email: teacher.email,
+      slug: teacher.slug,
+    };
 
     return (
       <InnerPagesLayout>
@@ -183,7 +188,13 @@ const TeacherPage = () => {
               <div className={styles.price}>
                 N40,000.00<span> / Month</span>
               </div>
-              <button onClick={() => dispatch(showPaymentModal())}>Hire Now</button>
+              <button
+                onClick={() =>
+                  dispatch(showPaymentModal(TeacherDataForPayment))
+                }
+              >
+                Hire Now
+              </button>
             </div>
           </div>
         </div>

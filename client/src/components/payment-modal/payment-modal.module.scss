@@ -19,9 +19,40 @@
     background: $white;
     position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 20px;
     @include shadowed-wrapper;
+    > .title {
+      font-weight: 600;
+      text-transform: uppercase;
+      border-bottom: 1px solid $grey;
+      padding-bottom: 5px;
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 24px;
+      letter-spacing: 1px;
+      color: $grey;
+    }
+    .payment_info {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      font-size: 18px;
+      text-transform: capitalize;
+      .info_left {
+        padding-right: 10px;
+        font-weight: 600;
+      }
+      .info_right {
+      }
+    }
+    .pay_button_wrapper {
+      display: block;
+      clear: both;
+      margin-top: 18px;
+    }
     .notice {
       .link {
         color: $theme_blue;

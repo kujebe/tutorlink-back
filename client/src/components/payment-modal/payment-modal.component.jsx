@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import { PaystackButton } from "react-paystack";
@@ -10,14 +10,18 @@ import { hidepaymentModal } from "store/customer/customer-actions";
 import styles from "./payment-modal.module.scss";
 
 const PaymentModal = () => {
-  // const publicKey = "pk_test_0f6783900b5b931dcc6518e048b6e35df4b85dab";
-  // const amount = 1000000; // Remember, set in kobo!
+  const [teacherData, setTeacherData] = useState({});
+  const publicKey = "pk_test_0f6783900b5b931dcc6518e048b6e35df4b85dab";
+  const amount = 1000000; // Remember, set in kobo!
   const sessionData = useSelector((state) => state.user.sessionData);
+  const selectedTeacherData = useSelector(
+    (state) => state.customer.selectedTeacherForPayment
+  );
 
   const componentProps = {
-    email,
+    email: sessionData ? sessionData.email : "",
     amount,
-    name: fullname,
+    // name: fullname,
     publicKey,
     text: "Pay Now",
     onSuccess: () =>
@@ -33,14 +37,31 @@ const PaymentModal = () => {
     e.preventDefault();
     dispatch(hidepaymentModal());
     dispatch(setLocationBeforeLogin(location.pathname));
-    history.push(`/account?action=${value}`);
+    history.push(`/account?action=${value}`); //I want it to switch signup/signin depending on the user action
   };
+
+  useEffect(() => {
+    setTeacherData(selectedTeacherData);
+  }, [selectedTeacherData]);
 
   return (
     <div className={styles.container}>
       <div className={styles.payment_wrapper}>
         {sessionData ? (
-          <PaystackButton {...componentProps} />
+          <Fragment>
+            <div className={styles.title}>Payment Confirmation</div>
+            <div className={styles.payment_info}>
+              <div className={styles.info_left}>Hiring:</div>{" "}
+              <div className={styles.info_right}>{teacherData.fullname}</div>
+            </div>
+            <div className={styles.payment_info}>
+              <div className={styles.info_left}>Period:</div>{" "}
+              <div className={styles.info_right}>1 Month</div>
+            </div>
+            <div className={styles.pay_button_wrapper}>
+              <PaystackButton {...componentProps} />
+            </div>
+          </Fragment>
         ) : (
           <div className={styles.notice}>
             Please

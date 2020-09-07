@@ -16,6 +16,13 @@ import { ReactComponent as HireIcon } from "assets/images/hire-now-icon.svg";
 
 const TeacherProfileSummary = ({ teacher }) => {
   const dispatch = useDispatch();
+
+  const TeacherDataForPayment = {
+    id: teacher._id,
+    fullname: teacher.firstname + " " + teacher.lastname,
+    email: teacher.email,
+    slug: teacher.slug,
+  };
   return (
     <div className={styles.summary_container}>
       <div className={styles.header_wrapper}>
@@ -44,7 +51,7 @@ const TeacherProfileSummary = ({ teacher }) => {
           </Link>
           <div
             className={styles.hire_now}
-            onClick={() => dispatch(showPaymentModal())}
+            onClick={() => dispatch(showPaymentModal(TeacherDataForPayment))}
           >
             <HireIcon />
             <span>Hire Now</span>

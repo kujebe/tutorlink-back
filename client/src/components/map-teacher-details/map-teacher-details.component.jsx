@@ -1,10 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { PieChart } from "react-minimal-pie-chart";
 import StarRatings from "react-star-ratings";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { Link } from "react-router-dom";
 import useRequest from "hooks/swr-hoc";
+
+import { showPaymentModal } from "store/customer/customer-actions";
 
 import Tags from "components/tags/tags.component";
 import Spinner from "components/spinner/spinner.component";
@@ -17,14 +19,15 @@ import "react-tabs/style/react-tabs.scss";
 import { chartLabelStyles } from "helpers/style-helpers";
 import styles from "./map-teacher-details.module.scss";
 
-import { selectTeacherSlug } from "store/teacher/teacher-actions";
+import { selectTeacher } from "store/customer/customer-actions";
 
 const MapTeacherDetails = () => {
-  const selectedTeacherSlug = useSelector(
-    (state) => state.teacher.selectedTeacherSlug
+  const dispatch = useDispatch();
+  const selectedTeacher = useSelector(
+    (state) => state.customer.selectedTeacher
   );
 
-  const { data, error } = useRequest("/teachers", `/${selectedTeacherSlug}`);
+  const { data, error } = useRequest("/teachers", `/${selectedTeacher.slug}`);
 
   if (!data) {
     return (
@@ -36,10 +39,16 @@ const MapTeacherDetails = () => {
 
   if (data && !error) {
     const { teacher, subjectSkills, techSkills } = data;
+    const TeacherDataForPayment = {
+      id: teacher._id,
+      fullname: teacher.firstname + " " + teacher.lastname,
+      email: teacher.email,
+      slug: teacher.slug,
+    };
 
     return (
       <div className={`${styles.full_details_container} ${styles.opened}`}>
-        <CloseModalIcon closeAction={selectTeacherSlug} value="" />
+        <CloseModalIcon closeAction={selectTeacher} value="" />
         <div className={styles.header_wrapper}>
           <div className={styles.thumbnail}>
             <img
@@ -154,9 +163,11 @@ const MapTeacherDetails = () => {
           </div>
         </div>
         <div className={styles.actions}>
-          <Link to={`/teacher/${teacher.slug}`} className={styles.hire_now_btn}>
-            HIRE NOW
-          </Link>
+          <button
+            onClick={() => dispatch(showPaymentModal(TeacherDataForPayment))}
+          >
+            Hire Now
+          </button>
           <Link to={`/teacher/${teacher.slug}`} className={styles.view_details}>
             View Details
           </Link>

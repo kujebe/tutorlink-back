@@ -1,7 +1,13 @@
 import { customerActionTypes } from "./customer-action-types";
 
-export const showPaymentModal = () => ({
+export const selectTeacher = (teacherData) => ({
+  type: customerActionTypes.SELECT_TEACHER,
+  payload: teacherData,
+});
+
+export const showPaymentModal = (selectedTeacherData) => ({
   type: customerActionTypes.SHOW_PAYMENT_MODAL,
+  payload: selectedTeacherData,
 });
 
 export const hidepaymentModal = () => ({
