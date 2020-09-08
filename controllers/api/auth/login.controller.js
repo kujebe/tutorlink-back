@@ -47,8 +47,11 @@ const handleLogin = (req, res, next) => {
                 status: "ok",
                 data: {
                   id: user._id,
-                  role: user.role,
+                  fullname: user.fullname,
                   email: user.email,
+                  role: user.role,
+                  status: user.status,
+                  lastLogin: user.lastLogin,
                   token,
                 },
                 message: "User authenticated successfully",

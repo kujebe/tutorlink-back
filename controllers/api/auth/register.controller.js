@@ -20,6 +20,7 @@ exports.registerController = (req, res, next) => {
         email: email,
         password: password,
         role: role,
+        loginCount: role === "customer" ? 1 : 0,
         status: role === "customer" ? 1 : 0, //Activate user if it's client
       });
       newUser
@@ -30,10 +31,12 @@ exports.registerController = (req, res, next) => {
             res.status(201).json({
               status: "ok",
               data: {
-                _id: result._id,
+                id: result._id,
+                fullname: result.fullname,
                 email: result.email,
                 role: result.role,
                 status: result.status,
+                lastLogin: result.lastLogin,
                 token: result.generateToken(result._id),
               },
               message: "User registered successfully",

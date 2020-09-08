@@ -26,7 +26,7 @@ const UserSchema = mongoose.Schema(
       minlength: 8,
     },
     lastLogin: {
-      default: Date.now(),
+      default: Date.now,
       required: true,
       type: Date,
     },
@@ -66,7 +66,12 @@ UserSchema.methods.loginUser = function (password, cb) {
       cb(err);
     } else if (same) {
       const token = doc.generateToken(doc._id);
-      cb(err, same, token, (user = doc));
+      //Update last login and login count
+      doc.lastLogin = Date.now();
+      doc.loginCount++;
+      doc.save().then((updatedUser) => {
+        cb(err, same, token, (user = updatedUser));
+      });
     } else {
       cb(err, same);
     }
