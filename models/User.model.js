@@ -1,10 +1,14 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+const Customer = require("./Customer.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+// mongoose.set("debug", true);
+
 const saltRounds = 10;
 
-const UserSchema = mongoose.Schema(
+const UserSchema = new Schema(
   {
     fullname: {
       type: String,
@@ -44,16 +48,23 @@ const UserSchema = mongoose.Schema(
 );
 
 UserSchema.pre("save", function (next) {
-  if (this.isNew || this.isModified("password")) {
-    const document = this;
-    bcrypt.hash(this.password, saltRounds, function (err, hashedPassword) {
-      if (err) {
-        next(err);
-      } else {
-        document.password = hashedPassword;
-        next();
-      }
-    });
+  if (this.isNew) {
+    if (this.isModified("password")) {
+      const document = this;
+      bcrypt.hash(this.password, saltRounds, function (err, hashedPassword) {
+        if (err) {
+          next(err);
+        } else {
+          document.password = hashedPassword;
+          next();
+        }
+      });
+    }
+    if (this.role === "customer") {
+      Customer.create({
+        user: this._id,
+      });
+    }
   } else {
     next();
   }

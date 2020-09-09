@@ -1,4 +1,5 @@
 const Teacher = require("../../../models/Teacher.model");
+const User = require("../../../models/User.model");
 
 /** Util function for teching nearest teachers */
 async function findNearestTeachers(distance, longitude, latitude) {
@@ -64,7 +65,8 @@ exports.getMapPopupData = (req, res) => {
 exports.addTeacher = async (req, res, next) => {
   try {
     const teacher = await Teacher.create(req.body);
-
+    // console.log(teacher);
+    res.json(teacher);
     return res.status(200).json({
       success: true,
       data: teacher,
@@ -75,25 +77,25 @@ exports.addTeacher = async (req, res, next) => {
     if (error.code === 11000) {
       return res.status(400).json({ error: "This teacher already exist" });
     }
-    res.status(500).json({ error: "Server error" });
+    res.status(500).json({ error: error });
   }
 };
 // @desc post to seed teachers table
 // @route /api/v1/teacher
 // @access public
-exports.seedTeachersData = (req, res, next) => {
+exports.seedTeachersData = async (req, res, next) => {
   const teachersData = require("../../../data.json");
   teachersData.map(async (data) => {
     try {
       await Teacher.create(data);
-      return res.status(200).json({
+      res.status(200).json({
         success: true,
         data: data,
       });
     } catch (error) {
       console.error(error);
       if (error.code === 11000) {
-        return res.status(400).json({ error: "This teacher already exist" });
+        res.status(400).json({ error: "This teacher already exist" });
       }
       res.status(500).json({ error: "Server error", error });
     }

@@ -6,6 +6,7 @@ const compression = require("compression");
 const connectDb = require("./config/db.config");
 const morgan = require("morgan");
 const handleErrors = require("./middlewares/error-handler"); // Custome error
+const checkSession = require("./middlewares/check-session");
 
 // if (process.env.NODE_ENV !== "production") require("dotenv").config();
 require("dotenv").config();
@@ -17,7 +18,7 @@ connectDb();
 const homePageRouter = require("./routes/api/public/home-page.route");
 const teachersRouter = require("./routes/api/public/teachers.route");
 const authRouter = require("./routes/api/auth/auth.routes");
-const profileRoute = require("./routes/api/private/profile.route");
+const customerRouter = require("./routes/api/private/customer.route");
 
 const app = express();
 app.use(morgan("combined"));
@@ -35,10 +36,10 @@ app.use("/api/v1/auth", authRouter);
 /** End auth routes */
 
 /**
- * Private routes
+ * Customer routes
  */
 
-app.use("/api/v1/profile", profileRoute);
+app.use("/api/v1/customer", checkSession, customerRouter);
 
 /**
  * Public routes

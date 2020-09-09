@@ -61,13 +61,14 @@ const TeacherSchema = mongoose.Schema(
       experience: { type: String },
     },
     memberSince: Date,
+    transactions: { type: Array },
   },
   { timestamps: true }
 );
 
 TeacherSchema.index({ location: "2dsphere" });
 
-//Geocode create location
+// Geocode create location
 TeacherSchema.pre("save", async function (next) {
   const loc = await geocoder.geocode(this.address);
   this.location = {

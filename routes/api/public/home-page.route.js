@@ -6,8 +6,8 @@ const {
   seedTeachersData,
 } = require("../../../controllers/api/public/home-page.controller");
 
-router.route("/").get(getMapPopupData).post(addTeacher);
-
-router.get("/seed-data", seedTeachersData);
+router.get("/seed-teachers", seedTeachersData);
+router.post("/add-teacher", addTeacher);
+router.route("/").get(getMapPopupData);
 
 module.exports = router;
