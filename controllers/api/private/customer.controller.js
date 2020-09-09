@@ -1,7 +1,5 @@
 const Customer = require("../../../models/Customer.model");
 
-const { Unauthorized } = require("../../../helpers/errors");
-
 exports.getDashboardData = (req, res, next) => {
   const user = req.body.user;
   Customer.findOne({ user })
