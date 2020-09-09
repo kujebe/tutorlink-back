@@ -1,38 +1,42 @@
 const Customer = require("../../../models/Customer.model");
 
+const { Unauthorized } = require("../../../helpers/errors");
+
 exports.getDashboardData = (req, res, next) => {
-  Customer.findOne({ user: req.body.user })
+  const user = req.body.user;
+  Customer.findOne({ user })
     .populate("user")
     .exec()
-    .then((user) => {
+    .then((returnedUser) => {
       res.status(200).json({
         status: "ok",
-        data: user,
-        message: "Ftech saved successfully",
+        data: returnedUser,
+        message: "Fetch saved successfully",
       });
     });
 };
 
 exports.saveTransaction = (req, res, next) => {
-  Customer.findOne({ user: req.body.userId })
+  const paymentData = req.body;
+  Customer.findOne({ user: paymentData.userId })
     .exec()
     .then((customer) => {
       const newTransaction = {
-        user: req.body.userId,
-        teacher: req.body.teacher,
-        amount: req.body.amount,
-        startPeriod: req.body.startPeriod,
-        endPeriod: req.body.endPeriod,
-        transactionStatus: req.body.transactionStatus,
-        transactionRef: req.body.transactionRef,
+        user: paymentData.userId,
+        teacher: paymentData.teacher,
+        amount: paymentData.amount,
+        startPeriod: paymentData.startPeriod,
+        endPeriod: paymentData.endPeriod,
+        transactionStatus: paymentData.transactionStatus,
+        transactionRef: paymentData.transactionRef,
       };
       customer.transactions.push(newTransaction);
       customer
         .save()
-        .then((newCustomer) => {
+        .then((customerTnx) => {
           res.status(201).json({
             status: "ok",
-            data: newCustomer,
+            data: customerTnx,
             message: "Payment saved successfully",
           });
         })

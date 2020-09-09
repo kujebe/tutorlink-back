@@ -10,6 +10,7 @@ const saltRounds = 10;
 
 const UserSchema = new Schema(
   {
+    customer: { type: Schema.Types.ObjectId, ref: "Customer" },
     fullname: {
       type: String,
       required: true,
