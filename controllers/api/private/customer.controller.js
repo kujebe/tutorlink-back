@@ -44,22 +44,3 @@ exports.saveTransaction = (req, res, next) => {
       next(err);
     });
 };
-
-exports.saveProfile = (req, res, next) => {
-  const newCustomerProfile = new Customer({
-    user: req.body.user,
-    address: req.body.address,
-  });
-  newCustomerProfile
-    .save()
-    .then((result) => {
-      res.status(201).json({
-        status: "ok",
-        data: result,
-        message: "Customer profile saved successfully",
-      });
-    })
-    .catch((err) => {
-      next(err);
-    });
-};
