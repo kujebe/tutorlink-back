@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import { PaystackButton } from "react-paystack";
 import DatePicker from "react-datepicker";
-import { format, addMonths } from "date-fns";
+import { format, addMonths, differenceInCalendarMonths } from "date-fns";
 
 import SuccessNotification from "components/notification/success-notification.component";
 import Button from "components/button/button.component";
@@ -21,16 +21,15 @@ const PaymentModal = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(addMonths(new Date(), 1));
 
-  const onDateChange = (dates) => {
-    const [start, end] = dates;
-    setStartDate(start);
-    setEndDate(end);
-  };
-
   const sessionData = useSelector((state) => state.user.sessionData);
   const selectedTeacherData = useSelector(
     (state) => state.customer.selectedTeacherForPayment
   );
+
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const location = useLocation();
+  const ref = React.createRef();
 
   const paymentProps = {
     email: sessionData ? sessionData.data.email : "",
@@ -58,16 +57,17 @@ const PaymentModal = () => {
     // },
   };
 
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const location = useLocation();
-  const ref = React.createRef();
-
   const handleLogin = (e, value) => {
     e.preventDefault();
     dispatch(hidepaymentModal());
     dispatch(setLocationBeforeLogin(location.pathname));
     history.push(`/account?action=${value}`); //I want it to switch signup/signin depending on the user action
+  };
+
+  const onDateChange = (dates) => {
+    const [start, end] = dates;
+    setStartDate(start);
+    setEndDate(end);
   };
 
   useEffect(() => {
@@ -101,7 +101,9 @@ const PaymentModal = () => {
             </div>
             <div className={styles.payment_info}>
               <div className={styles.info_title}>Total Period</div>
-              <div className={styles.info_details}>1 Month</div>
+              <div className={styles.info_details}>
+                {`${differenceInCalendarMonths(endDate, startDate)} Months`}
+              </div>
             </div>
             <div
               className={`${styles.payment_info} ${
@@ -134,11 +136,13 @@ const PaymentModal = () => {
               onChange={onDateChange}
               startDate={startDate}
               endDate={endDate}
-              dateFormat="dd/MM/yyyy"
               minDate={new Date()}
+              maxDate={addMonths(new Date(), 3)}
               customInput={<ChangeDateInput ref={ref} />}
               selectsRange
+              // showMonthYearPicker
               shouldCloseOnSelect={false}
+              // showDisabledMonthNavigation
             />
             <div className={styles.pay_button_wrapper}>
               {paymentStatus === "" && endDate ? (
