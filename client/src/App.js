@@ -16,7 +16,6 @@ const SignInSignUp = lazy(() =>
   import("pages/sign-in-sign-up/sign-in-sign-up.page")
 );
 const DashboardPage = lazy(() => import("pages/dashboard/dashboard.page"));
-const ProfilePage = lazy(() => import("pages/profile/profile.page"));
 
 const App = () => {
   const sessionData = useSelector((state) => state.user.sessionData);
@@ -52,9 +51,6 @@ const App = () => {
                 sessionData ? <DashboardPage /> : <Redirect to="/account" />
               }
             />
-            <Route exact path="/profile">
-              <ProfilePage />
-            </Route>
             <Route path="*">
               <NoMatch />
             </Route>

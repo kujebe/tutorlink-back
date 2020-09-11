@@ -1,4 +1,4 @@
-import { customerActionTypes } from "./customer-action-types";
+import customerActionTypes from "./customer-action-types";
 
 export const selectTeacherFromMap = (teacherData) => ({
   type: customerActionTypes.SELECT_TEACHER_FROM_MAP,
@@ -21,4 +21,14 @@ export const setLocationBeforeLogin = (location) => ({
 
 export const clearLocationBeforeLogin = () => ({
   type: customerActionTypes.CLEAR_LOCATION_BEFORE_LOGIN,
+});
+
+export const saveTransactionStart = (transactionData) => ({
+  type: customerActionTypes.SAVE_TRANSACTION_START,
+  payload: transactionData,
+});
+
+export const saveTransactionSuccess = (transactionResponseData) => ({
+  type: customerActionTypes.SAVE_TRANSACTION_SUCCESS,
+  payload: transactionResponseData,
 });

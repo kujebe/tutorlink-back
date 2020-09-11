@@ -9,8 +9,11 @@ import SuccessNotification from "components/notification/success-notification.co
 import Button from "components/button/button.component";
 import { ReactComponent as CalendarIcon } from "assets/images/calendar-icon.svg";
 
-import { setLocationBeforeLogin } from "store/customer/customer-actions";
-import { hidepaymentModal } from "store/customer/customer-actions";
+import {
+  setLocationBeforeLogin,
+  hidepaymentModal,
+  saveTransactionStart,
+} from "store/customer/customer-actions";
 
 import styles from "./payment-modal.module.scss";
 import "react-datepicker/dist/react-datepicker.css";
@@ -31,30 +34,29 @@ const PaymentModal = () => {
   const location = useLocation();
   const ref = React.createRef();
 
+  const amount = 4000000;
+
   const paymentProps = {
-    email: sessionData ? sessionData.data.email : "",
-    name: sessionData.data.fullname,
-    amount: "4000000", // Remember, set in kobo!
+    email: sessionData ? sessionData.email : "",
+    name: sessionData ? sessionData.fullname : "",
+    amount,
     publicKey: process.env.REACT_APP_PAYSTACK_KEY,
     text: "Pay Now",
     onSuccess: (data) => {
-      if (data.status === "success") {
-        setPaymentStatus("success");
-      }
-      // dispatch(
-      //   saveTransaction(
-      //     data,
-      //     "4000000",
-      //     sessionData.data.id,
-      //     selectedTeacherData.id
-      //   )
-      // );
+      dispatch(
+        saveTransactionStart({
+          user: sessionData ? sessionData.id : "",
+          teacher: selectedTeacherData ? selectedTeacherData.id : "",
+          amount,
+          startPeriod: startDate,
+          endPeriod: endDate,
+          transactionStatus: data.message,
+          transactionRef: data.trxref,
+          token: sessionData ? sessionData.token : "",
+        })
+      );
+      setPaymentStatus("success");
     },
-    // onClose: (data) => {
-    //   if (data === "undefined") {
-    //     setPaymentStatus("error");
-    //   }
-    // },
   };
 
   const handleLogin = (e, value) => {

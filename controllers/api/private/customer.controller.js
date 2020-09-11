@@ -15,20 +15,10 @@ exports.getDashboardData = (req, res, next) => {
 };
 
 exports.saveTransaction = (req, res, next) => {
-  const paymentData = req.body;
-  Customer.findOne({ user: paymentData.userId })
+  Customer.findOne({ user: req.body.user })
     .exec()
     .then((customer) => {
-      const newTransaction = {
-        user: paymentData.userId,
-        teacher: paymentData.teacher,
-        amount: paymentData.amount,
-        startPeriod: paymentData.startPeriod,
-        endPeriod: paymentData.endPeriod,
-        transactionStatus: paymentData.transactionStatus,
-        transactionRef: paymentData.transactionRef,
-      };
-      customer.transactions.push(newTransaction);
+      customer.transactions.push({ ...req.body });
       customer
         .save()
         .then((customerTnx) => {

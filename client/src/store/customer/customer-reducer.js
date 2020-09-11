@@ -1,10 +1,11 @@
-import { customerActionTypes } from "./customer-action-types";
+import customerActionTypes from "./customer-action-types";
 
 const INITIAL_STATE = {
   showPaymentModal: false,
   locationBeforeLogin: "",
   selectedTeacherFromMap: {},
   selectedTeacherForPayment: {},
+  lastTransaction: null,
 };
 
 const customerReducer = (state = INITIAL_STATE, { payload, type }) => {
@@ -36,6 +37,11 @@ const customerReducer = (state = INITIAL_STATE, { payload, type }) => {
       return {
         ...state,
         locationBeforeLogin: "",
+      };
+    case customerActionTypes.SAVE_TRANSACTION_SUCCESS:
+      return {
+        ...state,
+        lastTransaction: payload,
       };
 
     default:

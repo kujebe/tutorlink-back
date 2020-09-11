@@ -6,11 +6,11 @@ const TransactionSchema = new Schema(
   {
     user: { type: Schema.Types.ObjectId, ref: "User" },
     teacher: { type: Schema.Types.ObjectId, ref: "Teacher" },
-    amount: { type: Number, required: true },
-    startDate: { type: Date, required: true },
-    endDate: { type: Date, required: true },
-    transactionStatus: { type: String, required: true },
-    transactionRef: { type: String, required: true },
+    amount: { type: Number },
+    startDate: { type: Date },
+    endDate: { type: Date },
+    transactionStatus: { type: String },
+    transactionRef: { type: String },
     TransactionMessage: String,
   },
   { timestamps: true }
