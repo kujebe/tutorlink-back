@@ -114,7 +114,7 @@ const PaymentModal = () => {
                 <div className={styles.start_date}>
                   <div className={styles.info_title}>Start Date</div>
                   <div className={styles.info_details}>
-                    {format(startDate, "dd/MM/yyyy")}
+                    {format(startDate, "PP")}
                   </div>
                 </div>
                 <div className={styles.end_date}>
@@ -124,9 +124,7 @@ const PaymentModal = () => {
                       !endDate ? styles.end_date_error : ""
                     }`}
                   >
-                    {endDate
-                      ? format(endDate, "dd/MM/yyyy")
-                      : "Select end date"}
+                    {endDate ? format(endDate, "PP") : "Select end date"}
                   </div>
                 </div>
               </div>
