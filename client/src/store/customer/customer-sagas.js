@@ -1,6 +1,9 @@
 import { takeLatest, call, all, put } from "redux-saga/effects";
 
-import { saveTransactionSuccess } from "./customer-actions";
+import {
+  saveTransactionSuccess,
+  saveTransactionFailure,
+} from "./customer-actions";
 import { setErrors, clearErrors } from "store/errors/error-actions";
 
 import customerActionTypes from "./customer-action-types";
@@ -24,6 +27,7 @@ export function* saveTransaction({ payload }) {
           ...saveTxnResponse,
         })
       );
+      yield put(saveTransactionFailure());
       return;
     }
     yield put(
@@ -35,6 +39,7 @@ export function* saveTransaction({ payload }) {
     );
     yield put(clearErrors()); //Clear errors
   } catch (error) {
+    yield put(saveTransactionFailure());
     yield put(
       setErrors({
         type: "serverFail",

@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   selectedTeacherFromMap: {},
   selectedTeacherForPayment: {},
   lastTransaction: null,
+  isLoading: false,
 };
 
 const customerReducer = (state = INITIAL_STATE, { payload, type }) => {
@@ -38,10 +39,20 @@ const customerReducer = (state = INITIAL_STATE, { payload, type }) => {
         ...state,
         locationBeforeLogin: "",
       };
+    case customerActionTypes.SAVE_TRANSACTION_START:
+      return {
+        ...state,
+        isLoading: true,
+      };
     case customerActionTypes.SAVE_TRANSACTION_SUCCESS:
       return {
         ...state,
         lastTransaction: payload,
+        isLoading: false,
+      };
+    case customerActionTypes.SAVE_TRANSACTION_FAILURE:
+      return {
+        isLoading: false,
       };
 
     default:

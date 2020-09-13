@@ -6,6 +6,7 @@ import DatePicker from "react-datepicker";
 import { format, addMonths, differenceInCalendarMonths } from "date-fns";
 
 import SuccessNotification from "components/notification/success-notification.component";
+import LoadingDots from "components/loading-dots/loading-dots.component";
 import Button from "components/button/button.component";
 import { ReactComponent as CalendarIcon } from "assets/images/calendar-icon.svg";
 
@@ -20,13 +21,13 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const PaymentModal = () => {
   const [teacherData, setTeacherData] = useState({});
-  const [paymentStatus, setPaymentStatus] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(addMonths(new Date(), 1));
+  const [paymentCompleted, setPaymentCompleted] = useState(false);
 
   const sessionData = useSelector((state) => state.user.sessionData);
-  const selectedTeacherData = useSelector(
-    (state) => state.customer.selectedTeacherForPayment
+  const { selectedTeacherForPayment, isLoading } = useSelector(
+    (state) => state.customer
   );
 
   const dispatch = useDispatch();
@@ -46,7 +47,9 @@ const PaymentModal = () => {
       dispatch(
         saveTransactionStart({
           user: sessionData ? sessionData.id : "",
-          teacher: selectedTeacherData ? selectedTeacherData.id : "",
+          teacher: selectedTeacherForPayment
+            ? selectedTeacherForPayment.id
+            : "",
           amount,
           startPeriod: startDate,
           endPeriod: endDate,
@@ -55,7 +58,7 @@ const PaymentModal = () => {
           token: sessionData ? sessionData.token : "",
         })
       );
-      setPaymentStatus("success");
+      setPaymentCompleted(true);
     },
   };
 
@@ -73,8 +76,8 @@ const PaymentModal = () => {
   };
 
   useEffect(() => {
-    setTeacherData(selectedTeacherData);
-  }, [selectedTeacherData]);
+    setTeacherData(selectedTeacherForPayment);
+  }, [selectedTeacherForPayment]);
 
   const ChangeDateInput = React.forwardRef((props, ref) => (
     <div className={styles.change_date_input} onClick={props.onClick} ref={ref}>
@@ -83,15 +86,24 @@ const PaymentModal = () => {
     </div>
   ));
 
+  const showStatus = () => {
+    if (paymentCompleted) {
+      if (isLoading) {
+        return <LoadingDots message="Saving your payment" />;
+      }
+      return <SuccessNotification>Payment Successful</SuccessNotification>;
+    }
+  };
+
+  console.log(paymentCompleted);
+
   return (
     <div className={styles.container}>
       <div className={styles.payment_wrapper}>
         {sessionData ? (
           <Fragment>
             <div className={styles.title}>Payment Confirmation</div>
-            {paymentStatus === "success" && (
-              <SuccessNotification>Payment Successful</SuccessNotification>
-            )}
+            {showStatus()}
             <div className={styles.payment_info}>
               <div className={styles.info_title}>Selected Teacher</div>
               <div className={styles.info_details}>{teacherData.fullname}</div>
@@ -145,7 +157,7 @@ const PaymentModal = () => {
               // showDisabledMonthNavigation
             />
             <div className={styles.pay_button_wrapper}>
-              {paymentStatus === "" && endDate ? (
+              {!paymentCompleted && endDate ? (
                 <PaystackButton {...paymentProps} />
               ) : (
                 <Button disabled label={paymentProps.text}></Button>

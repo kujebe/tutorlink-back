@@ -32,3 +32,7 @@ export const saveTransactionSuccess = (transactionResponseData) => ({
   type: customerActionTypes.SAVE_TRANSACTION_SUCCESS,
   payload: transactionResponseData,
 });
+
+export const saveTransactionFailure = () => ({
+  type: customerActionTypes.SAVE_TRANSACTION_FAILURE,
+});
