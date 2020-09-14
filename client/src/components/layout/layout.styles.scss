@@ -116,6 +116,7 @@
       align-items: center;
       justify-content: flex-end;
       margin: 30px 0 35px 20%;
+      @include shadowed-wrapper;
       /* styles for public users */
       a {
         color: $grey;

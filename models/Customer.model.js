@@ -16,12 +16,34 @@ const TransactionSchema = new Schema(
   { timestamps: true }
 );
 
+const SocialAcountsSchema = new Schema(
+  {
+    socialMediaType: String,
+    socialAcountUrl: String,
+  },
+  { timestamps: true }
+);
+
+const children = new Schema(
+  {
+    childName: String,
+    childClass: String,
+    ChildAge: Number,
+    childSchool: String,
+  },
+  { timestamps: true }
+);
+
 const CustomerSchema = new Schema(
   {
     user: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    profilePhoto: String,
+    ratings: Number,
     address: {
       type: String,
     },
+    children: [children],
+    socialAccounts: [SocialAcountsSchema],
     transactions: [TransactionSchema],
   },
   { timestamps: true }

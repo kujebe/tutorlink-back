@@ -15,7 +15,9 @@ const TeacherPage = lazy(() => import("pages/teacher/teacher.page"));
 const SignInSignUp = lazy(() =>
   import("pages/sign-in-sign-up/sign-in-sign-up.page")
 );
-const DashboardPage = lazy(() => import("pages/dashboard/dashboard.page"));
+const CustomerDashboard = lazy(() =>
+  import("pages/customer-dashboard/customer-dashboard.page")
+);
 
 const App = () => {
   const sessionData = useSelector((state) => state.user.sessionData);
@@ -36,6 +38,17 @@ const App = () => {
             </Route>
             <Route
               exact
+              path="/customer"
+              render={() =>
+                sessionData && sessionData.role === "customer" ? (
+                  <CustomerDashboard />
+                ) : (
+                  <Redirect to="/account" />
+                )
+              }
+            />
+            <Route
+              exact
               path="/account"
               render={() =>
                 sessionData ? <Redirect to="/dashboard" /> : <SignInSignUp />
@@ -44,13 +57,6 @@ const App = () => {
             <Route exact path="/account/reset-password">
               <ResetPassword />
             </Route>
-            <Route
-              exact
-              path="/dashboard"
-              render={() =>
-                sessionData ? <DashboardPage /> : <Redirect to="/account" />
-              }
-            />
             <Route path="*">
               <NoMatch />
             </Route>
