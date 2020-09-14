@@ -24,7 +24,7 @@ const SocialAcountsSchema = new Schema(
   { timestamps: true }
 );
 
-const children = new Schema(
+const customerChildren = new Schema(
   {
     childName: String,
     childClass: String,
@@ -42,7 +42,7 @@ const CustomerSchema = new Schema(
     address: {
       type: String,
     },
-    children: [children],
+    customerChildren: [customerChildren],
     socialAccounts: [SocialAcountsSchema],
     transactions: [TransactionSchema],
   },

@@ -1,7 +1,7 @@
 const Customer = require("../../../models/Customer.model");
 
 exports.getCustomerDashboardData = (req, res, next) => {
-  const user = req.body.user;
+  const user = req.params.userId;
   Customer.findOne({ user })
     .populate("user")
     .exec()

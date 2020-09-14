@@ -7,6 +7,7 @@ const INITIAL_STATE = {
   selectedTeacherForPayment: {},
   lastTransaction: null,
   isLoading: false,
+  customerData: {},
 };
 
 const customerReducer = (state = INITIAL_STATE, { payload, type }) => {
@@ -40,6 +41,7 @@ const customerReducer = (state = INITIAL_STATE, { payload, type }) => {
         locationBeforeLogin: "",
       };
     case customerActionTypes.SAVE_TRANSACTION_START:
+    case customerActionTypes.FETCH_DASHBOARD_DATA_START:
       return {
         ...state,
         isLoading: true,
@@ -52,6 +54,17 @@ const customerReducer = (state = INITIAL_STATE, { payload, type }) => {
       };
     case customerActionTypes.SAVE_TRANSACTION_FAILURE:
       return {
+        isLoading: false,
+      };
+    case customerActionTypes.FETCH_DASHBOARD_DATA_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        customerData: payload,
+      };
+    case customerActionTypes.FETCH_DASHBOARD_DATA_FAILURE:
+      return {
+        ...state,
         isLoading: false,
       };
 
