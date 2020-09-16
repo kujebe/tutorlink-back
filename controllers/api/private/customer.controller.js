@@ -3,7 +3,15 @@ const Customer = require("../../../models/Customer.model");
 exports.getCustomerDashboardData = (req, res, next) => {
   const user = req.params.userId;
   Customer.findOne({ user })
-    .populate("user")
+    .populate("user", [
+      "fullname",
+      "email",
+      "lastLogin",
+      "loginCount",
+      "role",
+      "status",
+      "createdAt",
+    ])
     .exec()
     .then((returnedUser) => {
       res.status(200).json({

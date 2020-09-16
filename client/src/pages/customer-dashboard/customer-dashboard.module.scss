@@ -1,10 +1,12 @@
 @import "theme/theme.scss";
 
 .dashboard_container {
-  width: 75%;
+  width: 80%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  background: $white;
+  min-height: 100%;
   @include shadowed-wrapper;
 }

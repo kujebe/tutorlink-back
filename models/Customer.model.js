@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+mongoose.set("toJSON", { virtuals: true });
 const Schema = mongoose.Schema;
 const TeacherSchema = require("./Teacher.model");
 
@@ -37,11 +38,10 @@ const customerChildren = new Schema(
 const CustomerSchema = new Schema(
   {
     user: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    telephone: Array,
     profilePhoto: String,
     ratings: Number,
-    address: {
-      type: String,
-    },
+    address: String,
     customerChildren: [customerChildren],
     socialAccounts: [SocialAcountsSchema],
     transactions: [TransactionSchema],
@@ -63,5 +63,29 @@ CustomerSchema.pre("save", function (next) {
     next();
   }
 });
+
+CustomerSchema.virtual("dashboardTopData").get(function () {
+  return {
+    fullname: this.user.fullname,
+    profilePhoto: this.profilePhoto,
+    ratings: this.ratings,
+    address: this.address,
+    loginCount: this.user.loginCount,
+    email: this.user.email,
+    telephone: this.telephone,
+    social: this.socialAccounts,
+    numberOfChildren: this.customerChildren.length,
+    status: this.user.status,
+    dateJoined: this.user.createdAt,
+    lastLogin: this.user.lastLogin,
+  };
+});
+
+// CustomerSchema.virtual("vuser", {
+//   ref: "User",
+//   localField: "user",
+//   foreignField: "_id",
+//   justOne: true,
+// });
 
 module.exports = mongoose.model("Customer", CustomerSchema);

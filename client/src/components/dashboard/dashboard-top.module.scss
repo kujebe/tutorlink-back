@@ -1,0 +1,77 @@
+@import "theme/theme.scss";
+
+.top_wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid $grey;
+  align-items: center;
+  @include dashboard-Wrapper-padding;
+  .top_left {
+    width: 65%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-right: 1px solid $grey;
+    margin-right: 25px;
+    padding-right: 25px;
+    .profile_img {
+      margin-right: 10px;
+      img {
+        @include profile-thumbnail(100px, 100px, $theme_blue);
+      }
+    }
+    .profile_meta {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      .name_and_status {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        h2 {
+          font-weight: 400;
+          font-size: 24px;
+          letter-spacing: 1px;
+          margin-bottom: 5px;
+        }
+        .status {
+          .active,
+          .inactive {
+            width: auto;
+            padding: 5px 15px;
+          }
+          .active {
+            background: #d4edff;
+            color: #0b99ff;
+          }
+          .inactive {
+            background: #d6d6d6;
+            color: #8e8e8e;
+          }
+        }
+      }
+      .address {
+        margin-bottom: 10px;
+        svg {
+          width: 17px;
+          height: auto;
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+  .top_right {
+    width: 35%;
+    .right_meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      span {
+        font-weight: 600;
+      }
+      div {
+      }
+    }
+  }
+}
