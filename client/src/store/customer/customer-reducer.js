@@ -1,4 +1,5 @@
 import customerActionTypes from "./customer-action-types";
+import userActionTypes from "store/user/user-action-types";
 
 const INITIAL_STATE = {
   showPaymentModal: false,
@@ -41,7 +42,6 @@ const customerReducer = (state = INITIAL_STATE, { payload, type }) => {
         locationBeforeLogin: "",
       };
     case customerActionTypes.SAVE_TRANSACTION_START:
-    case customerActionTypes.FETCH_DASHBOARD_DATA_START:
       return {
         ...state,
         isLoading: true,
@@ -67,7 +67,11 @@ const customerReducer = (state = INITIAL_STATE, { payload, type }) => {
         ...state,
         isLoading: false,
       };
-
+    case userActionTypes.LOG_OUT_SUCCESS:
+      return {
+        ...state,
+        customerData: {},
+      };
     default:
       return state;
   }

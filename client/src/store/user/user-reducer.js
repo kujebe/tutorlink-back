@@ -3,7 +3,6 @@ import userActionTypes from "./user-action-types";
 const INITIAL_STATE = {
   sessionData: null,
   userData: null,
-  profile: null, //for testing. remove
   isAuthenticating: false,
   hideMenu: true,
   forgotPasswordStatus: null,

@@ -51,7 +51,11 @@ const App = () => {
               exact
               path="/account"
               render={() =>
-                sessionData ? <Redirect to="/dashboard" /> : <SignInSignUp />
+                sessionData && sessionData.role === "customer" ? (
+                  <Redirect to="/customer" />
+                ) : (
+                  <SignInSignUp />
+                )
               }
             />
             <Route exact path="/account/reset-password">

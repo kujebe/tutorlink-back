@@ -25,12 +25,23 @@ const userPersistConfig = {
   ],
 };
 
+const customerPersistConfig = {
+  key: "customer",
+  storage: storage,
+  blacklist: [
+    "selectedTeacherForPayment",
+    "locationBeforeLogin",
+    "isLoading",
+    "showPaymentModal",
+  ],
+};
+
 const rootReducer = combineReducers({
   mapData: mapDataReducer,
   teacher: teacherReducer,
   user: persistReducer(userPersistConfig, userReducer),
   errors: errorReducer,
-  customer: customerReducer,
+  customer: persistReducer(customerPersistConfig, customerReducer),
 });
 
 export default persistReducer(persistConfig, rootReducer);

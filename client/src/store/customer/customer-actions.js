@@ -37,11 +37,6 @@ export const saveTransactionFailure = () => ({
   type: customerActionTypes.SAVE_TRANSACTION_FAILURE,
 });
 
-export const fetchDashboardDataStart = (requestData) => ({
-  type: customerActionTypes.FETCH_DASHBOARD_DATA_START,
-  payload: requestData,
-});
-
 export const fetchDashboardDataSuccess = (customerData) => ({
   type: customerActionTypes.FETCH_DASHBOARD_DATA_SUCCESS,
   payload: customerData,

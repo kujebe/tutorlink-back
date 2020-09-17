@@ -12,6 +12,11 @@ import {
   logOutSuccess,
   logOutFailure,
 } from "./user-actions";
+import {
+  fetchDashboardDataStart,
+  fetchDashboardDataSuccess,
+  fetchDashboardDataFailure,
+} from "store/customer/customer-actions";
 import { setErrors, clearErrors } from "store/errors/error-actions";
 
 import userActionTypes from "./user-action-types";
@@ -31,6 +36,33 @@ export function* signInWithEmail({ payload: { email, password } }) {
       );
       return;
     }
+
+    const result = yield fetch(
+      "/api/v1/customer/dashboard/" + response.data.id,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          authorization: response.data.token,
+        },
+      }
+    );
+
+    const customerResponse = yield result.json();
+    if (customerResponse.status === "error") {
+      yield put(
+        setErrors({
+          type: "dashboardDataFail",
+          ...customerResponse,
+        })
+      );
+      yield put(fetchDashboardDataFailure());
+      return;
+    }
+    yield put(fetchDashboardDataSuccess(customerResponse.data));
+    yield put(clearErrors()); //Clear errors
+
     yield put(emailSignInSuccess(response.data));
     yield put(clearErrors()); //Clear errors
   } catch (error) {
