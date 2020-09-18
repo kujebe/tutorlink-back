@@ -5,6 +5,8 @@ import StarRatings from "react-star-ratings";
 
 import styles from "./dashboard-top.module.scss";
 
+import EditIcon from "components/edit-icon/edit-icon.component";
+
 import { ReactComponent as LocationIcon } from "assets/images/location-pin-icon.svg";
 import { ReactComponent as UserProfile } from "assets/images/user-profile-icon.svg";
 import { ReactComponent as GreyFacebook } from "assets/images/grey-facebook-icon.svg";
@@ -34,13 +36,21 @@ const DashboardTop = () => {
               alt="User profile"
             />
           ) : (
-            <UserProfile />
+            <UserProfile className={styles.avatar} />
           )}
           <div className={styles.online_indicator}></div>
+          <div className={styles.edit_profile_image}>
+            <EditIcon />
+          </div>
         </div>
         <div className={styles.profile_meta}>
           <div className={styles.name_and_status}>
-            <h2>{dashboardTopData.fullname}</h2>
+            <div className={styles.name}>
+              <h2>{dashboardTopData.fullname}</h2>
+              <div className={styles.edit_name}>
+                <EditIcon />
+              </div>
+            </div>
             <div className={styles.status}>
               {status(dashboardTopData.status)}
             </div>

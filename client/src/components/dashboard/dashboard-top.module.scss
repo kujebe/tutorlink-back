@@ -19,7 +19,7 @@
       margin-right: 10px;
       position: relative;
       img,
-      svg {
+      .avatar {
         @include profile-thumbnail(100px, 100px, $theme_blue);
       }
       .online_indicator {
@@ -32,6 +32,10 @@
         right: 10px;
         bottom: 7px;
       }
+      .edit_profile_image {
+        position: absolute;
+        top: 0;
+      }
     }
     .profile_meta {
       flex-grow: 1;
@@ -41,11 +45,19 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        h2 {
-          font-weight: 400;
-          font-size: 24px;
-          letter-spacing: 1px;
-          margin-bottom: 5px;
+        .name {
+          position: relative;
+          h2 {
+            font-weight: 400;
+            font-size: 24px;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+          }
+          .edit_name {
+            position: absolute;
+            right: -5px;
+            top: -10px;
+          }
         }
         .status {
           .active,
