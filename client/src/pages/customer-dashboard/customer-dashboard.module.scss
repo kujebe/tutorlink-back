@@ -9,4 +9,20 @@
   background: $white;
   min-height: 100%;
   @include shadowed-wrapper;
+  .bottom_wrapper {
+    width: 100%;
+    display: flex;
+    flex-grow: 1;
+    .bottom_left {
+      width: 30%;
+      height: auto;
+      border-right: 1px solid $grey;
+      @include dashboard-Wrapper-padding;
+    }
+    .bottom_right {
+      flex-grow: 1;
+      height: auto;
+      @include dashboard-Wrapper-padding;
+    }
+  }
 }

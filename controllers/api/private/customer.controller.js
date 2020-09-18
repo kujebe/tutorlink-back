@@ -1,4 +1,5 @@
 const Customer = require("../../../models/Customer.model");
+const Teacher = require("../../../models/Teacher.model");
 
 exports.getCustomerDashboardData = (req, res, next) => {
   const user = req.params.userId;
@@ -39,6 +40,26 @@ exports.saveTransaction = (req, res, next) => {
         .catch((err) => {
           next(err);
         });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
+exports.getTeacherForTransaction = (req, res, next) => {
+  const teacherId = req.params.teacherId;
+  Teacher.findById(teacherId)
+    .exec()
+    .then((result) => {
+      res.status(200).json({
+        status: "ok",
+        data: {
+          id: result._id,
+          fullname: result.firstname + " " + result.lastname,
+          profilePhoto: result.profile,
+        },
+        message: "successful",
+      });
     })
     .catch((err) => {
       next(err);

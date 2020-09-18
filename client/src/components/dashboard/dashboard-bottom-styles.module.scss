@@ -1,0 +1,16 @@
+@import "theme/theme.scss";
+
+.root {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  .head {
+    display: flex;
+    align-items: center;
+    .title {
+      font-weight: 600;
+      font-size: 22px;
+      margin-right: 10px;
+    }
+  }
+}

@@ -4,7 +4,7 @@ import { PieChart } from "react-minimal-pie-chart";
 import StarRatings from "react-star-ratings";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { Link } from "react-router-dom";
-import useRequest from "hooks/swr-hoc";
+import useSwr from "swr";
 
 import { showPaymentModal } from "store/customer/customer-actions";
 import { selectTeacherFromMap } from "store/customer/customer-actions";
@@ -26,9 +26,8 @@ const MapTeacherDetails = () => {
     (state) => state.customer.selectedTeacherFromMap
   );
 
-  const { data, error } = useRequest(
-    "/teachers",
-    `/${selectedTeacherFromMap.slug}`
+  const { data, error } = useSwr(
+    "/api/v1/teachers/" + selectedTeacherFromMap.slug
   );
 
   if (!data) {

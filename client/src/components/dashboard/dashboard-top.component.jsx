@@ -52,10 +52,6 @@ const DashboardTop = () => {
       </div>
       <div className={styles.top_right}>
         <div className={styles.right_meta}>
-          <span>Email Address: </span>
-          <div>{dashboardTopData.email}</div>
-        </div>
-        <div className={styles.right_meta}>
           <span>Phone No(s): </span>
           <div>{dashboardTopData.telephone}</div>
         </div>

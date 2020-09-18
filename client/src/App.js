@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { SWRConfig } from "swr";
 
 import Modal from "components/modal/modal.component";
 import PaymentModal from "components/payment-modal/payment-modal.component";
@@ -18,6 +19,7 @@ const SignInSignUp = lazy(() =>
 const CustomerDashboard = lazy(() =>
   import("pages/customer-dashboard/customer-dashboard.page")
 );
+const fetcher = (...args) => fetch(...args).then((response) => response.json());
 
 const App = () => {
   const sessionData = useSelector((state) => state.user.sessionData);
@@ -31,7 +33,9 @@ const App = () => {
         <Suspense fallback={<Spinner />}>
           <Switch>
             <Route exact path="/">
-              <HomePage />
+              <SWRConfig value={{ fetcher }}>
+                <HomePage />
+              </SWRConfig>
             </Route>
             <Route exact path="/teacher/:slug">
               <TeacherPage />

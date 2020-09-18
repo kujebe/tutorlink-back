@@ -1,8 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import StarRatings from "react-star-ratings";
-
-import useRequest from "hooks/swr-hoc";
+import useSwr from "swr";
 
 import { selectTeacherFromMap } from "store/customer/customer-actions";
 
@@ -19,9 +18,8 @@ const MarkerPopup = () => {
   );
   const userLocation = useSelector((state) => state.mapData.userLocation);
 
-  const { data, error } = useRequest(
-    "/home",
-    `?longitude=${userLocation[1]}&latitude=${userLocation[0]}`
+  const { data, error } = useSwr(
+    `/api/v1/home?longitude=${userLocation[1]}&latitude=${userLocation[0]}`
   );
 
   if (!data) {

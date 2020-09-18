@@ -13,7 +13,6 @@ import {
   logOutFailure,
 } from "./user-actions";
 import {
-  fetchDashboardDataStart,
   fetchDashboardDataSuccess,
   fetchDashboardDataFailure,
 } from "store/customer/customer-actions";
