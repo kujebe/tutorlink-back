@@ -15,12 +15,14 @@ const TransactionsList = () => {
         <span className={styles.count}>{`(${transactions.length})`}</span>
       </div>
       <div className={styles.content}>
-        {transactions.map((transaction) => (
-          <TransactionComponent
-            key={transaction._id}
-            transaction={transaction}
-          />
-        ))}
+        {transactions
+          .filter((item, idx) => idx < 4)
+          .map((transaction) => (
+            <TransactionComponent
+              key={transaction._id}
+              transaction={transaction}
+            />
+          ))}
       </div>
     </div>
   );

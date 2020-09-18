@@ -22,7 +22,6 @@
     .bottom_right {
       flex-grow: 1;
       height: auto;
-      @include dashboard-Wrapper-padding;
     }
   }
 }

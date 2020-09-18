@@ -28,7 +28,6 @@ const Transaction = ({ transaction }) => {
     fetchTransaction();
   }, [token, transaction.teacher]);
 
-  console.log(teacherData);
   return (
     <div className={styles.wrapper}>
       <div className={styles.avatar}>
