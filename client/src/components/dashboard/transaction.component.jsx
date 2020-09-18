@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-const fetcher = (url, headerValues) =>
-  fetch(url, headerValues).then((response) => response.json());
-
 const Transaction = ({ transaction }) => {
   const [transactionData, setTransactionData] = useState({});
   const { token } = useSelector((state) => state.user.sessionData);
@@ -23,7 +20,7 @@ const Transaction = ({ transaction }) => {
     };
 
     fetchTransaction();
-  }, []);
+  }, [token]);
 
   return <div>{transactionData.fullname}</div>;
 };
