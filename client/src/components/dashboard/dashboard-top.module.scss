@@ -17,7 +17,8 @@
     padding-right: 25px;
     .profile_img {
       margin-right: 10px;
-      img {
+      img,
+      svg {
         @include profile-thumbnail(100px, 100px, $theme_blue);
       }
     }
@@ -67,8 +68,23 @@
       display: flex;
       justify-content: space-between;
       margin-bottom: 6px;
+      align-items: center;
       span {
         font-weight: 600;
+      }
+      .social_placeholder {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        svg {
+          width: 24px;
+          height: 24px;
+          margin-right: 6px;
+          cursor: pointer;
+          &:last-child {
+            margin-right: 0px;
+          }
+        }
       }
     }
   }

@@ -5,7 +5,12 @@ import StarRatings from "react-star-ratings";
 
 import styles from "./dashboard-top.module.scss";
 
-import { ReactComponent as LocationIcon } from "assets/images/001-location-pin.svg";
+import { ReactComponent as LocationIcon } from "assets/images/location-pin-icon.svg";
+import { ReactComponent as UserProfile } from "assets/images/user-profile-icon.svg";
+import { ReactComponent as GreyFacebook } from "assets/images/grey-facebook-icon.svg";
+import { ReactComponent as GreyTwitter } from "assets/images/grey-twitter-icon.svg";
+import { ReactComponent as GreyInstagram } from "assets/images/grey-instagram-icon.svg";
+import { ReactComponent as GreyLinkedin } from "assets/images/grey-linkedin-icon.svg";
 
 const DashboardTop = () => {
   const { dashboardTopData } = useSelector(
@@ -23,10 +28,14 @@ const DashboardTop = () => {
     <div className={styles.top_wrapper}>
       <div className={styles.top_left}>
         <div className={styles.profile_img}>
-          <img
-            src={`${process.env.PUBLIC_URL}/images/profile/adejoke.jpg`}
-            alt="User profile"
-          />
+          {dashboardTopData.profilePhoto ? (
+            <img
+              src={`${process.env.PUBLIC_URL}/images/profile/${dashboardTopData.profilePhoto}`}
+              alt="User profile"
+            />
+          ) : (
+            <UserProfile />
+          )}
         </div>
         <div className={styles.profile_meta}>
           <div className={styles.name_and_status}>
@@ -53,11 +62,9 @@ const DashboardTop = () => {
       <div className={styles.top_right}>
         <div className={styles.right_meta}>
           <span>Phone No(s): </span>
-          <div>{dashboardTopData.telephone}</div>
-        </div>
-        <div className={styles.right_meta}>
-          <span>No of Children: </span>
-          <div>{dashboardTopData.numberOfChildren}</div>
+          <div>
+            {dashboardTopData.telephone.length > 0 ? "07012345678" : "-"}{" "}
+          </div>
         </div>
         <div className={styles.right_meta}>
           <span>Member Since: </span>
@@ -69,6 +76,20 @@ const DashboardTop = () => {
             {formatDistance(new Date(), new Date(dashboardTopData.lastLogin)) +
               " ago"}
           </div>
+        </div>
+        <div className={styles.right_meta}>
+          <span>Social Accounts: </span>
+
+          {dashboardTopData.social.length > 0 ? (
+            <div>Real Icons</div>
+          ) : (
+            <div className={styles.social_placeholder}>
+              <GreyFacebook />
+              <GreyTwitter />
+              <GreyLinkedin />
+              <GreyInstagram />
+            </div>
+          )}
         </div>
       </div>
     </div>
