@@ -20,7 +20,7 @@ const Transaction = ({ transaction }) => {
     };
 
     fetchTransaction();
-  }, [token]);
+  }, [token, transaction.teacher]);
 
   return <div>{transactionData.fullname}</div>;
 };
