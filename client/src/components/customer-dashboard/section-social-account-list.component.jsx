@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import styles from "./dashboard-bottom-styles.module.scss";
+import styles from "./section-right.module.scss";
 
 const SocialAccountList = () => {
   const socialAccounts = useSelector(

@@ -1,10 +1,10 @@
 import React from "react";
 
 import InnerPagesLayout from "components/layout/inner-pages-layout.component";
-import DashboardTop from "components/dashboard/dashboard-top.component";
-import TransactionsList from "components/dashboard/transactions-list.component";
-import CustomerChildrenList from "components/dashboard/customer-children-list.component";
-import SocialAccountList from "components/dashboard/social-account-list.component.jsx";
+import DashboardTop from "components/customer-dashboard/dashboard-top.component";
+import TransactionsList from "components/customer-dashboard/section-transactions-list.component";
+import CustomerChildrenList from "components/customer-dashboard/section-children-list.component";
+import SocialAccountList from "components/customer-dashboard/section-social-account-list.component";
 
 import styles from "./customer-dashboard.module.scss";
 
