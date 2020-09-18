@@ -36,6 +36,7 @@ const DashboardTop = () => {
           ) : (
             <UserProfile />
           )}
+          <div className={styles.online_indicator}></div>
         </div>
         <div className={styles.profile_meta}>
           <div className={styles.name_and_status}>

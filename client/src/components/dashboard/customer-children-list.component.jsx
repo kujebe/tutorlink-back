@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 import styles from "./dashboard-bottom-styles.module.scss";
 
-const ChildrenList = () => {
+const CustomerChildrenList = () => {
   const children = useSelector(
     (state) => state.customer.customerData.customerChildren
   );
@@ -23,4 +23,4 @@ const ChildrenList = () => {
   );
 };
 
-export default ChildrenList;
+export default CustomerChildrenList;

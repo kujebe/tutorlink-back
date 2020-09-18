@@ -17,9 +17,20 @@
     padding-right: 25px;
     .profile_img {
       margin-right: 10px;
+      position: relative;
       img,
       svg {
         @include profile-thumbnail(100px, 100px, $theme_blue);
+      }
+      .online_indicator {
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        background: #006ab6;
+        border-radius: 100%;
+        border: 5px solid #ffffff;
+        right: 10px;
+        bottom: 7px;
       }
     }
     .profile_meta {
