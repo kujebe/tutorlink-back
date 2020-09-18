@@ -51,8 +51,8 @@ const PaymentModal = () => {
             ? selectedTeacherForPayment.id
             : "",
           amount,
-          startPeriod: startDate,
-          endPeriod: endDate,
+          startDate: startDate,
+          endDate: endDate,
           transactionStatus: data.message,
           transactionRef: data.trxref,
           token: sessionData ? sessionData.token : "",
@@ -94,8 +94,6 @@ const PaymentModal = () => {
       return <SuccessNotification>Payment Successful</SuccessNotification>;
     }
   };
-
-  console.log(paymentCompleted);
 
   return (
     <div className={styles.container}>
