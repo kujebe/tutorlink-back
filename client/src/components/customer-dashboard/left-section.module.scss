@@ -1,0 +1,19 @@
+@import "theme/theme.scss";
+
+.section {
+  @include dashboard-Wrapper-padding;
+  border-bottom: 1px solid $grey;
+  &:last-child {
+    border-bottom: none;
+  }
+  .header {
+    display: flex;
+    flex-direction: row;
+    .title {
+      font-weight: 600;
+      font-size: 22px;
+      margin-right: 10px;
+      margin-bottom: 15px;
+    }
+  }
+}

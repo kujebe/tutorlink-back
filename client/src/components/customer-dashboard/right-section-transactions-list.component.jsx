@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 import TransactionComponent from "./transaction.component";
 
-import styles from "./section-right.module.scss";
+import styles from "./right-section.module.scss";
 
 const TransactionsList = () => {
   const { transactions } = useSelector((state) => state.customer.customerData);

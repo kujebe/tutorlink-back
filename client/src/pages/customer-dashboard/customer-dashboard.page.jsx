@@ -2,9 +2,10 @@ import React from "react";
 
 import InnerPagesLayout from "components/layout/inner-pages-layout.component";
 import DashboardTop from "components/customer-dashboard/dashboard-top.component";
-import TransactionsList from "components/customer-dashboard/section-transactions-list.component";
-import CustomerChildrenList from "components/customer-dashboard/section-children-list.component";
-import SocialAccountList from "components/customer-dashboard/section-social-account-list.component";
+import TransactionsList from "components/customer-dashboard/right-section-transactions-list.component";
+import CustomerChildrenList from "components/customer-dashboard/right-section-children-list.component";
+import SocialAccountList from "components/customer-dashboard/right-section-social-account-list.component";
+import MyProfile from "components/customer-dashboard/left-section-my-profile";
 
 import styles from "./customer-dashboard.module.scss";
 
@@ -14,7 +15,9 @@ const CustomerDashboard = () => {
       <div className={styles.dashboard_container}>
         <DashboardTop />
         <div className={styles.bottom_wrapper}>
-          <div className={styles.bottom_left}>Left</div>
+          <div className={styles.bottom_left}>
+            <MyProfile />
+          </div>
           <div className={styles.bottom_right}>
             <TransactionsList />
             <CustomerChildrenList />

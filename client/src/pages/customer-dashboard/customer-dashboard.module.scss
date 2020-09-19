@@ -17,7 +17,8 @@
       width: 30%;
       height: auto;
       border-right: 1px solid $grey;
-      @include dashboard-Wrapper-padding;
+      display: flex;
+      flex-direction: column;
     }
     .bottom_right {
       flex-grow: 1;

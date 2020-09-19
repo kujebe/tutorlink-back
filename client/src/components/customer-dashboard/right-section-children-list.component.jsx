@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import styles from "./section-right.module.scss";
+import styles from "./right-section.module.scss";
 
 const CustomerChildrenList = () => {
   const children = useSelector(
