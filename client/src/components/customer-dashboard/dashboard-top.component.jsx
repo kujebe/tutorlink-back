@@ -47,9 +47,6 @@ const DashboardTop = () => {
           <div className={styles.name_and_status}>
             <div className={styles.name}>
               <h2>{dashboardTopData.fullname}</h2>
-              <div className={styles.edit_name}>
-                <EditIcon />
-              </div>
             </div>
             <div className={styles.status}>
               {status(dashboardTopData.status)}

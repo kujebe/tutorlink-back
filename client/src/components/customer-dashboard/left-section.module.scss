@@ -9,11 +9,28 @@
   .header {
     display: flex;
     flex-direction: row;
+    position: relative;
     .title {
       font-weight: 600;
       font-size: 22px;
       margin-right: 10px;
       margin-bottom: 15px;
+    }
+    .editIcon {
+    }
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    .profile_content_wrapper {
+      display: flex;
+      padding: 6px 0;
+      .content_title {
+        font-weight: 700;
+        margin-right: 10px;
+      }
+      .content_value {
+      }
     }
   }
 }
