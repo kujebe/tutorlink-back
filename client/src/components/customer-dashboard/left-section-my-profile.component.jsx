@@ -8,7 +8,7 @@ const MyProfile = () => {
   return (
     <div className={styles.section}>
       <div className={styles.header}>
-        <div className={styles.title}>Telephone</div>
+        <div className={styles.title}>My Profile</div>
         <div className={styles.edit_profile}>
           <EditIcon />
         </div>

@@ -4,11 +4,11 @@ import EditIcon from "components/edit-icon/edit-icon.component";
 
 import styles from "./left-section.module.scss";
 
-const MyTelephone = () => {
+const MySocialAccounts = () => {
   return (
     <div className={styles.section}>
       <div className={styles.header}>
-        <div className={styles.title}>My Phone Numbers</div>
+        <div className={styles.title}>Social Media</div>
         <div className={styles.edit_profile}>
           <EditIcon />
         </div>
@@ -29,4 +29,4 @@ const MyTelephone = () => {
   );
 };
 
-export default MyTelephone;
+export default MySocialAccounts;

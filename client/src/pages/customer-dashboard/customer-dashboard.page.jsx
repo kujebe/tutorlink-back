@@ -8,6 +8,7 @@ import SocialAccountList from "components/customer-dashboard/right-section-socia
 import MyProfile from "components/customer-dashboard/left-section-my-profile.component";
 import MyTelephone from "components/customer-dashboard/left-section-my-telephone.component";
 import MyChildren from "components/customer-dashboard/left-section-my-children.component";
+import MySocialAccounts from "components/customer-dashboard/left-section-my-social-accounts.component";
 
 import styles from "./customer-dashboard.module.scss";
 
@@ -21,6 +22,7 @@ const CustomerDashboard = () => {
             <MyProfile />
             <MyTelephone />
             <MyChildren />
+            <MySocialAccounts />
           </div>
           <div className={styles.bottom_right}>
             <TransactionsList />
