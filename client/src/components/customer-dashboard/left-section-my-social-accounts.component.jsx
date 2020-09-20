@@ -14,11 +14,11 @@ const MySocialAccounts = () => {
         </div>
       </div>
       <div className={styles.content}>
-        <div className={styles.profile_content_wrapper}>
+        <div className={styles.content_wrapper}>
           <div className={styles.content_title}>Name: </div>
           <div className={styles.content_value}>Oluwaseun Kujebe</div>
         </div>
-        <div className={styles.profile_content_wrapper}>
+        <div className={styles.content_wrapper}>
           <div className={styles.content_title}>Address: </div>
           <div className={styles.content_value}>
             4 Tom Johns Avevue, ilupeju lagos

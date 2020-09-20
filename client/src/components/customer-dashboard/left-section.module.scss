@@ -22,14 +22,23 @@
   .content {
     display: flex;
     flex-direction: column;
-    .profile_content_wrapper {
+    .content_wrapper {
       display: flex;
+      flex-direction: column;
       padding: 6px 0;
       .content_title {
         font-weight: 700;
         margin-right: 10px;
       }
       .content_value {
+      }
+      .value_and_action {
+        display: flex;
+        margin: 12px 0;
+        .action_icon {
+          margin-left: 10px;
+          margin-top: -10px;
+        }
       }
     }
   }
