@@ -14,12 +14,15 @@ exports.getCustomerDashboardData = (req, res, next) => {
       "createdAt",
     ])
     .exec()
-    .then((returnedUser) => {
+    .then((customerData) => {
       res.status(200).json({
         status: "ok",
-        data: returnedUser,
-        message: "Fetch saved successfully",
+        data: customerData,
+        message: "Fetch successfully",
       });
+    })
+    .catch((err) => {
+      next(err);
     });
 };
 
@@ -60,6 +63,39 @@ exports.getTeacherForTransaction = (req, res, next) => {
         },
         message: "successful",
       });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
+exports.saveNewTelephone = (req, res, next) => {
+  const { user, telephone } = req.body;
+  Customer.findOne({ user: user })
+    .populate("user", [
+      "fullname",
+      "email",
+      "lastLogin",
+      "loginCount",
+      "role",
+      "status",
+      "createdAt",
+    ])
+    .exec()
+    .then((customer) => {
+      customer.telephone.push(telephone);
+      customer
+        .save()
+        .then(() => {
+          res.status(201).json({
+            status: "ok",
+            data: customer,
+            message: "Phone number saved successfully",
+          });
+        })
+        .catch((err) => {
+          next(err);
+        });
     })
     .catch((err) => {
       next(err);

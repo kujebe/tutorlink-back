@@ -45,3 +45,17 @@ export const fetchDashboardDataSuccess = (customerData) => ({
 export const fetchDashboardDataFailure = () => ({
   type: customerActionTypes.FETCH_DASHBOARD_DATA_FAILURE,
 });
+
+export const saveNewPhoneNumberStart = (phoneNumberData) => ({
+  type: customerActionTypes.SAVE_NEW_PHONE_NUMBER_START,
+  payload: phoneNumberData,
+});
+
+export const saveNewPhoneNumberSuccess = (customerData) => ({
+  type: customerActionTypes.SAVE_NEW_PHONE_NUMBER_SUCCESS,
+  payload: customerData,
+});
+
+export const saveNewPhoneNumberFailure = () => ({
+  type: customerActionTypes.SAVE_NEW_PHONE_NUMBER_FAILURE,
+});

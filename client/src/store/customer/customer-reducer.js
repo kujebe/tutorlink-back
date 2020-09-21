@@ -42,6 +42,7 @@ const customerReducer = (state = INITIAL_STATE, { payload, type }) => {
         locationBeforeLogin: "",
       };
     case customerActionTypes.SAVE_TRANSACTION_START:
+    case customerActionTypes.SAVE_NEW_PHONE_NUMBER_START:
       return {
         ...state,
         isLoading: true,
@@ -57,12 +58,14 @@ const customerReducer = (state = INITIAL_STATE, { payload, type }) => {
         isLoading: false,
       };
     case customerActionTypes.FETCH_DASHBOARD_DATA_SUCCESS:
+    case customerActionTypes.SAVE_NEW_PHONE_NUMBER_SUCCESS:
       return {
         ...state,
         isLoading: false,
         customerData: payload,
       };
     case customerActionTypes.FETCH_DASHBOARD_DATA_FAILURE:
+    case customerActionTypes.SAVE_NEW_PHONE_NUMBER_FAILURE:
       return {
         ...state,
         isLoading: false,

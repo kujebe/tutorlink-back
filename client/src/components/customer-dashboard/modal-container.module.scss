@@ -17,4 +17,8 @@
       @include close-modal;
     }
   }
+  .button_wrapper {
+    position: absolute;
+    bottom: -21px;
+  }
 }
