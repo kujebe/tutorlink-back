@@ -1,0 +1,16 @@
+@import "theme/theme.scss";
+
+.container {
+  position: absolute;
+  padding: 5px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  @include shadowed-wrapper;
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}

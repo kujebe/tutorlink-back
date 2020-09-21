@@ -20,7 +20,9 @@ const MyTelephone = () => {
         <div className={styles.header}>
           <div className={styles.title}>My Phone Numbers</div>
           <div className={styles.action_icon}>
-            <PlusIcon action={setOpenNewPhoneModal} status={true} />
+            {telephone.length < 3 && (
+              <PlusIcon action={setOpenNewPhoneModal} status={true} />
+            )}
           </div>
         </div>
         <div className={styles.content}>

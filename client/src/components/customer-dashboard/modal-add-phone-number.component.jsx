@@ -33,8 +33,6 @@ const AddNewPhoneNumber = ({ closeModal }) => {
     );
   };
 
-  console.log(typeof phoneNumber);
-
   return (
     <ModalContainer
       closeAction={closeModal}
