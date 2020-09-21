@@ -69,9 +69,13 @@ const DashboardTop = () => {
       </div>
       <div className={styles.top_right}>
         <div className={styles.right_meta}>
-          <span>Phone No(s): </span>
+          <span>Main Phone No: </span>
           <div>
-            {dashboardTopData.telephone.length > 0 ? "07012345678" : "-"}{" "}
+            {dashboardTopData.telephone.length > 0 ? (
+              <div>{dashboardTopData.telephone[0]}</div>
+            ) : (
+              "-"
+            )}{" "}
           </div>
         </div>
         <div className={styles.right_meta}>

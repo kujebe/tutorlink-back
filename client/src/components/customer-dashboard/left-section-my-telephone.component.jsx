@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 
 import EditIcon from "components/edit-icon/edit-icon.component";
 import PlusIcon from "components/plus-icon/plus-icon.component";
+import TrashIcon from "components/trash-icon/trash-icon.component";
 import Modal from "components/modal/modal.component";
 import AddNewPhoneNumber from "components/customer-dashboard/modal-add-phone-number.component";
 
@@ -33,6 +34,9 @@ const MyTelephone = () => {
                   <div className={styles.content_value}>{phone}</div>
                   <div className={styles.action_icon}>
                     <EditIcon />
+                  </div>
+                  <div className={styles.action_icon}>
+                    <TrashIcon />
                   </div>
                 </div>
               ))
