@@ -33,3 +33,58 @@ $star-color: #febf00;
 @mixin dashboard-Wrapper-padding {
   padding: 30px 30px 20px 30px;
 }
+
+@mixin modal-container {
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 13, 22, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+
+@mixin modal-content-wrapper {
+  z-index: 9999;
+  min-width: 25%;
+  max-width: 30%;
+  height: auto;
+  background: $theme_blue;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  -webkit-box-shadow: 0 1px 6px rgba(67, 57, 76, 0.35);
+  box-shadow: 0 1px 6px rgba(67, 57, 76, 0.35);
+  padding-bottom: 35px;
+  border: 1px solid #b9b9e6;
+}
+
+@mixin modal-title {
+  width: 100%;
+  background: #ffffff;
+  color: #006ab6;
+  padding: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@mixin close-modal {
+  font-size: 39px;
+  font-weight: 600;
+  cursor: pointer;
+  position: absolute;
+  right: 12px;
+  top: 3px;
+  line-height: 30px;
+  cursor: pointer;
+  &:hover {
+    color: $grey;
+  }
+}

@@ -1,13 +1,13 @@
 import React from "react";
 
-import styles from "./edit-icon.module.scss";
+import styles from "./plus-icon.module.scss";
 
 import { ReactComponent as PlusIcon } from "assets/images/plus-icon.svg";
 
-const PlusIconComponent = () => {
+const PlusIconComponent = ({ action, status }) => {
   return (
     <div className={styles.container}>
-      <PlusIcon />
+      <PlusIcon onClick={() => action(status)} />
     </div>
   );
 };

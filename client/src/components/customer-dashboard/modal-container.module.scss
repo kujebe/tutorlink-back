@@ -1,0 +1,20 @@
+@import "theme/theme.scss";
+
+.container {
+  @include modal-container;
+
+  .wrapper {
+    @include modal-content-wrapper;
+    .modal_content {
+      width: 100%;
+      padding: 5px 20px;
+    }
+    > .title {
+      @include modal-title;
+    }
+
+    .close_modal {
+      @include close-modal;
+    }
+  }
+}
