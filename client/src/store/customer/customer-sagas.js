@@ -5,6 +5,8 @@ import {
   saveTransactionFailure,
   saveNewPhoneNumberSuccess,
   saveNewPhoneNumberFailure,
+  updatePhoneNumberSuccess,
+  updatePhoneNumberFailure,
   deletePhoneNumberSuccess,
   deletePhoneNumberFailure,
 } from "./customer-actions";
@@ -86,7 +88,42 @@ export function* saveNewPhoneNumer({ payload }) {
   }
 }
 
-export function* deletePhoneNumer({ payload }) {
+export function* updatePhoneNumber({ payload }) {
+  try {
+    const result = yield fetch("/api/v1/customer/update-phone-number", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        authorization: payload.token,
+      },
+      body: JSON.stringify(payload),
+    });
+    const response = yield result.json();
+    if (response.status === "error") {
+      yield put(
+        setErrors({
+          type: "updatePhoneNumberFail",
+          ...response,
+        })
+      );
+      yield put(updatePhoneNumberFailure());
+      return;
+    }
+    yield put(updatePhoneNumberSuccess(response.data));
+    yield put(clearErrors()); //Clear errors
+  } catch (error) {
+    yield put(updatePhoneNumberFailure());
+    yield put(
+      setErrors({
+        type: "serverFail",
+        ...error,
+      })
+    );
+  }
+}
+
+export function* deletePhoneNumber({ payload }) {
   try {
     const result = yield fetch("/api/v1/customer/delete-phone-number", {
       method: "POST",
@@ -134,10 +171,17 @@ export function* onSaveNewPhoneNumberStart() {
   );
 }
 
+export function* onUpdatePhoneNumberStart() {
+  yield takeLatest(
+    customerActionTypes.UPDATE_PHONE_NUMBER_START,
+    updatePhoneNumber
+  );
+}
+
 export function* onDeletePhoneNumberStart() {
   yield takeLatest(
     customerActionTypes.DELETE_PHONE_NUMBER_START,
-    deletePhoneNumer
+    deletePhoneNumber
   );
 }
 
@@ -146,6 +190,7 @@ export function* customerSagas() {
   yield all([
     call(onSaveTransactionStart),
     call(onSaveNewPhoneNumberStart),
+    call(onUpdatePhoneNumberStart),
     call(onDeletePhoneNumberStart),
   ]);
 }

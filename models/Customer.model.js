@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 mongoose.set("toJSON", { virtuals: true });
+// mongoose.set("debug", true);
 const Schema = mongoose.Schema;
 const TeacherSchema = require("./Teacher.model");
 

@@ -43,6 +43,7 @@ const customerReducer = (state = INITIAL_STATE, { payload, type }) => {
       };
     case customerActionTypes.SAVE_TRANSACTION_START:
     case customerActionTypes.SAVE_NEW_PHONE_NUMBER_START:
+    case customerActionTypes.UPDATE_PHONE_NUMBER_START:
     case customerActionTypes.DELETE_PHONE_NUMBER_START:
       return {
         ...state,
@@ -60,6 +61,7 @@ const customerReducer = (state = INITIAL_STATE, { payload, type }) => {
       };
     case customerActionTypes.FETCH_DASHBOARD_DATA_SUCCESS:
     case customerActionTypes.SAVE_NEW_PHONE_NUMBER_SUCCESS:
+    case customerActionTypes.UPDATE_PHONE_NUMBER_SUCCESS:
     case customerActionTypes.DELETE_PHONE_NUMBER_SUCCESS:
       return {
         ...state,
@@ -68,6 +70,7 @@ const customerReducer = (state = INITIAL_STATE, { payload, type }) => {
       };
     case customerActionTypes.FETCH_DASHBOARD_DATA_FAILURE:
     case customerActionTypes.SAVE_NEW_PHONE_NUMBER_FAILURE:
+    case customerActionTypes.UPDATE_PHONE_NUMBER_FAILURE:
     case customerActionTypes.DELETE_PHONE_NUMBER_FAILURE:
       return {
         ...state,

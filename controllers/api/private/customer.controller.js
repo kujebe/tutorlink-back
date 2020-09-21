@@ -102,6 +102,40 @@ exports.saveNewTelephone = (req, res, next) => {
     });
 };
 
+exports.updatePhoneNumber = (req, res, next) => {
+  const { user, phoneNumber, index } = req.body;
+
+  Customer.findOne({ user: user })
+    .populate("user", [
+      "fullname",
+      "email",
+      "lastLogin",
+      "loginCount",
+      "role",
+      "status",
+      "createdAt",
+    ])
+    .exec()
+    .then((customer) => {
+      customer.telephone.splice(index, 1, phoneNumber);
+      customer
+        .save()
+        .then((customer) => {
+          res.status(201).json({
+            status: "ok",
+            data: customer,
+            message: "Phone number updated successfully",
+          });
+        })
+        .catch((err) => {
+          next(err);
+        });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
 exports.deletePhoneNumber = (req, res, next) => {
   const { user, phoneNumber } = req.body;
   Customer.findOne({ user: user })
@@ -122,7 +156,7 @@ exports.deletePhoneNumber = (req, res, next) => {
       customer.telephone = filterePhoneList;
       customer
         .save()
-        .then(() => {
+        .then((customer) => {
           res.status(201).json({
             status: "ok",
             data: customer,

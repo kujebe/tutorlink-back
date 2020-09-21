@@ -8,12 +8,17 @@ import PlusIcon from "components/plus-icon/plus-icon.component";
 import TrashIcon from "components/trash-icon/trash-icon.component";
 import Modal from "components/modal/modal.component";
 import AddNewPhoneNumber from "components/customer-dashboard/modal-add-phone-number.component";
-import Spinner from "components/spinner/spinner.component"
+import UpdatePhoneNumber from "components/customer-dashboard/modal-update-phone-number.component";
+import Spinner from "components/spinner/spinner.component";
 
 import styles from "./left-section.module.scss";
 
 const MyTelephone = () => {
   const [openNewPhoneModal, setOpenNewPhoneModal] = useState(false);
+  const [openUpdatePhoneModal, setOpenUpdatePhoneModal] = useState(false);
+  const [updateIndex, setUpdateIndex] = useState("");
+  const [numberToUpdate, setNumberToUpdate] = useState("");
+
   const telephone = useSelector(
     (state) => state.customer.customerData.telephone
   );
@@ -30,6 +35,12 @@ const MyTelephone = () => {
         phoneNumber,
       })
     );
+  };
+
+  const updatePhoneNumber = (value, index) => {
+    setUpdateIndex(index);
+    setNumberToUpdate(value);
+    setOpenUpdatePhoneModal(true);
   };
 
   return (
@@ -49,11 +60,15 @@ const MyTelephone = () => {
           <div className={styles.content}>
             <div className={styles.content_wrapper}>
               {telephone.length > 0 ? (
-                telephone.map((phone) => (
+                telephone.map((phone, idx) => (
                   <div key={phone} className={styles.value_and_action}>
                     <div className={styles.content_value}>{phone}</div>
                     <div className={styles.action_icon}>
-                      <EditIcon />
+                      <EditIcon
+                        action={updatePhoneNumber}
+                        value={phone}
+                        index={idx}
+                      />
                     </div>
                     <div className={styles.action_icon}>
                       <TrashIcon action={deletePhoneNumber} value={phone} />
@@ -70,6 +85,15 @@ const MyTelephone = () => {
       {openNewPhoneModal && (
         <Modal>
           <AddNewPhoneNumber closeModal={setOpenNewPhoneModal} />
+        </Modal>
+      )}
+      {openUpdatePhoneModal && (
+        <Modal>
+          <UpdatePhoneNumber
+            closeModal={setOpenUpdatePhoneModal}
+            value={numberToUpdate}
+            index={updateIndex}
+          />
         </Modal>
       )}
     </Fragment>
