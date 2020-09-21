@@ -5,6 +5,8 @@ import {
   saveTransactionFailure,
   saveNewPhoneNumberSuccess,
   saveNewPhoneNumberFailure,
+  deletePhoneNumberSuccess,
+  deletePhoneNumberFailure,
 } from "./customer-actions";
 import { setErrors, clearErrors } from "store/errors/error-actions";
 
@@ -64,7 +66,7 @@ export function* saveNewPhoneNumer({ payload }) {
     if (response.status === "error") {
       yield put(
         setErrors({
-          type: "saveTransactionFail",
+          type: "savePhoneNumberFail",
           ...response,
         })
       );
@@ -74,7 +76,42 @@ export function* saveNewPhoneNumer({ payload }) {
     yield put(saveNewPhoneNumberSuccess(response.data));
     yield put(clearErrors()); //Clear errors
   } catch (error) {
-    yield put(saveTransactionFailure());
+    yield put(saveNewPhoneNumberFailure());
+    yield put(
+      setErrors({
+        type: "serverFail",
+        ...error,
+      })
+    );
+  }
+}
+
+export function* deletePhoneNumer({ payload }) {
+  try {
+    const result = yield fetch("/api/v1/customer/delete-phone-number", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        authorization: payload.token,
+      },
+      body: JSON.stringify(payload),
+    });
+    const response = yield result.json();
+    if (response.status === "error") {
+      yield put(
+        setErrors({
+          type: "deletePhoneNumberFail",
+          ...response,
+        })
+      );
+      yield put(deletePhoneNumberFailure());
+      return;
+    }
+    yield put(deletePhoneNumberSuccess(response.data));
+    yield put(clearErrors()); //Clear errors
+  } catch (error) {
+    yield put(deletePhoneNumberFailure());
     yield put(
       setErrors({
         type: "serverFail",
@@ -97,7 +134,18 @@ export function* onSaveNewPhoneNumberStart() {
   );
 }
 
+export function* onDeletePhoneNumberStart() {
+  yield takeLatest(
+    customerActionTypes.DELETE_PHONE_NUMBER_START,
+    deletePhoneNumer
+  );
+}
+
 /** All user sagas */
 export function* customerSagas() {
-  yield all([call(onSaveTransactionStart), call(onSaveNewPhoneNumberStart)]);
+  yield all([
+    call(onSaveTransactionStart),
+    call(onSaveNewPhoneNumberStart),
+    call(onDeletePhoneNumberStart),
+  ]);
 }

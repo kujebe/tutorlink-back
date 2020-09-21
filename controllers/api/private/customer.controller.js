@@ -101,3 +101,39 @@ exports.saveNewTelephone = (req, res, next) => {
       next(err);
     });
 };
+
+exports.deletePhoneNumber = (req, res, next) => {
+  const { user, phoneNumber } = req.body;
+  Customer.findOne({ user: user })
+    .populate("user", [
+      "fullname",
+      "email",
+      "lastLogin",
+      "loginCount",
+      "role",
+      "status",
+      "createdAt",
+    ])
+    .exec()
+    .then((customer) => {
+      const filterePhoneList = customer.telephone.filter(
+        (phone) => phone !== phoneNumber
+      );
+      customer.telephone = filterePhoneList;
+      customer
+        .save()
+        .then(() => {
+          res.status(201).json({
+            status: "ok",
+            data: customer,
+            message: "Phone number saved successfully",
+          });
+        })
+        .catch((err) => {
+          next(err);
+        });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};

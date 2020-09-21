@@ -4,10 +4,10 @@ import styles from "./trash-icon.module.scss";
 
 import { ReactComponent as TrashIcon } from "assets/images/trash-icon.svg";
 
-const TrashIconComponent = () => {
+const TrashIconComponent = ({ action, value }) => {
   return (
     <div className={styles.container}>
-      <TrashIcon />
+      <TrashIcon onClick={() => action(value)} />
     </div>
   );
 };

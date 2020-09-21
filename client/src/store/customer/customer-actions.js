@@ -59,3 +59,17 @@ export const saveNewPhoneNumberSuccess = (customerData) => ({
 export const saveNewPhoneNumberFailure = () => ({
   type: customerActionTypes.SAVE_NEW_PHONE_NUMBER_FAILURE,
 });
+
+export const deletePhoneNumberStart = (phoneNumberData) => ({
+  type: customerActionTypes.DELETE_PHONE_NUMBER_START,
+  payload: phoneNumberData,
+});
+
+export const deletePhoneNumberSuccess = (customerData) => ({
+  type: customerActionTypes.DELETE_PHONE_NUMBER_SUCCESS,
+  payload: customerData,
+});
+
+export const deletePhoneNumberFailure = () => ({
+  type: customerActionTypes.DELETE_PHONE_NUMBER_FAILURE,
+});
