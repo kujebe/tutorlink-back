@@ -171,3 +171,36 @@ exports.deletePhoneNumber = (req, res, next) => {
       next(err);
     });
 };
+
+exports.updateProfilePhoto = (req, res, next) => {
+  const { user } = req.body;
+  Customer.findOne({ user: user })
+    .populate("user", [
+      "fullname",
+      "email",
+      "lastLogin",
+      "loginCount",
+      "role",
+      "status",
+      "createdAt",
+    ])
+    .exec()
+    .then((customer) => {
+      customer.profilePhoto = req.file.filename;
+      customer
+        .save()
+        .then(() => {
+          res.status(201).json({
+            status: "ok",
+            data: customer,
+            message: "Profile photo updated successfully",
+          });
+        })
+        .catch((err) => {
+          next(err);
+        });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};

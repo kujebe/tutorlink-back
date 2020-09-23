@@ -2,7 +2,7 @@ const {
   checkSessionPromise,
 } = require("../controllers/api/auth/login.controller");
 
-const checkSession = (req, res, next) => {
+module.exports = (req, res, next) => {
   const { authorization } = req.headers;
   checkSessionPromise(authorization)
     .then(() => {
@@ -10,5 +10,3 @@ const checkSession = (req, res, next) => {
     })
     .catch((err) => next(err));
 };
-
-module.exports = checkSession;

@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const uploader = require("../../../utils/file-uploader");
 
 const {
   getCustomerDashboardData,
@@ -7,6 +8,7 @@ const {
   saveNewTelephone,
   updatePhoneNumber,
   deletePhoneNumber,
+  updateProfilePhoto,
 } = require("../../../controllers/api/private/customer.controller");
 
 router.get("/dashboard/:userId", getCustomerDashboardData);
@@ -15,5 +17,10 @@ router.post("/save-transaction", saveTransaction);
 router.post("/save-new-phone-number", saveNewTelephone);
 router.post("/update-phone-number", updatePhoneNumber);
 router.post("/delete-phone-number", deletePhoneNumber);
+router.post(
+  "/update-profile-photo",
+  uploader("customer-avatar", "customerAvatar"),
+  updateProfilePhoto
+);
 
 module.exports = router;
