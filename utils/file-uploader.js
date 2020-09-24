@@ -1,11 +1,11 @@
 const multer = require("multer");
 
-module.exports = (avatar, avatarName) => {
+module.exports = (avatarType, avatarName) => {
   const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      if (avatar === "customer-avatar") {
+      if (avatarType === "customer-avatar") {
         cb(null, "client/public/images/customer-avatar");
-      } else if (avatar === "teacher-avatar") {
+      } else if (avatarType === "teacher-avatar") {
         cb(null, "client/public/images/teacher-avatar");
       }
     },
@@ -19,7 +19,7 @@ module.exports = (avatar, avatarName) => {
     if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
       cb(null, true);
     } else {
-      cb(new Error("File cannot be uploaded"));
+      cb(new Error("Please upload an image"));
     }
   };
 

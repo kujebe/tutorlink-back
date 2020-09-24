@@ -19,7 +19,7 @@ router.post("/update-phone-number", updatePhoneNumber);
 router.post("/delete-phone-number", deletePhoneNumber);
 router.post(
   "/update-profile-photo",
-  uploader("customer-avatar", "customerAvatar"),
+  uploader("customer-avatar", "avatar"),
   updateProfilePhoto
 );
 

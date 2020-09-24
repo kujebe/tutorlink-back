@@ -7,7 +7,11 @@ import { ReactComponent as EditIcon } from "assets/images/edit-icon.svg";
 const EditIconComponent = ({ action, value, index }) => {
   return (
     <div className={styles.container}>
-      <EditIcon onClick={() => action(value, index)} />
+      {action ? (
+        <EditIcon onClick={() => action(value, index)} />
+      ) : (
+        <EditIcon />
+      )}
     </div>
   );
 };

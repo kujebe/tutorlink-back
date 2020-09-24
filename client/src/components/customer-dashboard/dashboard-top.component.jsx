@@ -6,7 +6,6 @@ import StarRatings from "react-star-ratings";
 import styles from "./dashboard-top.module.scss";
 
 import EditIcon from "components/edit-icon/edit-icon.component";
-
 import { ReactComponent as LocationIcon } from "assets/images/location-pin-icon.svg";
 import { ReactComponent as UserProfile } from "assets/images/user-profile-icon.svg";
 import { ReactComponent as GreyFacebook } from "assets/images/grey-facebook-icon.svg";
@@ -26,6 +25,33 @@ const DashboardTop = () => {
       return <span className={styles.inActive}>Inactive</span>;
     }
   };
+
+  async function updateProfilePhoto(e) {
+    try {
+      const formData = new FormData();
+      formData.append("avatar", e.target.files[0]);
+      formData.append("user", "5f5936ba7b81300590940e53");
+      await fetch("/api/v1/customer/update-profile-photo", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          authorization:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjU5MzUyNDA4YmJhOTMwOWNhMjU4NGQiLCJpYXQiOjE2MDAzNDQwMjh9.rR3hIwzHvImVjOrdgmso9-UsMSchtDk4lvopgFycmfg",
+        },
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          if (result.status === "error") {
+            console.log(result);
+          }
+          console.log(result);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className={styles.top_wrapper}>
       <div className={styles.top_left}>
@@ -40,7 +66,16 @@ const DashboardTop = () => {
           )}
           <div className={styles.online_indicator}></div>
           <div className={styles.edit_profile_image}>
-            <EditIcon />
+            <input
+              type="file"
+              id="avatar"
+              name="avatar"
+              style={{ display: "none" }}
+              onChange={updateProfilePhoto}
+            />
+            <label htmlFor="avatar">
+              <EditIcon />
+            </label>
           </div>
         </div>
         <div className={styles.profile_meta}>
