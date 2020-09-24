@@ -87,3 +87,17 @@ export const deletePhoneNumberSuccess = (customerData) => ({
 export const deletePhoneNumberFailure = () => ({
   type: customerActionTypes.DELETE_PHONE_NUMBER_FAILURE,
 });
+
+export const uploadCustomerAvatarStart = (uploadData) => ({
+  type: customerActionTypes.UPLOAD_CUSTOMER_AVATAR_START,
+  payload: uploadData,
+});
+
+export const uploadCustomerAvatarSuccess = (customerData) => ({
+  type: customerActionTypes.UPLOAD_CUSTOMER_AVATAR_SUCCESS,
+  payload: customerData,
+});
+
+export const uploadCustomerAvatarFailure = () => ({
+  type: customerActionTypes.UPLOAD_CUSTOMER_AVATAR_FAILURE,
+});

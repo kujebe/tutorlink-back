@@ -9,6 +9,8 @@ import {
   updatePhoneNumberFailure,
   deletePhoneNumberSuccess,
   deletePhoneNumberFailure,
+  uploadCustomerAvatarSuccess,
+  uploadCustomerAvatarFailure,
 } from "./customer-actions";
 import { setErrors, clearErrors } from "store/errors/error-actions";
 
@@ -158,6 +160,40 @@ export function* deletePhoneNumber({ payload }) {
   }
 }
 
+export function* uploadCustomerAvatar({ payload }) {
+  try {
+    const result = yield fetch("/api/v1/customer/update-profile-photo", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        authorization: payload.token,
+      },
+      body: payload.formData,
+    });
+    const response = yield result.json();
+    if (response.status === "error") {
+      yield put(
+        setErrors({
+          type: "deletePhoneNumberFail",
+          ...response,
+        })
+      );
+      yield put(uploadCustomerAvatarFailure());
+      return;
+    }
+    yield put(uploadCustomerAvatarSuccess(response.data));
+    yield put(clearErrors()); //Clear errors
+  } catch (error) {
+    yield put(uploadCustomerAvatarFailure());
+    yield put(
+      setErrors({
+        type: "serverFail",
+        ...error,
+      })
+    );
+  }
+}
+
 /********* SAGAS TRIGGERS **********/
 
 export function* onSaveTransactionStart() {
@@ -185,6 +221,13 @@ export function* onDeletePhoneNumberStart() {
   );
 }
 
+export function* onUploadCustomerAvatarStart() {
+  yield takeLatest(
+    customerActionTypes.UPLOAD_CUSTOMER_AVATAR_START,
+    uploadCustomerAvatar
+  );
+}
+
 /** All user sagas */
 export function* customerSagas() {
   yield all([
@@ -192,5 +235,6 @@ export function* customerSagas() {
     call(onSaveNewPhoneNumberStart),
     call(onUpdatePhoneNumberStart),
     call(onDeletePhoneNumberStart),
+    call(onUploadCustomerAvatarStart),
   ]);
 }

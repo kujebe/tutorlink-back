@@ -1,7 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { formatDistance, format } from "date-fns";
 import StarRatings from "react-star-ratings";
+
+import { uploadCustomerAvatarStart } from "store/customer/customer-actions";
 
 import styles from "./dashboard-top.module.scss";
 
@@ -17,6 +19,10 @@ const DashboardTop = () => {
   const { dashboardTopData } = useSelector(
     (state) => state.customer.customerData
   );
+  const { isLoading } = useSelector((state) => state.customer);
+  const { token, id } = useSelector((state) => state.user.sessionData);
+
+  const dispatch = useDispatch();
 
   const status = (customerStatus) => {
     if (customerStatus === 1) {
@@ -27,29 +33,10 @@ const DashboardTop = () => {
   };
 
   async function updateProfilePhoto(e) {
-    try {
-      const formData = new FormData();
-      formData.append("avatar", e.target.files[0]);
-      formData.append("user", "5f5936ba7b81300590940e53");
-      await fetch("/api/v1/customer/update-profile-photo", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjU5MzUyNDA4YmJhOTMwOWNhMjU4NGQiLCJpYXQiOjE2MDAzNDQwMjh9.rR3hIwzHvImVjOrdgmso9-UsMSchtDk4lvopgFycmfg",
-        },
-        body: formData,
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          if (result.status === "error") {
-            console.log(result);
-          }
-          console.log(result);
-        });
-    } catch (error) {
-      console.log(error);
-    }
+    const formData = new FormData();
+    formData.append("avatar", e.target.files[0]);
+    formData.append("user", id);
+    dispatch(uploadCustomerAvatarStart({ token, formData }));
   }
 
   return (
@@ -58,7 +45,7 @@ const DashboardTop = () => {
         <div className={styles.profile_img}>
           {dashboardTopData.profilePhoto ? (
             <img
-              src={`${process.env.PUBLIC_URL}/images/profile/${dashboardTopData.profilePhoto}`}
+              src={`${process.env.PUBLIC_URL}/images/customer-avatar/${dashboardTopData.profilePhoto}`}
               alt="User profile"
             />
           ) : (
