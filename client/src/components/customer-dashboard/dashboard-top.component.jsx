@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { formatDistance, format } from "date-fns";
 import StarRatings from "react-star-ratings";
@@ -19,7 +19,7 @@ const DashboardTop = () => {
   const { dashboardTopData } = useSelector(
     (state) => state.customer.customerData
   );
-  const { isLoading } = useSelector((state) => state.customer);
+  // const { isLoading } = useSelector((state) => state.customer);
   const { token, id } = useSelector((state) => state.user.sessionData);
 
   const dispatch = useDispatch();
@@ -75,10 +75,13 @@ const DashboardTop = () => {
             </div>
           </div>
           <div className={styles.address}>
-            <LocationIcon />
-            {dashboardTopData.address}
+            {dashboardTopData.address && (
+              <Fragment>
+                <LocationIcon />
+                {dashboardTopData.address}
+              </Fragment>
+            )}
           </div>
-
           <StarRatings
             className={styles.ratings}
             rating={dashboardTopData.ratings}
@@ -91,14 +94,14 @@ const DashboardTop = () => {
       </div>
       <div className={styles.top_right}>
         <div className={styles.right_meta}>
-          <span>Main Phone No: </span>
-          <div>
-            {dashboardTopData.telephone.length > 0 ? (
-              <div>{dashboardTopData.telephone[0]}</div>
-            ) : (
-              "-"
-            )}{" "}
-          </div>
+          <span>Phone Nos: </span>
+          {dashboardTopData.telephone.length > 0 ? (
+            <div className={styles.right}>
+              {dashboardTopData.telephone.join(", ")}
+            </div>
+          ) : (
+            "-"
+          )}
         </div>
         <div className={styles.right_meta}>
           <span>Member Since: </span>
