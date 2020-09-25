@@ -21,6 +21,28 @@
     }
   }
   .content {
+    .child_row {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 0 5px 0;
+      padding: 0;
+      &.head {
+        font-weight: 700;
+      }
+      .child_cell {
+        box-sizing: border-box;
+        flex-grow: 1;
+        // width: 16.6%;
+        padding: 5px 11px;
+        overflow: hidden;
+        &.small_cell {
+          width: 10%;
+        }
+        &.big_cell {
+          width: 30%;
+        }
+      }
+    }
     @include dashboard-Wrapper-padding;
   }
 }
