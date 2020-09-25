@@ -9,8 +9,9 @@ import styles from "./left-section.module.scss";
 
 const MyProfile = () => {
   const [openUpdateProfileModal, setOpenUpdateProfileModal] = useState(false);
-  const { address } = useSelector((state) => state.customer.customerData);
-  const { fullname } = useSelector((state) => state.user.sessionData);
+  const { address, fullname } = useSelector(
+    (state) => state.customer.customerData.dashboardTopData
+  );
 
   return (
     <Fragment>
@@ -26,7 +27,9 @@ const MyProfile = () => {
         <div className={styles.content}>
           <div className={styles.content_wrapper}>
             <div className={styles.content_title}>Name: </div>
-            <div className={styles.content_value}>{fullname}</div>
+            <div className={styles.content_value}>
+              {fullname ? fullname : ""}
+            </div>
           </div>
           <div className={styles.content_wrapper}>
             <div className={styles.content_title}>Address: </div>

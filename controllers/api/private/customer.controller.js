@@ -1,5 +1,6 @@
 const Customer = require("../../../models/Customer.model");
 const Teacher = require("../../../models/Teacher.model");
+const User = require("../../../models/User.model");
 
 exports.getCustomerDashboardData = (req, res, next) => {
   const user = req.params.userId;
@@ -207,7 +208,6 @@ exports.updateProfilePhoto = (req, res, next) => {
 
 exports.updateProfile = (req, res, next) => {
   const { user, fullname, address } = req.body;
-  console.log(req.body);
 
   Customer.findOne({ user: user })
     .populate("user", [
@@ -221,20 +221,19 @@ exports.updateProfile = (req, res, next) => {
     ])
     .exec()
     .then((customer) => {
-      (customer.fullname = fullname),
-        (customer.address = address),
-        customer
-          .save()
-          .then((customer) => {
-            res.status(201).json({
-              status: "ok",
-              data: customer,
-              message: "Phone number updated successfully",
-            });
-          })
-          .catch((err) => {
-            next(err);
+      customer.saveProfile(fullname, address);
+      customer
+        .save()
+        .then((customer) => {
+          res.status(201).json({
+            status: "ok",
+            data: customer,
+            message: "Phone number updated successfully",
           });
+        })
+        .catch((err) => {
+          next(err);
+        });
     })
     .catch((err) => {
       next(err);

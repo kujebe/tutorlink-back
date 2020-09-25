@@ -60,9 +60,8 @@ CustomerSchema.pre("save", function (next) {
         .then(() => next())
         .catch((error) => next(error));
     });
-  } else {
-    next();
   }
+  next();
 });
 
 CustomerSchema.virtual("dashboardTopData").get(function () {
@@ -88,5 +87,10 @@ CustomerSchema.virtual("dashboardTopData").get(function () {
 //   foreignField: "_id",
 //   justOne: true,
 // });
+
+CustomerSchema.methods.saveProfile = function (fullname, address) {
+  this.user.fullname = fullname;
+  this.address = address;
+};
 
 module.exports = mongoose.model("Customer", CustomerSchema);

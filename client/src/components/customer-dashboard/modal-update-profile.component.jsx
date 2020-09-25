@@ -14,10 +14,11 @@ const UpdateProfileModal = ({ closeModal }) => {
     fullname: "",
     address: "",
   });
-  const { token, id } = useSelector((state) => state.user.sessionData);
+  const { token, id, email } = useSelector((state) => state.user.sessionData);
   const isLoading = useSelector((state) => state.customer.isLoading);
-  const { address } = useSelector((state) => state.customer.customerData);
-  const { fullname, email } = useSelector((state) => state.user.sessionData);
+  const { address, fullname } = useSelector(
+    (state) => state.customer.customerData.dashboardTopData
+  );
 
   const dispatch = useDispatch();
 
