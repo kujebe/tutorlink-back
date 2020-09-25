@@ -14,7 +14,6 @@ const UpdateProfileModal = ({ closeModal }) => {
     fullname: "",
     address: "",
   });
-  const [newAddress, setNewAddress] = useState("");
   const { token, id } = useSelector((state) => state.user.sessionData);
   const isLoading = useSelector((state) => state.customer.isLoading);
   const { address } = useSelector((state) => state.customer.customerData);
@@ -28,20 +27,19 @@ const UpdateProfileModal = ({ closeModal }) => {
   };
 
   const updateProfile = () => {
-    // dispatch(
-    //   updateProfileStart({
-    //     user: id,
-    //     token,
-    //     fullame: newFullname,
-    //     address: newAddress,
-    //   })
-    // );
+    dispatch(
+      updateProfileStart({
+        user: id,
+        token,
+        fullname: state.fullname,
+        address: state.address,
+      })
+    );
   };
 
   useEffect(() => {
-    setState({ ...state, fullname, email });
-  }, [fullname, address]);
-  console.log(state);
+    setState({ ...state, fullname, address });
+  }, []);
 
   return (
     <ModalContainer
@@ -66,7 +64,7 @@ const UpdateProfileModal = ({ closeModal }) => {
       <FormInput
         type="text"
         name="address"
-        value={state.address}
+        value={state.address ? state.address : ""}
         onChange={handleChhange}
         label="Your address"
       />
@@ -77,7 +75,7 @@ const UpdateProfileModal = ({ closeModal }) => {
           label="Update"
           onClick={updateProfile}
           isLoading={isLoading}
-          disabled={!newAddress}
+          // disabled={state.address.length < 5}
         />
       </div>
     </ModalContainer>

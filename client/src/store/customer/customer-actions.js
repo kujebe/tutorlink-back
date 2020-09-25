@@ -101,3 +101,17 @@ export const uploadCustomerAvatarSuccess = (customerData) => ({
 export const uploadCustomerAvatarFailure = () => ({
   type: customerActionTypes.UPLOAD_CUSTOMER_AVATAR_FAILURE,
 });
+
+export const updateProfileStart = (data) => ({
+  type: customerActionTypes.UPDATE_CUSTOMER_PROFILE_START,
+  payload: data,
+});
+
+export const updateProfileSuccess = (customerData) => ({
+  type: customerActionTypes.UPDATE_CUSTOMER_PROFILE_SUCCESS,
+  payload: customerData,
+});
+
+export const updateProfileFailure = () => ({
+  type: customerActionTypes.UPDATE_CUSTOMER_PROFILE_FAILURE,
+});
