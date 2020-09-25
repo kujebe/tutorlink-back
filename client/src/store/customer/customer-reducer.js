@@ -47,6 +47,7 @@ const customerReducer = (state = INITIAL_STATE, { payload, type }) => {
     case customerActionTypes.DELETE_PHONE_NUMBER_START:
     case customerActionTypes.UPLOAD_CUSTOMER_AVATAR_START:
     case customerActionTypes.UPDATE_CUSTOMER_PROFILE_START:
+    case customerActionTypes.ADD_CHILD_START:
       return {
         ...state,
         isLoading: true,
@@ -63,6 +64,7 @@ const customerReducer = (state = INITIAL_STATE, { payload, type }) => {
     case customerActionTypes.DELETE_PHONE_NUMBER_SUCCESS:
     case customerActionTypes.UPLOAD_CUSTOMER_AVATAR_SUCCESS:
     case customerActionTypes.UPDATE_CUSTOMER_PROFILE_SUCCESS:
+    case customerActionTypes.ADD_CHILD_SUCCESS:
       return {
         ...state,
         isLoading: false,
@@ -74,7 +76,7 @@ const customerReducer = (state = INITIAL_STATE, { payload, type }) => {
     case customerActionTypes.UPDATE_PHONE_NUMBER_FAILURE:
     case customerActionTypes.DELETE_PHONE_NUMBER_FAILURE:
     case customerActionTypes.UPLOAD_CUSTOMER_AVATAR_FAILURE:
-    case customerActionTypes.UPDATE_CUSTOMER_PROFILE_FAILURE:
+    case customerActionTypes.ADD_CHILD_FAILURE:
       return {
         ...state,
         isLoading: false,

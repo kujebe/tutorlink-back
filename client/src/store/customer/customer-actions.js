@@ -115,3 +115,17 @@ export const updateProfileSuccess = (customerData) => ({
 export const updateProfileFailure = () => ({
   type: customerActionTypes.UPDATE_CUSTOMER_PROFILE_FAILURE,
 });
+
+export const addChildStart = (data) => ({
+  type: customerActionTypes.ADD_CHILD_START,
+  payload: data,
+});
+
+export const addChildSuccess = (customerData) => ({
+  type: customerActionTypes.ADD_CHILD_SUCCESS,
+  payload: customerData,
+});
+
+export const addChildFailure = () => ({
+  type: customerActionTypes.ADD_CHILD_FAILURE,
+});

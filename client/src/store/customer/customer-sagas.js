@@ -13,6 +13,8 @@ import {
   uploadCustomerAvatarFailure,
   updateProfileSuccess,
   updateProfileFailure,
+  addChildSuccess,
+  addChildFailure,
 } from "./customer-actions";
 import { setErrors, clearErrors } from "store/errors/error-actions";
 
@@ -197,6 +199,41 @@ export function* updateCustomerProfile({ payload }) {
   }
 }
 
+export function* addChild({ payload }) {
+  try {
+    const result = yield fetch("/api/v1/customer/add-child", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        authorization: payload.token,
+      },
+      body: JSON.stringify(payload),
+    });
+    const response = yield result.json();
+    if (response.status === "error") {
+      yield put(
+        setErrors({
+          type: "addChildFail",
+          ...response,
+        })
+      );
+      yield put(addChildFailure());
+      return;
+    }
+    yield put(addChildSuccess(response.data));
+    yield put(clearErrors()); //Clear errors
+  } catch (error) {
+    yield put(addChildFailure());
+    yield put(
+      setErrors({
+        type: "serverFail",
+        ...error,
+      })
+    );
+  }
+}
+
 export function* uploadCustomerAvatar({ payload }) {
   try {
     const result = yield fetch("/api/v1/customer/update-profile-photo", {
@@ -272,6 +309,10 @@ export function* onUpdateCustomerProfileStart() {
   );
 }
 
+export function* onAddChildStart() {
+  yield takeLatest(customerActionTypes.ADD_CHILD_START, addChild);
+}
+
 /** All user sagas */
 export function* customerSagas() {
   yield all([
@@ -281,5 +322,6 @@ export function* customerSagas() {
     call(onDeletePhoneNumberStart),
     call(onUploadCustomerAvatarStart),
     call(onUpdateCustomerProfileStart),
+    call(onAddChildStart),
   ]);
 }
