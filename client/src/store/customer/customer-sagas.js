@@ -167,8 +167,8 @@ export function* updateCustomerProfile({ payload }) {
     const result = yield fetch("/api/v1/customer/update-profile", {
       method: "POST",
       headers: {
-        // Accept: "application/json",
-        // "Content-Type": "application/json",
+        Accept: "application/json",
+        "Content-Type": "application/json",
         authorization: payload.token,
       },
       body: JSON.stringify(payload),

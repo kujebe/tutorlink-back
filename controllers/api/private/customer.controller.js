@@ -204,3 +204,39 @@ exports.updateProfilePhoto = (req, res, next) => {
       next(err);
     });
 };
+
+exports.updateProfile = (req, res, next) => {
+  const { user, fullname, address } = req.body;
+  console.log(req.body);
+
+  Customer.findOne({ user: user })
+    .populate("user", [
+      "fullname",
+      "email",
+      "lastLogin",
+      "loginCount",
+      "role",
+      "status",
+      "createdAt",
+    ])
+    .exec()
+    .then((customer) => {
+      (customer.fullname = fullname),
+        (customer.address = address),
+        customer
+          .save()
+          .then((customer) => {
+            res.status(201).json({
+              status: "ok",
+              data: customer,
+              message: "Phone number updated successfully",
+            });
+          })
+          .catch((err) => {
+            next(err);
+          });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
