@@ -15,6 +15,7 @@ const AddChildModal = ({ closeModal }) => {
     age: "",
     gender: "",
     school: "",
+    class: "",
   });
   const { token, id } = useSelector((state) => state.user.sessionData);
   const isLoading = useSelector((state) => state.customer.isLoading);
@@ -35,6 +36,7 @@ const AddChildModal = ({ closeModal }) => {
         age: state.age,
         gender: state.gender,
         school: state.school,
+        class: state.class,
       })
     );
   };
@@ -65,6 +67,13 @@ const AddChildModal = ({ closeModal }) => {
         value={state.school}
         onChange={handleChhange}
         label="Child school"
+      />
+      <FormInput
+        type="text"
+        name="class"
+        value={state.class}
+        onChange={handleChhange}
+        label="Child class"
       />
       <FormInput
         type="text"

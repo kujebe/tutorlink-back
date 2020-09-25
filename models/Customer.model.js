@@ -28,10 +28,11 @@ const SocialAcountsSchema = new Schema(
 
 const customerChildren = new Schema(
   {
-    childName: String,
-    childClass: String,
-    ChildAge: Number,
-    childSchool: String,
+    fullname: String,
+    age: String,
+    gender: String,
+    school: String,
+    class: String,
   },
   { timestamps: true }
 );

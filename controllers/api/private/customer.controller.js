@@ -239,3 +239,36 @@ exports.updateProfile = (req, res, next) => {
       next(err);
     });
 };
+
+exports.addChild = (req, res, next) => {
+  const { user, token, ...childData } = req.body;
+  Customer.findOne({ user: user })
+    .populate("user", [
+      "fullname",
+      "email",
+      "lastLogin",
+      "loginCount",
+      "role",
+      "status",
+      "createdAt",
+    ])
+    .exec()
+    .then((customer) => {
+      customer.customerChildren.push({ ...childData });
+      customer
+        .save()
+        .then((customer) => {
+          res.status(201).json({
+            status: "ok",
+            data: customer,
+            message: "Child added successfully",
+          });
+        })
+        .catch((err) => {
+          next(err);
+        });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
