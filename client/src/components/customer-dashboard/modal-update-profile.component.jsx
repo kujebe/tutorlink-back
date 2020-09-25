@@ -10,7 +10,10 @@ import FormInput from "components/form-input/form-input.component";
 import Button from "components/button/button.component";
 
 const UpdateProfileModal = ({ closeModal }) => {
-  const [newFullname, setNewFullname] = useState("");
+  const [state, setState] = useState({
+    fullname: "",
+    address: "",
+  });
   const [newAddress, setNewAddress] = useState("");
   const { token, id } = useSelector((state) => state.user.sessionData);
   const isLoading = useSelector((state) => state.customer.isLoading);
@@ -18,6 +21,11 @@ const UpdateProfileModal = ({ closeModal }) => {
   const { fullname, email } = useSelector((state) => state.user.sessionData);
 
   const dispatch = useDispatch();
+
+  const handleChhange = (e) => {
+    const { name, value } = e.target;
+    setState({ ...state, [name]: value });
+  };
 
   const updateProfile = () => {
     // dispatch(
@@ -31,9 +39,9 @@ const UpdateProfileModal = ({ closeModal }) => {
   };
 
   useEffect(() => {
-    setNewFullname(fullname);
-    setNewAddress(address);
+    setState({ ...state, fullname, email });
   }, [fullname, address]);
+  console.log(state);
 
   return (
     <ModalContainer
@@ -44,8 +52,8 @@ const UpdateProfileModal = ({ closeModal }) => {
       <FormInput
         type="text"
         name="fullname"
-        value={newFullname}
-        onChange={(e) => setNewFullname(e.target.value)}
+        value={state.fullname}
+        onChange={handleChhange}
         label="Your full name"
       />
       <FormInput
@@ -58,8 +66,8 @@ const UpdateProfileModal = ({ closeModal }) => {
       <FormInput
         type="text"
         name="address"
-        value={newAddress ? newAddress : ""}
-        onChange={(e) => setNewAddress(e.target.value)}
+        value={state.address}
+        onChange={handleChhange}
         label="Your address"
       />
       <div className={styles.modal_button_wrapper}>
