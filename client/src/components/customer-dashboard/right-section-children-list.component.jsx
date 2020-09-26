@@ -19,8 +19,10 @@ const CustomerChildrenList = () => {
       <div className={styles.content}>
         {children.length > 0 && (
           <div className={`${styles.child_row} ${styles.head}`}>
-            <div className={`${styles.child_cell} ${styles.small_cell}`}>
-              S/N
+            <div
+              className={`${styles.child_cell} ${styles.small_cell} ${styles.serial_number}`}
+            >
+              {" "}
             </div>
             <div className={`${styles.child_cell} ${styles.big_cell}`}>
               Name
@@ -42,10 +44,14 @@ const CustomerChildrenList = () => {
         {children.length > 0
           ? children.map((child, index) => (
               <div key={child._id} className={styles.child_row}>
-                <div className={`${styles.child_cell} ${styles.small_cell}`}>
+                <div
+                  className={`${styles.child_cell} ${styles.small_cell}  ${styles.serial_number}`}
+                >
                   {index + 1}
                 </div>
-                <div className={`${styles.child_cell} ${styles.big_cell}`}>
+                <div
+                  className={`${styles.child_cell} ${styles.big_cell} ${styles.name}`}
+                >
                   {child.fullname}
                 </div>
                 <div className={`${styles.child_cell} ${styles.big_cell}`}>
@@ -57,7 +63,9 @@ const CustomerChildrenList = () => {
                 <div className={`${styles.child_cell} ${styles.small_cell}`}>
                   {child.class}
                 </div>
-                <div className={`${styles.child_cell} ${styles.small_cell}`}>
+                <div
+                  className={`${styles.child_cell} ${styles.small_cell} ${styles.gender}`}
+                >
                   {child.gender}
                 </div>
               </div>
