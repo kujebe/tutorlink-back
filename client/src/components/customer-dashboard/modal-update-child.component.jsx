@@ -27,7 +27,7 @@ const UpdateChildModal = ({ closeModal, value, index }) => {
     setState({ ...state, [name]: value });
   };
 
-  const addChild = () => {
+  const updateChild = () => {
     dispatch(
       addChildStart({
         childData: state,
@@ -83,8 +83,8 @@ const UpdateChildModal = ({ closeModal, value, index }) => {
         <Button
           type="submit"
           buttonType="submit"
-          label="Save"
-          onClick={addChild}
+          label="Update"
+          onClick={updateChild}
           isLoading={isLoading}
         />
       </div>
