@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteChildStart } from "store/customer/customer-actions";
 
 import EditIcon from "components/edit-icon/edit-icon.component";
 import PlusIcon from "components/plus-icon/plus-icon.component";
@@ -15,14 +16,29 @@ const MyChildren = () => {
   const [openUpdateChildModal, setOpenUpdateChildModal] = useState(false);
   const [childData, setChildData] = useState(null);
   const [childIndex, setChildIndex] = useState(null);
+
   const children = useSelector(
     (state) => state.customer.customerData.customerChildren
   );
+  // const { isLoading } = useSelector((state) => state.customer);
+  const { token, id } = useSelector((state) => state.user.sessionData);
+
+  const dispatch = useDispatch();
 
   const updateChildData = (value, index) => {
     setChildIndex(index);
     setChildData(value);
     setOpenUpdateChildModal(true);
+  };
+
+  const deletePhoneNumber = (index) => {
+    dispatch(
+      deleteChildStart({
+        user: id,
+        token,
+        index,
+      })
+    );
   };
 
   return (
@@ -48,7 +64,7 @@ const MyChildren = () => {
                     />
                   </div>
                   <div className={styles.action_icon}>
-                    <TrashIcon action={updateChildData} value={child} />
+                    <TrashIcon action={deletePhoneNumber} value={idx} />
                   </div>
                 </div>
               ))

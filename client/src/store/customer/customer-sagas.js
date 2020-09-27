@@ -17,6 +17,8 @@ import {
   addChildFailure,
   updateChildSuccess,
   updateChildFailure,
+  deleteChildSuccess,
+  deleteChildFailure,
 } from "./customer-actions";
 import { setErrors, clearErrors } from "store/errors/error-actions";
 
@@ -271,6 +273,42 @@ export function* updateChild({ payload }) {
   }
 }
 
+export function* deleteChild({ payload: { token, ...requestData } }) {
+  console.log(requestData);
+  try {
+    const result = yield fetch("/api/v1/customer/delete-child", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        authorization: token,
+      },
+      body: JSON.stringify(requestData),
+    });
+    const response = yield result.json();
+    if (response.status === "error") {
+      yield put(
+        setErrors({
+          type: "deleteChildFail",
+          ...response,
+        })
+      );
+      yield put(deleteChildFailure());
+      return;
+    }
+    yield put(deleteChildSuccess(response.data));
+    yield put(clearErrors()); //Clear errors
+  } catch (error) {
+    yield put(deleteChildFailure());
+    yield put(
+      setErrors({
+        type: "serverFail",
+        ...error,
+      })
+    );
+  }
+}
+
 export function* uploadCustomerAvatar({ payload }) {
   try {
     const result = yield fetch("/api/v1/customer/update-profile-photo", {
@@ -354,6 +392,10 @@ export function* onUpdateChildStart() {
   yield takeLatest(customerActionTypes.UPDATE_CHILD_START, updateChild);
 }
 
+export function* onDeleteChildStart() {
+  yield takeLatest(customerActionTypes.DELETE_CHILD_START, deleteChild);
+}
+
 /** All user sagas */
 export function* customerSagas() {
   yield all([
@@ -365,5 +407,6 @@ export function* customerSagas() {
     call(onUpdateCustomerProfileStart),
     call(onAddChildStart),
     call(onUpdateChildStart),
+    call(onDeleteChildStart),
   ]);
 }

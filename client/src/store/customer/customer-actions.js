@@ -143,3 +143,17 @@ export const updateChildSuccess = (customerData) => ({
 export const updateChildFailure = () => ({
   type: customerActionTypes.UPDATE_CHILD_FAILURE,
 });
+
+export const deleteChildStart = (data) => ({
+  type: customerActionTypes.DELETE_CHILD_START,
+  payload: data,
+});
+
+export const deleteChildSuccess = (customerData) => ({
+  type: customerActionTypes.DELETE_CHILD_SUCCESS,
+  payload: customerData,
+});
+
+export const deleteChildFailure = () => ({
+  type: customerActionTypes.DELETE_CHILD_FAILURE,
+});
