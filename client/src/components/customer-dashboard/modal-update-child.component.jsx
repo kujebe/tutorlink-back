@@ -9,13 +9,13 @@ import ModalContainer from "./modal-container.component";
 import FormInput from "components/form-input/form-input.component";
 import Button from "components/button/button.component";
 
-const AddChildModal = ({ closeModal }) => {
+const UpdateChildModal = ({ closeModal, value, index }) => {
   const [state, setState] = useState({
-    fullname: "",
-    age: "",
-    gender: "",
-    school: "",
-    class: "",
+    fullname: value.fullname,
+    age: value.age,
+    gender: value.gender,
+    school: value.school,
+    class: value.class,
   });
   const { token, id } = useSelector((state) => state.user.sessionData);
   const isLoading = useSelector((state) => state.customer.isLoading);
@@ -30,13 +30,10 @@ const AddChildModal = ({ closeModal }) => {
   const addChild = () => {
     dispatch(
       addChildStart({
+        childData: state,
         user: id,
         token,
-        fullname: state.fullname,
-        age: state.age,
-        gender: state.gender,
-        school: state.school,
-        class: state.class,
+        index,
       })
     );
   };
@@ -45,39 +42,35 @@ const AddChildModal = ({ closeModal }) => {
     <ModalContainer
       closeAction={closeModal}
       closeValue={false}
-      modalTitle="Add Child Profile"
+      modalTitle="Update Child Profile"
     >
       <FormInput
         type="text"
         name="fullname"
-        value={state.fullname}
+        value={state.fullname ? state.fullname : ""}
         onChange={handleChhange}
         label="Child full name"
-        required
       />
       <FormInput
         type="number"
         name="age"
-        value={state.age}
+        value={state.age ? state.age : ""}
         onChange={handleChhange}
         label="Child age"
-        required
       />
       <FormInput
         type="text"
         name="school"
-        value={state.school}
+        value={state.school ? state.school : ""}
         onChange={handleChhange}
         label="Child school"
-        required
       />
       <FormInput
         type="text"
         name="class"
-        value={state.class}
+        value={state.class ? state.class : ""}
         onChange={handleChhange}
         label="Child class"
-        required
       />
       <FormInput
         type="text"
@@ -85,7 +78,6 @@ const AddChildModal = ({ closeModal }) => {
         value={state.gender}
         onChange={handleChhange}
         label="Child Gender"
-        required
       />
       <div className={styles.modal_button_wrapper}>
         <Button
@@ -94,11 +86,10 @@ const AddChildModal = ({ closeModal }) => {
           label="Save"
           onClick={addChild}
           isLoading={isLoading}
-          required
         />
       </div>
     </ModalContainer>
   );
 };
 
-export default AddChildModal;
+export default UpdateChildModal;

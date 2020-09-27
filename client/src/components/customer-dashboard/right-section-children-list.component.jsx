@@ -8,8 +8,6 @@ const CustomerChildrenList = () => {
     (state) => state.customer.customerData.customerChildren
   );
 
-  console.log(children);
-
   return (
     <div className={styles.root}>
       <div className={styles.head}>

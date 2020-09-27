@@ -6,19 +6,25 @@ import PlusIcon from "components/plus-icon/plus-icon.component";
 import TrashIcon from "components/trash-icon/trash-icon.component";
 import Modal from "components/modal/modal.component";
 import AddChildModal from "components/customer-dashboard/modal-add-child.component";
+import UpdateChildModal from "components/customer-dashboard/modal-update-child.component";
 
 import styles from "./left-section.module.scss";
 
 const MyChildren = () => {
   const [openAddChildModal, setOpenAddChildModal] = useState(false);
+  const [openUpdateChildModal, setOpenUpdateChildModal] = useState(false);
+  const [childData, setChildData] = useState(null);
+  const [childIndex, setChildIndex] = useState(null);
   const children = useSelector(
     (state) => state.customer.customerData.customerChildren
   );
 
   const updateChildData = (value, index) => {
-    // setUpdateIndex(index);
-    // setNumberToUpdate(value);
-    // setOpenUpdatePhoneModal(true);
+    console.log("childData - ", value);
+    console.log("index - ", index);
+    setChildIndex(index);
+    setChildData(value);
+    setOpenUpdateChildModal(true);
   };
 
   return (
@@ -57,6 +63,15 @@ const MyChildren = () => {
       {openAddChildModal && (
         <Modal>
           <AddChildModal closeModal={setOpenAddChildModal} />
+        </Modal>
+      )}
+      {openUpdateChildModal && (
+        <Modal>
+          <UpdateChildModal
+            closeModal={setOpenUpdateChildModal}
+            value={childData}
+            index={childIndex}
+          />
         </Modal>
       )}
     </Fragment>
