@@ -11,6 +11,7 @@ const {
   updateProfilePhoto,
   updateProfile,
   addChild,
+  updateChild,
 } = require("../../../controllers/api/private/customer.controller");
 
 router.get("/dashboard/:userId", getCustomerDashboardData);
@@ -21,6 +22,7 @@ router.post("/update-phone-number", updatePhoneNumber);
 router.post("/delete-phone-number", deletePhoneNumber);
 router.post("/update-profile", updateProfile);
 router.post("/add-child", addChild);
+router.post("/update-child", updateChild);
 router.post(
   "/update-profile-photo",
   uploader("customer-avatar", "avatar"),

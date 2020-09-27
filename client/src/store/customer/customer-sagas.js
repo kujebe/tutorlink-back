@@ -237,39 +237,38 @@ export function* addChild({ payload }) {
 }
 
 export function* updateChild({ payload }) {
-  console.log(payload);
-  // try {
-  //   const result = yield fetch("/api/v1/customer/update-child", {
-  //     method: "POST",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //       authorization: payload.token,
-  //     },
-  //     body: JSON.stringify(payload),
-  //   });
-  //   const response = yield result.json();
-  //   if (response.status === "error") {
-  //     yield put(
-  //       setErrors({
-  //         type: "updateChildFail",
-  //         ...response,
-  //       })
-  //     );
-  //     yield put(updateChildFailure());
-  //     return;
-  //   }
-  //   yield put(updateChildSuccess(response.data));
-  //   yield put(clearErrors()); //Clear errors
-  // } catch (error) {
-  //   yield put(updateChildFailure());
-  //   yield put(
-  //     setErrors({
-  //       type: "serverFail",
-  //       ...error,
-  //     })
-  //   );
-  // }
+  try {
+    const result = yield fetch("/api/v1/customer/update-child", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        authorization: payload.token,
+      },
+      body: JSON.stringify(payload),
+    });
+    const response = yield result.json();
+    if (response.status === "error") {
+      yield put(
+        setErrors({
+          type: "updateChildFail",
+          ...response,
+        })
+      );
+      yield put(updateChildFailure());
+      return;
+    }
+    yield put(updateChildSuccess(response.data));
+    yield put(clearErrors()); //Clear errors
+  } catch (error) {
+    yield put(updateChildFailure());
+    yield put(
+      setErrors({
+        type: "serverFail",
+        ...error,
+      })
+    );
+  }
 }
 
 export function* uploadCustomerAvatar({ payload }) {

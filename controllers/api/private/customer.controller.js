@@ -272,3 +272,43 @@ exports.addChild = (req, res, next) => {
       next(err);
     });
 };
+
+exports.updateChild = (req, res, next) => {
+  const { user, index, token, childData } = req.body;
+
+  Customer.findOne({ user: user })
+    .populate("user", [
+      "fullname",
+      "email",
+      "lastLogin",
+      "loginCount",
+      "role",
+      "status",
+      "createdAt",
+    ])
+    .exec()
+    .then((customer) => {
+      const child = customer.customerChildren[index];
+      child.fullname = childData.fullname;
+      child.age = childData.age;
+      child.gender = childData.gender;
+      child.school = childData.school;
+      child.class = childData.class;
+      customer.customerChildren.splice(index, 1, child);
+      customer
+        .save()
+        .then((customer) => {
+          res.status(201).json({
+            status: "ok",
+            data: customer,
+            message: "Child uupdated successfully",
+          });
+        })
+        .catch((err) => {
+          next(err);
+        });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};

@@ -20,8 +20,6 @@ const MyChildren = () => {
   );
 
   const updateChildData = (value, index) => {
-    console.log("childData - ", value);
-    console.log("index - ", index);
     setChildIndex(index);
     setChildData(value);
     setOpenUpdateChildModal(true);
