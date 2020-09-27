@@ -274,7 +274,6 @@ export function* updateChild({ payload }) {
 }
 
 export function* deleteChild({ payload: { token, ...requestData } }) {
-  console.log(requestData);
   try {
     const result = yield fetch("/api/v1/customer/delete-child", {
       method: "POST",

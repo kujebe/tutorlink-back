@@ -301,7 +301,43 @@ exports.updateChild = (req, res, next) => {
           res.status(201).json({
             status: "ok",
             data: customer,
-            message: "Child uupdated successfully",
+            message: "Child updated successfully",
+          });
+        })
+        .catch((err) => {
+          next(err);
+        });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
+exports.deleteChild = (req, res, next) => {
+  const { user, index } = req.body;
+  Customer.findOne({ user: user })
+    .populate("user", [
+      "fullname",
+      "email",
+      "lastLogin",
+      "loginCount",
+      "role",
+      "status",
+      "createdAt",
+    ])
+    .exec()
+    .then((customer) => {
+      const filtereChildren = customer.customerChildren.filter(
+        (child, idx) => idx !== index
+      );
+      customer.customerChildren = filtereChildren;
+      customer
+        .save()
+        .then((customer) => {
+          res.status(201).json({
+            status: "ok",
+            data: customer,
+            message: "Child deleted successfully",
           });
         })
         .catch((err) => {
