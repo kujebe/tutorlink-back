@@ -15,6 +15,8 @@ import {
   updateProfileFailure,
   addChildSuccess,
   addChildFailure,
+  updateChildSuccess,
+  updateChildFailure,
 } from "./customer-actions";
 import { setErrors, clearErrors } from "store/errors/error-actions";
 
@@ -234,6 +236,42 @@ export function* addChild({ payload }) {
   }
 }
 
+export function* updateChild({ payload }) {
+  console.log(payload);
+  // try {
+  //   const result = yield fetch("/api/v1/customer/update-child", {
+  //     method: "POST",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json",
+  //       authorization: payload.token,
+  //     },
+  //     body: JSON.stringify(payload),
+  //   });
+  //   const response = yield result.json();
+  //   if (response.status === "error") {
+  //     yield put(
+  //       setErrors({
+  //         type: "updateChildFail",
+  //         ...response,
+  //       })
+  //     );
+  //     yield put(updateChildFailure());
+  //     return;
+  //   }
+  //   yield put(updateChildSuccess(response.data));
+  //   yield put(clearErrors()); //Clear errors
+  // } catch (error) {
+  //   yield put(updateChildFailure());
+  //   yield put(
+  //     setErrors({
+  //       type: "serverFail",
+  //       ...error,
+  //     })
+  //   );
+  // }
+}
+
 export function* uploadCustomerAvatar({ payload }) {
   try {
     const result = yield fetch("/api/v1/customer/update-profile-photo", {
@@ -313,6 +351,10 @@ export function* onAddChildStart() {
   yield takeLatest(customerActionTypes.ADD_CHILD_START, addChild);
 }
 
+export function* onUpdateChildStart() {
+  yield takeLatest(customerActionTypes.UPDATE_CHILD_START, updateChild);
+}
+
 /** All user sagas */
 export function* customerSagas() {
   yield all([
@@ -323,5 +365,6 @@ export function* customerSagas() {
     call(onUploadCustomerAvatarStart),
     call(onUpdateCustomerProfileStart),
     call(onAddChildStart),
+    call(onUpdateChildStart),
   ]);
 }

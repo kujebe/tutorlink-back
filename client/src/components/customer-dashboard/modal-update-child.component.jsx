@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { addChildStart } from "store/customer/customer-actions";
+import { updateChildStart } from "store/customer/customer-actions";
 
 import styles from "./left-section.module.scss";
 
@@ -22,14 +22,14 @@ const UpdateChildModal = ({ closeModal, value, index }) => {
 
   const dispatch = useDispatch();
 
-  const handleChhange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setState({ ...state, [name]: value });
   };
 
   const updateChild = () => {
     dispatch(
-      addChildStart({
+      updateChildStart({
         childData: state,
         user: id,
         token,
@@ -48,35 +48,35 @@ const UpdateChildModal = ({ closeModal, value, index }) => {
         type="text"
         name="fullname"
         value={state.fullname ? state.fullname : ""}
-        onChange={handleChhange}
+        onChange={handleChange}
         label="Child full name"
       />
       <FormInput
         type="number"
         name="age"
         value={state.age ? state.age : ""}
-        onChange={handleChhange}
+        onChange={handleChange}
         label="Child age"
       />
       <FormInput
         type="text"
         name="school"
         value={state.school ? state.school : ""}
-        onChange={handleChhange}
+        onChange={handleChange}
         label="Child school"
       />
       <FormInput
         type="text"
         name="class"
         value={state.class ? state.class : ""}
-        onChange={handleChhange}
+        onChange={handleChange}
         label="Child class"
       />
       <FormInput
         type="text"
         name="gender"
         value={state.gender}
-        onChange={handleChhange}
+        onChange={handleChange}
         label="Child Gender"
       />
       <div className={styles.modal_button_wrapper}>
