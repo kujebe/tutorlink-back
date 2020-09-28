@@ -41,6 +41,19 @@
           margin-top: -10px;
         }
       }
+      .social_placeholder {
+        display: flex;
+        align-items: center;
+        svg {
+          width: 40px;
+          height: 40px;
+          margin-right: 6px;
+          cursor: pointer;
+          &:last-child {
+            margin-right: 0px;
+          }
+        }
+      }
     }
   }
 }

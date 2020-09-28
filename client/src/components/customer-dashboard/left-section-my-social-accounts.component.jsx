@@ -4,6 +4,11 @@ import EditIcon from "components/edit-icon/edit-icon.component";
 
 import styles from "./left-section.module.scss";
 
+import { ReactComponent as GreyFacebook } from "assets/images/grey-facebook-icon.svg";
+import { ReactComponent as GreyTwitter } from "assets/images/grey-twitter-icon.svg";
+import { ReactComponent as GreyInstagram } from "assets/images/grey-instagram-icon.svg";
+import { ReactComponent as GreyLinkedin } from "assets/images/grey-linkedin-icon.svg";
+
 const MySocialAccounts = () => {
   return (
     <div className={styles.section}>
@@ -15,13 +20,11 @@ const MySocialAccounts = () => {
       </div>
       <div className={styles.content}>
         <div className={styles.content_wrapper}>
-          <div className={styles.content_title}>Name: </div>
-          <div className={styles.content_value}>Oluwaseun Kujebe</div>
-        </div>
-        <div className={styles.content_wrapper}>
-          <div className={styles.content_title}>Address: </div>
-          <div className={styles.content_value}>
-            4 Tom Johns Avevue, ilupeju lagos
+          <div className={styles.social_placeholder}>
+            <GreyFacebook />
+            <GreyTwitter />
+            <GreyLinkedin />
+            <GreyInstagram />
           </div>
         </div>
       </div>
