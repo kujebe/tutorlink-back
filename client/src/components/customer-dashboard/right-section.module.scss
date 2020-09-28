@@ -71,6 +71,15 @@
         }
       }
     }
+    .social {
+      display: flex;
+      margin-top: -28px;
+      flex-wrap: wrap;
+      > div {
+        width: 46%;
+        margin-right: 4%;
+      }
+    }
     @include dashboard-Wrapper-padding;
   }
 }

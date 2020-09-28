@@ -1,7 +1,5 @@
 import React from "react";
 
-import EditIcon from "components/edit-icon/edit-icon.component";
-
 import styles from "./left-section.module.scss";
 
 import { ReactComponent as GreyFacebook } from "assets/images/grey-facebook-icon.svg";
@@ -14,9 +12,7 @@ const MySocialAccounts = () => {
     <div className={styles.section}>
       <div className={styles.header}>
         <div className={styles.title}>Social Media</div>
-        <div className={styles.edit_profile}>
-          <EditIcon />
-        </div>
+        <div className={styles.edit_profile}></div>
       </div>
       <div className={styles.content}>
         <div className={styles.content_wrapper}>
