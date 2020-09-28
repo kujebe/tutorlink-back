@@ -157,3 +157,17 @@ export const deleteChildSuccess = (customerData) => ({
 export const deleteChildFailure = () => ({
   type: customerActionTypes.DELETE_CHILD_FAILURE,
 });
+
+export const updateSocialMediaStart = (data) => ({
+  type: customerActionTypes.UPDATE_SOCIAL_MEDIA_START,
+  payload: data,
+});
+
+export const updateSocialMediaSuccess = (customerData) => ({
+  type: customerActionTypes.UPDATE_SOCIAL_MEDIA_SUCCESS,
+  payload: customerData,
+});
+
+export const updateSocialMediaFailure = () => ({
+  type: customerActionTypes.UPDATE_SOCIAL_MEDIA_FAILURE,
+});
