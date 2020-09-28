@@ -60,9 +60,6 @@ exports.getTeacherBySlug = (req, res) => {
       });
     })
     .catch((err) => {
-      console.log(err);
-      res.status(500).json({
-        error: err,
-      });
+      next(err);
     });
 };
