@@ -13,6 +13,7 @@ const {
   addChild,
   updateChild,
   deleteChild,
+  updateSocialMedia,
 } = require("../../../controllers/api/private/customer.controller");
 
 router.get("/dashboard/:userId", getCustomerDashboardData);
@@ -25,6 +26,7 @@ router.post("/update-profile", updateProfile);
 router.post("/add-child", addChild);
 router.post("/update-child", updateChild);
 router.post("/delete-child", deleteChild);
+router.post("/update-social-media", updateSocialMedia);
 router.post(
   "/update-profile-photo",
   uploader("customer-avatar", "avatar"),

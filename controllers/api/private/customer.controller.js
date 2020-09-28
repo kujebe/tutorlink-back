@@ -348,3 +348,37 @@ exports.deleteChild = (req, res, next) => {
       next(err);
     });
 };
+
+exports.updateSocialMedia = (req, res, next) => {
+  const { user, ...accounts } = req.body;
+
+  Customer.findOne({ user: user })
+    .populate("user", [
+      "fullname",
+      "email",
+      "lastLogin",
+      "loginCount",
+      "role",
+      "status",
+      "createdAt",
+    ])
+    .exec()
+    .then((customer) => {
+      customer.socialAccounts.splice(0, 1, accounts);
+      customer
+        .save()
+        .then((customer) => {
+          res.status(201).json({
+            status: "ok",
+            data: customer,
+            message: "Social media accounts updated successfully",
+          });
+        })
+        .catch((err) => {
+          next(err);
+        });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};

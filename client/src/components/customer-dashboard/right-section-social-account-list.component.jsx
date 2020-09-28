@@ -10,7 +10,7 @@ import styles from "./right-section.module.scss";
 
 const SocialAccountList = () => {
   const socialAccounts = useSelector(
-    (state) => state.customer.customerData.socialAccounts
+    (state) => state.customer.customerData.socialAccounts[0]
   );
   const { token, id } = useSelector((state) => state.user.sessionData);
   const isLoading = useSelector((state) => state.customer.isLoading);
@@ -28,6 +28,8 @@ const SocialAccountList = () => {
     const { name, value } = e.target;
     setState({ ...state, [name]: value });
   };
+
+  console.log(state);
 
   return (
     <div className={styles.root}>
@@ -69,7 +71,15 @@ const SocialAccountList = () => {
           type="submit"
           buttonType="submit"
           label="Update"
-          onClick={() => dispatch(updateSocialMediaStart({ token, id, state }))}
+          onClick={() =>
+            dispatch(
+              updateSocialMediaStart({
+                token,
+                user: id,
+                ...state,
+              })
+            )
+          }
           isLoading={isLoading}
         />
       </div>

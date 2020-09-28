@@ -18,14 +18,6 @@ const TransactionSchema = new Schema(
   { timestamps: true }
 );
 
-const SocialAcountsSchema = new Schema(
-  {
-    socialMediaType: String,
-    socialAcountUrl: String,
-  },
-  { timestamps: true }
-);
-
 const customerChildren = new Schema(
   {
     fullname: String,
@@ -45,7 +37,7 @@ const CustomerSchema = new Schema(
     ratings: Number,
     address: String,
     customerChildren: [customerChildren],
-    socialAccounts: [SocialAcountsSchema],
+    socialAccounts: Array,
     transactions: [TransactionSchema],
   },
   { timestamps: true }
