@@ -4,14 +4,34 @@ const colors = require("../../../utils/colors");
 //@desc get request to fetch all teachers
 //@route /api/v1/teachers
 //@access public
-exports.getAllTeachers = (req, res) => {
-  Teacher.find()
-    .then((teachers) => res.status(200).json(teachers))
-    .catch((err) => {
-      res.status(500).json({
-        error: err,
+exports.getAllTeachers = (req, res, next) => {
+  const pagination = req.query.limit ? parseInt(req.query.limit) : 10;
+  const pageNumber = req.query.page ? parseInt(req.query.page) : 1;
+  Teacher.estimatedDocumentCount({}, function (err, count) {
+    Teacher.find({
+      location: {
+        $nearSphere: {
+          $geometry: {
+            type: "Point",
+            coordinates: [3.5228, 6.4529], //[longitude, latitude]
+          },
+        },
+      },
+    })
+      .skip((pageNumber - 1) * pagination)
+      .limit(pagination)
+      .then((teachers) =>
+        res.status(201).json({
+          status: "ok",
+          count,
+          data: teachers,
+          message: "Search successful",
+        })
+      )
+      .catch((err) => {
+        next(err);
       });
-    });
+  });
 };
 
 //@desc get request to fetch a teacher's  data by slug

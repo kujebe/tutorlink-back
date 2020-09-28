@@ -30,6 +30,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 /**
+ * Public routes
+ */
+app.use("/api/v1/home", homePageRouter);
+app.use("/api/v1/teachers", teachersRouter);
+/** End public routes */
+
+/**
  * Auth routes
  */
 app.use("/api/v1/auth", authRouter);
@@ -40,13 +47,6 @@ app.use("/api/v1/auth", authRouter);
  */
 
 app.use("/api/v1/customer", checkSession, customerRouter);
-
-/**
- * Public routes
- */
-app.use("/api/v1/home", homePageRouter);
-app.use("/api/v1/teachers", teachersRouter);
-/** End public routes */
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));

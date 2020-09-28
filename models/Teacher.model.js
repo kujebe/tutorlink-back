@@ -31,7 +31,7 @@ const TeacherSchema = mongoose.Schema(
       },
       coordinates: {
         type: [Number],
-        // index: "2dsphere",
+        index: "2dsphere",
       },
       formattedAddress: String,
     },
@@ -66,7 +66,7 @@ const TeacherSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-TeacherSchema.index({ location: "2dsphere" });
+// TeacherSchema.index({ location: "2dsphere" });
 
 // Geocode create location
 TeacherSchema.pre("save", async function (next) {

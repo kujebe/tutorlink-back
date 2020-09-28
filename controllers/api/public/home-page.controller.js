@@ -24,7 +24,7 @@ async function findNearestTeachers(distance, longitude, latitude) {
 //@route /api/v1/home
 //@access public
 exports.getMapPopupData = (req, res) => {
-  findNearestTeachers(100, req.query.longitude, req.query.latitude)
+  findNearestTeachers(1000, req.query.longitude, req.query.latitude)
     // .select("location _id")
     // .exec()
     .then(({ nearestTeachers, distance }) => {
