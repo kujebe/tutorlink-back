@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import styles from "./left-section.module.scss";
 
@@ -8,6 +9,10 @@ import { ReactComponent as GreyInstagram } from "assets/images/grey-instagram-ic
 import { ReactComponent as GreyLinkedin } from "assets/images/grey-linkedin-icon.svg";
 
 const MySocialAccounts = () => {
+  const socialAccounts = useSelector(
+    (state) => state.customer.customerData.socialAccounts[0]
+  );
+
   return (
     <div className={styles.section}>
       <div className={styles.header}>
