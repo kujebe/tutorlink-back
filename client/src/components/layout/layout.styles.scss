@@ -134,9 +134,10 @@
         margin-left: 35px;
         cursor: pointer;
         .user-thumbnail {
-          @include profile-thumbnail(40px, 40px, $theme_blue);
           align-items: normal;
-          img {
+          img,
+          .avatar {
+            @include profile-thumbnail(40px, 40px, $theme_blue);
             width: 40px;
           }
         }

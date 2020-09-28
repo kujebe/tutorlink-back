@@ -16,10 +16,10 @@ const SocialAccountList = () => {
   const isLoading = useSelector((state) => state.customer.isLoading);
 
   const [state, setState] = useState({
-    facebook: socialAccounts.facebook ? socialAccounts.facebook : "",
-    instagram: socialAccounts.instagram ? socialAccounts.instagram : "",
-    twitter: socialAccounts.twitter ? socialAccounts.twitter : "",
-    linkedin: socialAccounts.linkedin ? socialAccounts.twitter : "",
+    facebook: socialAccounts ? socialAccounts.facebook : "",
+    instagram: socialAccounts ? socialAccounts.instagram : "",
+    twitter: socialAccounts ? socialAccounts.twitter : "",
+    linkedin: socialAccounts ? socialAccounts.twitter : "",
   });
 
   const dispatch = useDispatch();

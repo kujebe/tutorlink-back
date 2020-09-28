@@ -117,18 +117,37 @@ const DashboardTop = () => {
         <div className={styles.right_meta}>
           <span>Social Accounts: </span>
           <div className={styles.social_placeholder}>
-            <GreyFacebook
-              className={dashboardTopData.social[0].facebook && styles.active}
-            />
-            <GreyTwitter
-              className={dashboardTopData.social[0].twitter && styles.active}
-            />
-            <GreyLinkedin
-              className={dashboardTopData.social[0].Linkedin && styles.active}
-            />
-            <GreyInstagram
-              className={dashboardTopData.social[0].instagram && styles.active}
-            />
+            {dashboardTopData.social.length > 0 ? (
+              <Fragment>
+                <GreyFacebook
+                  className={
+                    dashboardTopData.social[0].facebook ? styles.active : ""
+                  }
+                />
+                <GreyTwitter
+                  className={
+                    dashboardTopData.social[0].twitter ? styles.active : ""
+                  }
+                />
+                <GreyLinkedin
+                  className={
+                    dashboardTopData.social[0].Linkedin ? styles.active : ""
+                  }
+                />
+                <GreyInstagram
+                  className={
+                    dashboardTopData.social[0].instagram ? styles.active : ""
+                  }
+                />
+              </Fragment>
+            ) : (
+              <Fragment>
+                <GreyFacebook />
+                <GreyTwitter />
+                <GreyLinkedin />
+                <GreyInstagram />
+              </Fragment>
+            )}
           </div>
         </div>
       </div>

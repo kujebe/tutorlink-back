@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { useSelector } from "react-redux";
 
 import styles from "./left-section.module.scss";
@@ -22,16 +22,29 @@ const MySocialAccounts = () => {
       <div className={styles.content}>
         <div className={styles.content_wrapper}>
           <div className={styles.social_placeholder}>
-            <GreyFacebook
-              className={socialAccounts.facebook && styles.active}
-            />
-            <GreyTwitter className={socialAccounts.twitter && styles.active} />
-            <GreyLinkedin
-              className={socialAccounts.linkedin && styles.active}
-            />
-            <GreyInstagram
-              className={socialAccounts.instagram && styles.active}
-            />
+            {socialAccounts ? (
+              <Fragment>
+                <GreyFacebook
+                  className={socialAccounts.facebook && styles.active}
+                />
+                <GreyTwitter
+                  className={socialAccounts.twitter && styles.active}
+                />
+                <GreyLinkedin
+                  className={socialAccounts.linkedin && styles.active}
+                />
+                <GreyInstagram
+                  className={socialAccounts.instagram && styles.active}
+                />
+              </Fragment>
+            ) : (
+              <Fragment>
+                <GreyFacebook />
+                <GreyTwitter />
+                <GreyLinkedin />
+                <GreyInstagram />
+              </Fragment>
+            )}
           </div>
         </div>
       </div>

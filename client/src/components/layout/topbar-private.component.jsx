@@ -8,6 +8,7 @@ import UserMenuDropdown from "components/account-user-menu-dropdown/user-menu-dr
 import { ReactComponent as MessageIcon } from "assets/images/messages-icon.svg";
 import { ReactComponent as NotificationIcon } from "assets/images/bell-icon.svg";
 import { ReactComponent as HelpIcon } from "assets/images/question-icon.svg";
+import { ReactComponent as UserProfile } from "assets/images/user-profile-icon.svg";
 
 const TopbarPrivate = () => {
   const hideMenu = useSelector((state) => state.user.hideMenu);
@@ -31,10 +32,14 @@ const TopbarPrivate = () => {
         onClick={() => dispatch(toggleUserMenu())}
       >
         <div className="user-thumbnail">
-          <img
-            src={`${process.env.PUBLIC_URL}/images/customer-avatar/${profilePhoto}`}
-            alt="User profile"
-          />
+          {profilePhoto ? (
+            <img
+              src={`${process.env.PUBLIC_URL}/images/customer-avatar/${profilePhoto}`}
+              alt="User profile"
+            />
+          ) : (
+            <UserProfile className="avatar" />
+          )}
         </div>
       </div>
       {hideMenu ? null : <UserMenuDropdown />}
