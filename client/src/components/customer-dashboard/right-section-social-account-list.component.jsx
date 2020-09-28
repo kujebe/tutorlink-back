@@ -17,9 +17,9 @@ const SocialAccountList = () => {
 
   const [state, setState] = useState({
     facebook: socialAccounts.facebook ? socialAccounts.facebook : "",
-    instagram: socialAccounts.instagram,
-    twitter: socialAccounts.twitter,
-    linkedin: socialAccounts.linkedin,
+    instagram: socialAccounts.instagram ? socialAccounts.instagram : "",
+    twitter: socialAccounts.twitter ? socialAccounts.twitter : "",
+    linkedin: socialAccounts.linkedin ? socialAccounts.twitter : "",
   });
 
   const dispatch = useDispatch();
@@ -39,28 +39,28 @@ const SocialAccountList = () => {
           <FormInput
             type="text"
             name="facebook"
-            value={state.facebook ? state.facebook : ""}
+            value={state.facebook}
             onChange={handleChange}
             label="Facebook"
           />
           <FormInput
             type="text"
             name="instagram"
-            value={state.instagram ? state.instagram : ""}
+            value={state.instagram}
             onChange={handleChange}
             label="Instagram"
           />
           <FormInput
             type="text"
             name="twitter"
-            value={state.twitter ? state.twitter : ""}
+            value={state.twitter}
             onChange={handleChange}
             label="Twitter"
           />
           <FormInput
             type="text"
             name="linkedin"
-            value={state.linkedin ? state.linkedin : ""}
+            value={state.linkedin}
             onChange={handleChange}
             label="Linkedin"
           />
