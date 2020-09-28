@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { updateProfileStart } from "store/customer/customer-actions";
@@ -10,15 +10,16 @@ import FormInput from "components/form-input/form-input.component";
 import Button from "components/button/button.component";
 
 const UpdateProfileModal = ({ closeModal }) => {
-  const [state, setState] = useState({
-    fullname: "",
-    address: "",
-  });
   const { token, id, email } = useSelector((state) => state.user.sessionData);
   const isLoading = useSelector((state) => state.customer.isLoading);
   const { address, fullname } = useSelector(
     (state) => state.customer.customerData.dashboardTopData
   );
+
+  const [state, setState] = useState({
+    fullname: fullname ? fullname : "",
+    address: address ? address : "",
+  });
 
   const dispatch = useDispatch();
 
@@ -37,11 +38,6 @@ const UpdateProfileModal = ({ closeModal }) => {
       })
     );
   };
-
-  useEffect(() => {
-    setState({ ...state, fullname, address });
-  }, []);
-
   return (
     <ModalContainer
       closeAction={closeModal}
@@ -65,7 +61,7 @@ const UpdateProfileModal = ({ closeModal }) => {
       <FormInput
         type="text"
         name="address"
-        value={state.address ? state.address : ""}
+        value={state.address}
         onChange={handleChhange}
         label="Your address"
       />

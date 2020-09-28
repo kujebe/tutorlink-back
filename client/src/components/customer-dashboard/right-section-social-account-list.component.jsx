@@ -29,8 +29,6 @@ const SocialAccountList = () => {
     setState({ ...state, [name]: value });
   };
 
-  console.log(state);
-
   return (
     <div className={styles.root}>
       <div className={styles.head}>

@@ -13,8 +13,6 @@ const MySocialAccounts = () => {
     (state) => state.customer.customerData.socialAccounts[0]
   );
 
-  console.log(socialAccounts);
-
   return (
     <div className={styles.section}>
       <div className={styles.header}>
