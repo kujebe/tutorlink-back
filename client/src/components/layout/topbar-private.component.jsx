@@ -11,6 +11,9 @@ import { ReactComponent as HelpIcon } from "assets/images/question-icon.svg";
 
 const TopbarPrivate = () => {
   const hideMenu = useSelector((state) => state.user.hideMenu);
+  const profilePhoto = useSelector(
+    (state) => state.customer.customerData.profilePhoto
+  );
   const dispatch = useDispatch();
   return (
     <div className="topbar-private-wrapper">
@@ -29,8 +32,8 @@ const TopbarPrivate = () => {
       >
         <div className="user-thumbnail">
           <img
-            src={`${process.env.PUBLIC_URL}/images/profile/adejoke.jpg`}
-            alt="User Profile"
+            src={`${process.env.PUBLIC_URL}/images/customer-avatar/${profilePhoto}`}
+            alt="User profile"
           />
         </div>
       </div>
