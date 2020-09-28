@@ -13,6 +13,8 @@ const MySocialAccounts = () => {
     (state) => state.customer.customerData.socialAccounts[0]
   );
 
+  console.log(socialAccounts);
+
   return (
     <div className={styles.section}>
       <div className={styles.header}>
@@ -22,10 +24,16 @@ const MySocialAccounts = () => {
       <div className={styles.content}>
         <div className={styles.content_wrapper}>
           <div className={styles.social_placeholder}>
-            <GreyFacebook />
-            <GreyTwitter />
-            <GreyLinkedin />
-            <GreyInstagram />
+            <GreyFacebook
+              className={socialAccounts.facebook && styles.active}
+            />
+            <GreyTwitter className={socialAccounts.twitter && styles.active} />
+            <GreyLinkedin
+              className={socialAccounts.linkedin && styles.active}
+            />
+            <GreyInstagram
+              className={socialAccounts.instagram && styles.active}
+            />
           </div>
         </div>
       </div>
