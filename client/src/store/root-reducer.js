@@ -7,6 +7,7 @@ import teacherReducer from "./teacher/teacher-reducer";
 import userReducer from "./user/user-reducer";
 import errorReducer from "./errors/error-reducer";
 import customerReducer from "./customer/customer-reducer";
+import SearchReducer from "./search/search-reducer";
 
 const persistConfig = {
   key: "root",
@@ -42,6 +43,7 @@ const rootReducer = combineReducers({
   user: persistReducer(userPersistConfig, userReducer),
   errors: errorReducer,
   customer: persistReducer(customerPersistConfig, customerReducer),
+  search: SearchReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);
