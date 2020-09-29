@@ -11,6 +11,7 @@ import Layout from "components/layout/layout.component";
 
 import ResetPassword from "pages/reset-password/reset-password.page";
 import NoMatch from "components/no-match/NoMatch.component";
+import SearchPage from "pages/search/search.page";
 const HomePage = lazy(() => import("pages/home/home.page"));
 const TeacherPage = lazy(() => import("pages/teacher/teacher.page"));
 const SignInSignUp = lazy(() =>
@@ -39,6 +40,9 @@ const App = () => {
             </Route>
             <Route exact path="/teacher/:slug">
               <TeacherPage />
+            </Route>
+            <Route exact path="/search/">
+              <SearchPage />
             </Route>
             <Route
               exact

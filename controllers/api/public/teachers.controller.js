@@ -7,7 +7,7 @@ const colors = require("../../../utils/colors");
 exports.getAllTeachers = (req, res, next) => {
   const pagination = req.query.limit ? parseInt(req.query.limit) : 10;
   const pageNumber = req.query.page ? parseInt(req.query.page) : 1;
-  Teacher.estimatedDocumentCount({}, function (err, count) {
+  Teacher.estimatedDocumentCount(function (err, count) {
     Teacher.find({
       location: {
         $nearSphere: {
