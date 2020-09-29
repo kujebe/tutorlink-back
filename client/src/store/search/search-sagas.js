@@ -3,10 +3,10 @@ import { fetchTeachersSuccess, fetchTeachersFailure } from "./search-actions";
 import { setErrors, clearErrors } from "store/errors/error-actions";
 import searchActionTypes from "./search-action-types";
 
-export function* fetchTeachers({ payload: { paginationPage, limit } }) {
+export function* fetchTeachers({ payload: { page, limit } }) {
   try {
     const result = yield fetch(
-      `/api/v1/teachers/search/?page=${paginationPage}&limit=${limit}`,
+      `/api/v1/teachers/search/?page=${page}&limit=${limit}`,
       {
         method: "GET",
         headers: {

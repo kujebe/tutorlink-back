@@ -11,5 +11,5 @@ export const fetchTeachersSuccess = (data) => ({
 });
 
 export const fetchTeachersFailure = () => ({
-  type: searchActionTypes.FETCH_TEACHERS_SUCCESS,
+  type: searchActionTypes.FETCH_TEACHERS_FAILURE,
 });
