@@ -7,6 +7,7 @@ import InnerPagesLayout from "components/layout/inner-pages-layout.component";
 import TeacherProfileSummary from "components/teacher-profile-summary/teacher-profile-summary.component";
 import SearchForm from "components/search-form/search-form.component";
 import Spinner from "components/spinner/spinner.component";
+import PaginationComponent from "components/pagination/pagination.component"
 
 import styles from "./search.module.scss";
 
@@ -41,17 +42,7 @@ const SearchPage = () => {
           <Spinner />
         ) : (
             <Fragment>
-              <div className={styles.pagination}>Pagination</div>
-              {[...Array(numberOfPages)].map((page, index) => (
-                <div
-                  key={index}
-                  onClick={() =>
-                    dispatch(fetchTeachersStart({ page: index + 1, limit }))
-                  }
-                >
-                  Page {index + 1}
-                </div>
-              ))}
+              <PaginationComponent />
               <div className={styles.results_container}>
                 {teachersList &&
                   teachersList.map((teacher) => (
