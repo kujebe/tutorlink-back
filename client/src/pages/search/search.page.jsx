@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchTeachersStart } from "store/search/search-actions";
 
 import InnerPagesLayout from "components/layout/inner-pages-layout.component";
-// import SearchComponent from "components/search/search.component";
+import TeacherProfileSummary from "components/teacher-profile-summary/teacher-profile-summary.component";
 import SearchForm from "components/search-form/search-form.component";
 import Spinner from "components/spinner/spinner.component";
 
@@ -55,9 +55,7 @@ const SearchPage = () => {
               <div className={styles.results_container}>
                 {teachersList &&
                   teachersList.map((teacher) => (
-                    <div key={teacher._id}>
-                      {teacher.firstname + " " + teacher.lastname}
-                    </div>
+                    <TeacherProfileSummary key={teacher._id} teacher={teacher} />
                   ))}
               </div>
             </Fragment>
