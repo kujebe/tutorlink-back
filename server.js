@@ -29,23 +29,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-/**
- * Public routes
- */
+/**  Public routes */
 app.use("/api/v1/home", homePageRouter);
 app.use("/api/v1/teachers", teachersRouter);
 /** End public routes */
-
-/**
- * Auth routes
- */
+/** Auth routes  */
 app.use("/api/v1/auth", authRouter);
 /** End auth routes */
-
-/**
- * Customer routes
- */
-
+/** Customer routes */
 app.use("/api/v1/customer", checkSession, customerRouter);
 
 if (process.env.NODE_ENV === "production") {
