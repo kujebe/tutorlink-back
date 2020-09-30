@@ -157,6 +157,10 @@
           height: 24px;
           margin-left: 25px;
           cursor: pointer;
+          &.search-icon{ 
+            fill: #707070;
+            stroke: #707070;
+          }
         }
       }
     }

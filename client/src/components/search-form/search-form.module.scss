@@ -13,12 +13,26 @@
     z-index: 1;
     right: 0;
     top: 20px;
+    fill: $white;
+    stroke: $white;
     cursor: pointer;
     &:hover {
       background: $light_blue;
+      fill: $theme_blue;
+      stroke: $theme_blue;
     }
   }
   label {
     padding-left: 10px;
   }
 }
+
+// &.active {
+//             fill: $theme_blue;
+//             stroke: $white;
+//             cursor: pointer;
+//             :hover {
+//               fill: $light_blue;
+//               stroke: $white;
+//             }
+//           }

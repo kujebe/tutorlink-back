@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import FormInput from "components/form-input/form-input.component";
-import { ReactComponent as SearcIcon } from "assets/images/search-icon.svg";
+import { ReactComponent as SearchIcon } from "assets/images/search-icon.svg";
 
 import styles from "./search-form.module.scss";
 
@@ -14,7 +14,7 @@ const SearchForm = () => {
 
   return (
     <div className={styles.wrapper}>
-      <SearcIcon />
+      <SearchIcon />
       <FormInput
         type="text"
         name="search"

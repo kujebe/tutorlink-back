@@ -32,7 +32,7 @@ const SearchPage = () => {
       <div className={styles.search_container}>
         <div className={styles.search_box_container}>
           <h2>Find Teachers</h2>
-          <SearchForm />
+          {/*<SearchForm />*/}
         </div>
         {isLoading ? (
           <Spinner />
