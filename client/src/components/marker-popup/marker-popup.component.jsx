@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import StarRatings from "react-star-ratings";
 import useSwr from "swr";
+import { Link } from "react-router-dom"
 
 import { selectTeacherFromMap } from "store/customer/customer-actions";
 
@@ -36,9 +37,8 @@ const MarkerPopup = () => {
         {mapPopupData.map((teacher) => (
           <div
             key={teacher._id}
-            className={`${styles.teacher_wrapper} ${
-              selectedTeacherFromMap.slug === teacher.slug && styles.active
-            }`}
+            className={`${styles.teacher_wrapper} ${selectedTeacherFromMap.slug === teacher.slug && styles.active
+              }`}
             onClick={() => dispatch(selectTeacherFromMap(teacher))}
           >
             <div className={styles.teacher_photo}>
@@ -69,7 +69,7 @@ const MarkerPopup = () => {
         ))}
         <div className={styles.show_more}>
           <img src={seeMore} alt="" />
-          <div>Show All</div>
+          <Link to='/search'>Show All</Link>
         </div>
       </div>
     );

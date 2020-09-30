@@ -9,8 +9,6 @@ const PaginationComponent = () => {
     const { page, teachersCount, limit } = useSelector(state => state.search);
     const userLocation = useSelector((state) => state.mapData.userLocation);
 
-    console.log(userLocation)
-
     const numberOfPages =
         teachersCount % limit === 0
             ? Math.floor(teachersCount / limit)
