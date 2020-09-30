@@ -6,7 +6,10 @@ import { fetchTeachersStart } from "store/search/search-actions";
 import styles from "./pagination.module.scss";
 
 const PaginationComponent = () => {
-    const { page, teachersCount, limit } = useSelector(state => state.search)
+    const { page, teachersCount, limit } = useSelector(state => state.search);
+    const userLocation = useSelector((state) => state.mapData.userLocation);
+
+    console.log(userLocation)
 
     const numberOfPages =
         teachersCount % limit === 0
@@ -23,7 +26,7 @@ const PaginationComponent = () => {
                     className={`${styles.page_number} ${page === index + 1 && styles.active}`}
                     onClick={() =>
                         page !== index + 1 &&
-                        dispatch(fetchTeachersStart({ page: index + 1, limit }))
+                        dispatch(fetchTeachersStart({ page: index + 1, limit, userLocation }))
                     }
                 >
                     {index + 1}

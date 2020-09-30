@@ -7,13 +7,14 @@ const colors = require("../../../utils/colors");
 exports.getAllTeachers = (req, res, next) => {
   const pagination = req.query.limit ? parseInt(req.query.limit) : 10;
   const pageNumber = req.query.page ? parseInt(req.query.page) : 1;
+  const { longitude, latitude } = req.query;
   Teacher.estimatedDocumentCount(function (err, count) {
     Teacher.find({
       location: {
         $nearSphere: {
           $geometry: {
             type: "Point",
-            coordinates: [3.5228, 6.4529], //[longitude, latitude]
+            coordinates: [longitude, latitude], //[longitude, latitude]
           },
         },
       },

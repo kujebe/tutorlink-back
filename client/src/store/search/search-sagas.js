@@ -3,17 +3,16 @@ import { fetchTeachersSuccess, fetchTeachersFailure } from "./search-actions";
 import { setErrors, clearErrors } from "store/errors/error-actions";
 import searchActionTypes from "./search-action-types";
 
-export function* fetchTeachers({ payload: { page, limit } }) {
+export function* fetchTeachers({ payload: { page, limit, userLocation } }) {
   try {
     const result = yield fetch(
-      `/api/v1/teachers/search/?page=${page}&limit=${limit}`,
+      `/api/v1/teachers/search/?page=${page}&limit=${limit}&longitude=${userLocation[1]}&latitude=${userLocation[0]}`,
       {
         method: "GET",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        // body: JSON.stringify(requestData),
       }
     );
     const response = yield result.json();
@@ -27,7 +26,6 @@ export function* fetchTeachers({ payload: { page, limit } }) {
       yield put(fetchTeachersFailure());
       return;
     }
-    console.log(response)
     yield put(fetchTeachersSuccess({ ...response, page }));
     yield put(clearErrors()); //Clear errors
   } catch (error) {

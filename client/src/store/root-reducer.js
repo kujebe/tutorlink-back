@@ -37,11 +37,19 @@ const customerPersistConfig = {
   ],
 };
 
+const mapPersistConfig = {
+  key: "mapData",
+  storage: storage,
+  blacklist: [
+    "userLocationError",
+  ],
+};
+
 const rootReducer = combineReducers({
-  mapData: mapDataReducer,
   teacher: teacherReducer,
   errors: errorReducer,
   search: SearchReducer,
+  mapData: persistReducer(mapPersistConfig, mapDataReducer),
   user: persistReducer(userPersistConfig, userReducer),
   customer: persistReducer(customerPersistConfig, customerReducer),
 });

@@ -18,12 +18,13 @@ const SearchPage = () => {
     limit,
     isLoading,
   } = useSelector((state) => state.search);
+  const userLocation = useSelector((state) => state.mapData.userLocation);
 
   const dispatch = useDispatch();
 
 
   useEffect(() => {
-    dispatch(fetchTeachersStart({ page, limit }));
+    dispatch(fetchTeachersStart({ page, limit, userLocation }));
   }, [fetchTeachersStart]);
 
   return (
