@@ -31,6 +31,7 @@ const customerPersistConfig = {
   storage: storage,
   blacklist: [
     "selectedTeacherForPayment",
+    "selectedTeacherDetails",
     "locationBeforeLogin",
     "isLoading",
     "showPaymentModal",

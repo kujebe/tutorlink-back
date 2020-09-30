@@ -171,3 +171,17 @@ export const updateSocialMediaSuccess = (customerData) => ({
 export const updateSocialMediaFailure = () => ({
   type: customerActionTypes.UPDATE_SOCIAL_MEDIA_FAILURE,
 });
+
+export const fetchSelectedTeacherDetailsStart = (teacherSlug) => ({
+  type: customerActionTypes.FETCH_SELECTED_TEACHER_DETAILS_START,
+  payload: teacherSlug,
+});
+
+export const fetchSelectedTeacherDetailsSuccess = (teacherDetails) => ({
+  type: customerActionTypes.FETCH_SELECTED_TEACHER_DETAILS_SUCCESS,
+  payload: teacherDetails,
+});
+
+export const fetchSelectedTeacherDetailsFailure = () => ({
+  type: customerActionTypes.FETCH_SELECTED_TEACHER_DETAILS_FAILURE,
+});

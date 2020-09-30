@@ -21,6 +21,8 @@ import {
   deleteChildFailure,
   updateSocialMediaSuccess,
   updateSocialMediaFailure,
+  fetchSelectedTeacherDetailsSuccess,
+  fetchSelectedTeacherDetailsFailure,
 } from "./customer-actions";
 import { setErrors, clearErrors } from "store/errors/error-actions";
 
@@ -379,6 +381,40 @@ export function* uploadCustomerAvatar({ payload }) {
   }
 }
 
+export function* fetchTeacherDetails({ payload }) {
+  try {
+    const result = yield fetch("/api/v1/teachers/" + payload, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+    const response = yield result.json();
+    console.log(response)
+    if (response.status === "error") {
+      yield put(
+        setErrors({
+          type: "fetchTeachersDetailsFail",
+          ...response,
+        })
+      );
+      yield put(fetchSelectedTeacherDetailsFailure());
+      return;
+    }
+    yield put(fetchSelectedTeacherDetailsSuccess(response));
+    yield put(clearErrors()); //Clear errors
+  } catch (error) {
+    yield put(fetchSelectedTeacherDetailsFailure());
+    yield put(
+      setErrors({
+        type: "serverFail",
+        ...error,
+      })
+    );
+  }
+}
+
 /********* SAGAS TRIGGERS **********/
 
 export function* onSaveTransactionStart() {
@@ -439,6 +475,13 @@ export function* onUpdateSocialMediaStart() {
   );
 }
 
+export function* onFetchTeacherDetails() {
+  yield takeLatest(
+    customerActionTypes.FETCH_SELECTED_TEACHER_DETAILS_START,
+    fetchTeacherDetails
+  );
+}
+
 /** All user sagas */
 export function* customerSagas() {
   yield all([
@@ -452,5 +495,6 @@ export function* customerSagas() {
     call(onUpdateChildStart),
     call(onDeleteChildStart),
     call(onUpdateSocialMediaStart),
+    call(onFetchTeacherDetails)
   ]);
 }

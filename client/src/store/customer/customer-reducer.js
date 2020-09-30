@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   locationBeforeLogin: "",
   selectedTeacherFromMap: {},
   selectedTeacherForPayment: {},
+  selectedTeacherDetails: null,
   lastTransaction: null,
   isLoading: false,
   customerData: {},
@@ -51,6 +52,7 @@ const customerReducer = (state = INITIAL_STATE, { payload, type }) => {
     case customerActionTypes.UPDATE_CHILD_START:
     case customerActionTypes.DELETE_CHILD_START:
     case customerActionTypes.UPDATE_SOCIAL_MEDIA_START:
+    case customerActionTypes.FETCH_SELECTED_TEACHER_DETAILS_START:
       return {
         ...state,
         isLoading: true,
@@ -76,6 +78,13 @@ const customerReducer = (state = INITIAL_STATE, { payload, type }) => {
         isLoading: false,
         customerData: payload,
       };
+
+    case customerActionTypes.FETCH_SELECTED_TEACHER_DETAILS_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        selectedTeacherDetails: payload
+      }
     case customerActionTypes.FETCH_DASHBOARD_DATA_FAILURE:
     case customerActionTypes.SAVE_NEW_PHONE_NUMBER_FAILURE:
     case customerActionTypes.SAVE_TRANSACTION_FAILURE:
@@ -86,6 +95,7 @@ const customerReducer = (state = INITIAL_STATE, { payload, type }) => {
     case customerActionTypes.UPDATE_CHILD_FAILURE:
     case customerActionTypes.DELETE_CHILD_FAILURE:
     case customerActionTypes.UPDATE_SOCIAL_MEDIA_FAILURE:
+    case customerActionTypes.FETCH_SELECTED_TEACHER_DETAILS_FAILURE:
       return {
         ...state,
         isLoading: false,

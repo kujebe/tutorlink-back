@@ -1,9 +1,6 @@
 import { takeLatest, call, put, all } from "redux-saga/effects";
 
-import {
-  fetchSelectedTeacherDetailsSuccess,
-  fetchSelectedTeacherDetailsFailure,
-} from "./teacher-actions";
+import { } from "./teacher-actions";
 
 import { teacherActionTypes } from "./teacher-action-types";
 

@@ -38,7 +38,7 @@ exports.getAllTeachers = (req, res, next) => {
 //@desc get request to fetch a teacher's  data by slug
 //@route /api/v1/teachers/fname-lname
 //@access public
-exports.getTeacherBySlug = (req, res) => {
+exports.getTeacherBySlug = (req, res, next) => {
   Teacher.findOne({ slug: req.params.slug })
     .orFail({ notFound: "Not Found" })
     .then((teacher) => {
