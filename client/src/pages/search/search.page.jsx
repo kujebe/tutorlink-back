@@ -14,7 +14,7 @@ const SearchPage = () => {
   const {
     teachersList,
     teachersCount,
-    startPage,
+    page,
     limit,
     isLoading,
   } = useSelector((state) => state.search);
@@ -27,8 +27,8 @@ const SearchPage = () => {
       : Math.floor(teachersCount / limit) + 1;
 
   useEffect(() => {
-    dispatch(fetchTeachersStart({ page: startPage, limit }));
-  }, [dispatch, limit, startPage]);
+    dispatch(fetchTeachersStart({ page: page, limit }));
+  }, [dispatch, limit, page]);
 
   return (
     <InnerPagesLayout>
@@ -40,28 +40,28 @@ const SearchPage = () => {
         {isLoading ? (
           <Spinner />
         ) : (
-          <Fragment>
-            <div className={styles.pagination}>Pagination</div>
-            {[...Array(numberOfPages)].map((page, index) => (
-              <div
-                key={index}
-                onClick={() =>
-                  dispatch(fetchTeachersStart({ page: index + 1, limit }))
-                }
-              >
-                Page {index + 1}
+            <Fragment>
+              <div className={styles.pagination}>Pagination</div>
+              {[...Array(numberOfPages)].map((page, index) => (
+                <div
+                  key={index}
+                  onClick={() =>
+                    dispatch(fetchTeachersStart({ page: index + 1, limit }))
+                  }
+                >
+                  Page {index + 1}
+                </div>
+              ))}
+              <div className={styles.results_container}>
+                {teachersList &&
+                  teachersList.map((teacher) => (
+                    <div key={teacher._id}>
+                      {teacher.firstname + " " + teacher.lastname}
+                    </div>
+                  ))}
               </div>
-            ))}
-            <div className={styles.results_container}>
-              {teachersList &&
-                teachersList.map((teacher) => (
-                  <div key={teacher._id}>
-                    {teacher.firstname + " " + teacher.lastname}
-                  </div>
-                ))}
-            </div>
-          </Fragment>
-        )}
+            </Fragment>
+          )}
       </div>
     </InnerPagesLayout>
   );

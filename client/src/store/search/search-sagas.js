@@ -27,7 +27,8 @@ export function* fetchTeachers({ payload: { page, limit } }) {
       yield put(fetchTeachersFailure());
       return;
     }
-    yield put(fetchTeachersSuccess(response));
+    console.log(response)
+    yield put(fetchTeachersSuccess({ ...response, page }));
     yield put(clearErrors()); //Clear errors
   } catch (error) {
     yield put(fetchTeachersFailure());
