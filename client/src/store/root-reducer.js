@@ -12,7 +12,7 @@ import customerReducer from "./customer/customer-reducer";
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: ["user", "errors", "mapData", "teacher", "customer"],
+  blacklist: ["user", "errors", "mapData", "teacher", "customer", "search"],
 };
 
 const userPersistConfig = {
