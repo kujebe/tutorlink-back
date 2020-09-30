@@ -34,10 +34,10 @@ const TeacherPage = () => {
 
   const { teacher, subjectSkills, techSkills } = selectedTeacherDetails ? selectedTeacherDetails : {};
   const TeacherDataForPayment = {
-    // id: teacher._id,
-    // fullname: teacher.firstname + " " + teacher.lastname,
-    // email: teacher.email,
-    // slug: teacher.slug,
+    id: teacher ? teacher._id : "",
+    fullname: teacher ? teacher.firstname + " " + teacher.lastname : "",
+    email: teacher ? teacher.email : "",
+    slug: teacher ? teacher.slug : "",
   };
 
   return (
@@ -146,7 +146,7 @@ const TeacherPage = () => {
             <div className={styles.skills_wrapper}>
               <div className={styles.skills_header}>Skills</div>
               <div className={styles.skills}>
-                {subjectSkills.map((subject) => (
+                {subjectSkills && subjectSkills.map((subject) => (
                   <div key={subject.title} className={styles.skill}>
                     <div className={styles.title}>{subject.title}</div>
                     <div className={`${styles.skill_chart} ${styles.subjects}`}>
@@ -160,7 +160,7 @@ const TeacherPage = () => {
                     </div>
                   </div>
                 ))}
-                {techSkills.map((subject) => (
+                {techSkills && techSkills.map((subject) => (
                   <div key={subject.title} className={styles.skill}>
                     <div className={styles.title}>{subject.title}</div>
                     <div className={`${styles.skill_chart} ${styles.tech}`}>
