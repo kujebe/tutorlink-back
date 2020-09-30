@@ -1,7 +1,10 @@
-import React, { lazy, Suspense } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { SWRConfig } from "swr";
+
+/** Import get user location action */
+import { getUserLocationStart } from "store/map/map-actions";
 
 import Modal from "components/modal/modal.component";
 import PaymentModal from "components/payment-modal/payment-modal.component";
@@ -28,6 +31,12 @@ const App = () => {
     (state) => state.customer.showPaymentModal
   );
 
+  const dispatch = useDispatch();
+  /** Get user location on app load */
+  useEffect(() => {
+    dispatch(getUserLocationStart());
+  }, [dispatch]);
+
   return (
     <Layout>
       <ErrorBoundary>
@@ -51,8 +60,8 @@ const App = () => {
                 sessionData && sessionData.role === "customer" ? (
                   <CustomerDashboard />
                 ) : (
-                  <Redirect to="/account" />
-                )
+                    <Redirect to="/account" />
+                  )
               }
             />
             <Route
@@ -62,8 +71,8 @@ const App = () => {
                 sessionData && sessionData.role === "customer" ? (
                   <Redirect to="/customer" />
                 ) : (
-                  <SignInSignUp />
-                )
+                    <SignInSignUp />
+                  )
               }
             />
             <Route exact path="/account/reset-password">

@@ -1,9 +1,7 @@
-import React, { Fragment, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { Fragment } from "react";
+import { useSelector } from "react-redux";
 import L from "leaflet";
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
-
-import { getUserLocationStart } from "store/map/map-actions";
 
 import MarkerPopup from "components/marker-popup/marker-popup.component";
 
@@ -32,12 +30,7 @@ const mapApiEndpoint =
 //   process.env.REACT_APP_MAPBOX_API_KEY;
 
 const MapContainer = () => {
-  const dispatch = useDispatch();
   const userLocation = useSelector((state) => state.mapData.userLocation);
-
-  useEffect(() => {
-    dispatch(getUserLocationStart());
-  }, [dispatch]);
 
   return (
     <Fragment>
