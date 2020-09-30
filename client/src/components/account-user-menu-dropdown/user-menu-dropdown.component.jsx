@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { logOutStart } from "store/user/user-actions";
 
@@ -19,7 +20,10 @@ const UserMenuDropdown = () => {
 
   return (
     <div className={styles.menu_dropdown}>
-      <div onClick={logout} className={styles.logout}>
+      <div className={styles.menu_item}>
+        <Link to="/customer">View Profile</Link>
+      </div>
+      <div onClick={logout} className={styles.menu_item}>
         Sign Out
       </div>
     </div>

@@ -23,10 +23,15 @@
     transform: translateX(-50%) rotate(135deg);
     box-shadow: -2px 2px 3px rgba(57, 73, 76, 0.1);
   }
-  .logout {
+  .menu_item {
     color: #aaaaaa;
     font-weight: 600;
     font-size: 14px;
+    margin: 5px 0;
+    > a{
+      margin-left: 0px !important;
+      text-transform: none  !important;
+    }
     cursor: pointer;
     &:hover {
       color: $theme_blue;
