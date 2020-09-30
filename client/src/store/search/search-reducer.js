@@ -4,7 +4,7 @@ const INITIAL_STATE = {
   teachersList: null,
   teachersCount: 0,
   page: 1,
-  limit: 4,
+  limit: 5,
   isLoading: false,
 };
 

@@ -14,7 +14,6 @@ import styles from "./search.module.scss";
 const SearchPage = () => {
   const {
     teachersList,
-    teachersCount,
     page,
     limit,
     isLoading,
@@ -22,14 +21,10 @@ const SearchPage = () => {
 
   const dispatch = useDispatch();
 
-  const numberOfPages =
-    teachersCount % limit === 0
-      ? Math.floor(teachersCount / limit)
-      : Math.floor(teachersCount / limit) + 1;
 
   useEffect(() => {
-    dispatch(fetchTeachersStart({ page: page, limit }));
-  }, [dispatch, limit, page]);
+    dispatch(fetchTeachersStart({ page, limit }));
+  }, [fetchTeachersStart]);
 
   return (
     <InnerPagesLayout>
@@ -49,6 +44,7 @@ const SearchPage = () => {
                     <TeacherProfileSummary key={teacher._id} teacher={teacher} />
                   ))}
               </div>
+              <PaginationComponent />
             </Fragment>
           )}
       </div>

@@ -5,9 +5,9 @@ import storage from "redux-persist/lib/storage";
 import mapDataReducer from "./map/map-reducer";
 import teacherReducer from "./teacher/teacher-reducer";
 import userReducer from "./user/user-reducer";
+import SearchReducer from "./search/search-reducer";
 import errorReducer from "./errors/error-reducer";
 import customerReducer from "./customer/customer-reducer";
-import SearchReducer from "./search/search-reducer";
 
 const persistConfig = {
   key: "root",
@@ -40,10 +40,10 @@ const customerPersistConfig = {
 const rootReducer = combineReducers({
   mapData: mapDataReducer,
   teacher: teacherReducer,
-  user: persistReducer(userPersistConfig, userReducer),
   errors: errorReducer,
-  customer: persistReducer(customerPersistConfig, customerReducer),
   search: SearchReducer,
+  user: persistReducer(userPersistConfig, userReducer),
+  customer: persistReducer(customerPersistConfig, customerReducer),
 });
 
 export default persistReducer(persistConfig, rootReducer);

@@ -1,5 +1,25 @@
 @import "theme/theme.scss" ;
 
-.container{
-    width: 100%
+.container{ 
+    display: flex;
+    margin: 10px;
+    .page_number{
+        border: 1px solid $theme_blue;
+        margin: 3px 5px;
+        background: $white;
+        padding: 5px 12px;
+        color: $theme_blue;
+        font-weight: 600;
+        cursor: pointer;
+        &.active{
+            background: $theme_blue;
+            color: $white;
+            font-weight: 200;
+            cursor: default;
+        }
+        &:hover{
+            background: $theme_blue;
+            color: $white
+        }
+    }
 }

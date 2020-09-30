@@ -7,6 +7,9 @@
   width: 100%;
   flex-direction: column;
   margin-bottom: 30px;
+  &:last-child{
+    border-bottom: none
+  }
   .header_wrapper {
     display: flex;
     align-items: center;

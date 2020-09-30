@@ -20,11 +20,13 @@ const PaginationComponent = () => {
             {[...Array(numberOfPages)].map((data, index) => (
                 <div
                     key={index}
+                    className={`${styles.page_number} ${page === index + 1 && styles.active}`}
                     onClick={() =>
+                        page !== index + 1 &&
                         dispatch(fetchTeachersStart({ page: index + 1, limit }))
                     }
                 >
-                    Page {index + 1}
+                    {index + 1}
                 </div>
             ))}
         </div>
