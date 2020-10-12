@@ -9185,6 +9185,11 @@ react-star-ratings@^2.3.0:
     prop-types "^15.6.0"
     react "^16.1.0"
 
+react-step-wizard@^5.3.5:
+  version "5.3.5"
+  resolved "https://registry.yarnpkg.com/react-step-wizard/-/react-step-wizard-5.3.5.tgz#eabed30bad156f72f9ec99081613c171a15f914b"
+  integrity sha512-43xbYuovqGKIJ/bNBVDHWNpxYYJvgS0nNUlPTc170xwxXxiQOw9DytvljIJiXShZ3NHhlx+KMshj8w1GWgphFw==
+
 react-tabs@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/react-tabs/-/react-tabs-3.1.1.tgz#b363a239f76046bb2158875a1e5921b11064052f"
