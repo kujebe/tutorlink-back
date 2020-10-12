@@ -8,9 +8,7 @@ import styles from "./checkout.module.scss";
 const CheckoutPage = () => {
 
   return (
-    <InnerPagesLayout>
-      <div>I am inner page </div>
-    </InnerPagesLayout>
+    <div>I am checkout page </div>
   )
 }
 

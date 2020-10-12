@@ -54,7 +54,6 @@ const App = () => {
               <SearchPage />
             </Route>
             <Route
-              exact
               path="/customer"
               render={() =>
                 sessionData && sessionData.role === "customer" ? (
