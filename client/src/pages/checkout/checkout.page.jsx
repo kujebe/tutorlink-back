@@ -3,9 +3,9 @@ import StepWizard from 'react-step-wizard';
 
 import Nav from './nav.component';
 
-import StepOne from "components/checkout-step-one/step-one.component";
-import StepTwo from "components/checkout-step-two/step-two.component";
-import StepThree from "components/checkout-step-three/step-three.component";
+import StepOne from "components/checkout-steps/step-one.component";
+import StepTwo from "components/checkout-steps/step-two.component";
+import StepThree from "components/checkout-steps/step-three.component";
 import Steps from "components/form-wizard-steps/form-wizard-steps.component"
 
 import styles from "./checkout.module.scss";
