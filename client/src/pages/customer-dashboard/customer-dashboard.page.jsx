@@ -9,8 +9,8 @@ import CheckoutPage from "pages/checkout/checkout.page"
 const CustomerDashboard = () => {
   const match = useRouteMatch({
     path: "/customer",
-    strict: true,
-    sensitive: true
+    // strict: true,
+    // sensitive: true
   });
 
   return (
