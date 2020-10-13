@@ -1,13 +1,32 @@
 @import "theme/theme.scss";
 
-.wizard_wrapper {  
+.checkout_container{ 
+    width: 80%;
     display: flex;
-    flex-direction: column; 
-  .wizard{
-    display: flex;
-    // flex-direction: column-reverse;
-    flex-direction: column;
-  }
+    flex-direction: row;
+    flex-wrap: wrap;
+    // justify-content: space-between;
+    // align-items: center;
+    background: $white;
+    min-height: 100%;
+    @include shadowed-wrapper; 
+    @include dashboard-Wrapper-padding;
+    .wizard_wrapper {  
+        display: flex;
+        flex-direction: column; 
+        width: 58%;
+        padding-right: 30px;
+        border-right: 1px solid $grey;;
+        .wizard{
+            display: flex;
+            // flex-direction: column-reverse;
+            flex-direction: column;
+        }
+    }
+    .summary_wrapper{
+        width: 38%;
+        padding-left: 30px;
+    }
 }
 
 .rsw-wrapper {
