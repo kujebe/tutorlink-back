@@ -51,6 +51,7 @@ const StepOne = (props) => {
                 margin: "20px 0",
                 borderTop: "none",
                 borderRight: "none",
+                borderBottom: "1px solid #aaaaaa",
                 borderLeft: "none",
                 borderRadius: "none",
                 boxShadow: "none"
