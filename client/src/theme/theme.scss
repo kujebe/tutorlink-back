@@ -88,3 +88,13 @@ $star-color: #febf00;
     color: $grey;
   }
 }
+
+@mixin calendar-icon-24($top, $right, $color){
+  width: 24px;
+  height: 24px; 
+  position: absolute;
+  top: $top;
+  right: $right;
+  fill: $color;
+  cursor: pointer;
+}

@@ -1,1 +1,25 @@
 @import "theme/theme.scss";
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    .two_cols{
+        display: flex;  
+        flex-wrap: wrap;  
+        .col_one, .col_two{
+            width: 48%;
+            > div{
+                width: 100%;
+            }
+            .date_input{
+                position: relative;
+                .calendar_icon{
+                   @include calendar-icon-24(8px, 5px, rgba(0, 106, 182, 0.18)) 
+                }
+            }
+        } 
+        .col_one{
+            margin-right: 20px; 
+        }
+    }
+}
