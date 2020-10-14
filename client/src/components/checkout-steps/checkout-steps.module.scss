@@ -13,13 +13,13 @@
             }
             .date_input{
                 position: relative;
-                .calendar_icon{
-                   @include calendar-icon-24(8px, 5px, rgba(0, 106, 182, 0.18)) 
+                .input_icon{
+                   @include input-icon-24(8px, 5px, rgba(0, 106, 182, 0.18)) 
                 }
             }
         } 
         .col_one{
             margin-right: 20px; 
         }
-    }
+    } 
 }
