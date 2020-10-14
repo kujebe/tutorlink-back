@@ -17,10 +17,12 @@ const StepOne = (props) => {
         startDate: new Date(),
         enDate: "",
         startTime: "",
+        period: {},
+        numberOfTimes: null
     });
 
     const ref = React.createRef();
-    const selectOptions = [
+    const timeOptions = [
         { value: '1', label: '1 Hour' },
         { value: '2', label: '2 Hour' },
         { value: '3', label: '3 Hour' },
@@ -32,6 +34,19 @@ const StepOne = (props) => {
         { value: '8', label: '8 Hour' },
         { value: '10', label: '9 Hour' },
     ];
+    const daysOptions = [
+        { value: 'Monday', label: 'Monday' },
+        { value: 'Tuesday', label: 'Tuesday' },
+        { value: 'Wednesday', label: 'Wednesday' },
+        { value: 'Thursday', label: 'Thursday' },
+        { value: 'Friday', label: 'Friday' },
+        { value: 'Saturday', label: 'Saturday' },
+        { value: 'Sunday', label: 'Sunday' },
+    ];
+
+    const selectStyles = {
+        control: (styles) => ({ ...styles, margin: "20px 0", borderTop: "none", borderRight: "none", borderLeft: "none", bordeRadius: "none" })
+    }
 
     const StartDateInput = React.forwardRef((props, ref) => {
         return (
@@ -103,14 +118,25 @@ const StepOne = (props) => {
 
                 <div className={styles.col_two}>
                     <Select
-                        options={selectOptions}
-                        isMulti
-                        styles={{ control: (styles) => ({ ...styles, margin: "20px 0", borderTop: "none", borderRight: "none", borderLeft: "none", bordeRadius: "none" }) }}
+                        options={timeOptions}
+                        styles={selectStyles}
                         isClearable={true}
                         isSearchable={true}
+                        placeholder="Choose Time"
+                        onChange={(selectedOptions) => setState({ ...state, period: selectedOptions })}
                     />
                 </div>
             </div>
+
+            <Select
+                options={daysOptions}
+                isMulti
+                styles={selectStyles}
+                isClearable={true}
+                isSearchable={true}
+                placeholder="Choose Days"
+                onChange={(selectedOptions) => setState({ ...state, numberOfTimes: selectedOptions })}
+            />
 
         </div>
     )
