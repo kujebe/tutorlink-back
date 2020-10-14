@@ -45,7 +45,17 @@ const StepOne = (props) => {
     ];
 
     const selectStyles = {
-        control: (styles) => ({ ...styles, margin: "20px 0", borderTop: "none", borderRight: "none", borderLeft: "none", bordeRadius: "none" })
+        control: (styles) => (
+            {
+                ...styles,
+                margin: "20px 0",
+                borderTop: "none",
+                borderRight: "none",
+                borderLeft: "none",
+                borderRadius: "none",
+                boxShadow: "none"
+            }
+        )
     }
 
     const StartDateInput = React.forwardRef((props, ref) => {
