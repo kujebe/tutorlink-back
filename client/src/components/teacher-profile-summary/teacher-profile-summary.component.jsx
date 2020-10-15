@@ -18,12 +18,13 @@ const TeacherProfileSummary = ({ teacher }) => {
   // const dispatch = useDispatch();
   const history = useHistory();
 
-  const TeacherDataForPayment = {
-    id: teacher._id,
-    fullname: teacher.firstname + " " + teacher.lastname,
-    email: teacher.email,
-    slug: teacher.slug,
-  };
+  // const TeacherDataForPayment = {
+  //   id: teacher._id,
+  //   fullname: teacher.firstname + " " + teacher.lastname,
+  //   email: teacher.email,
+  //   slug: teacher.slug,
+  // };
+
   return (
     <div className={styles.summary_container}>
       <div className={styles.header_wrapper}>
