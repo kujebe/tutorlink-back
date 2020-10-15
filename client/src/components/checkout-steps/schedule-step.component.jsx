@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import Select from 'react-select'
-import { format, addDays, differenceInCalendarMonths } from "date-fns";
+import { addDays } from "date-fns";
 
 import FormInput from "components/form-input/form-input.component";
 
@@ -11,7 +11,7 @@ import { ReactComponent as TimeIcon } from "assets/images/time-icon.svg";
 import styles from "./checkout-steps.module.scss";
 import "react-datepicker/dist/react-datepicker.css";
 
-const StepOne = (props) => {
+const ScheduleStep = (props) => {
     // console.log(props)
     const [state, setState] = useState({
         startDate: new Date(),
@@ -153,4 +153,4 @@ const StepOne = (props) => {
     )
 }
 
-export default StepOne;
+export default ScheduleStep;

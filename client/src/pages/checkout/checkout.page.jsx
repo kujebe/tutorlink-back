@@ -3,7 +3,7 @@ import StepWizard from 'react-step-wizard';
 
 import Nav from './nav.component';
 
-import StepOne from "components/checkout-steps/step-one.component";
+import ScheduleStep from "components/checkout-steps/schedule-step.component";
 import StepTwo from "components/checkout-steps/step-two.component";
 import StepThree from "components/checkout-steps/step-three.component";
 import Steps from "components/form-wizard-steps/form-wizard-steps.component"
@@ -61,7 +61,7 @@ const CheckoutPage = () => {
           instance={setInstance}
           isHashEnabled={true}
         >
-          <StepOne update={updateForm} hashKey={'basic'} />
+          <ScheduleStep update={updateForm} hashKey={'Schedule'} />
           <StepTwo hashKey={'advanced'} />
           <StepThree hashKey={'last'} />
         </StepWizard>
