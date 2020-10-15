@@ -1,9 +1,9 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+// import { useDispatch } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 import StarRatings from "react-star-ratings";
 
-import { showPaymentModal } from "store/customer/customer-actions";
+// import { showPaymentModal } from "store/customer/customer-actions";
 
 import styles from "./teacher-profile-summary.module.scss";
 import { backgroundColors, textColors } from "helpers/style-helpers";
@@ -15,7 +15,8 @@ import { ReactComponent as ViewIcon } from "assets/images/view-icon.svg";
 import { ReactComponent as HireIcon } from "assets/images/hire-now-icon.svg";
 
 const TeacherProfileSummary = ({ teacher }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  const history = useHistory();
 
   const TeacherDataForPayment = {
     id: teacher._id,
@@ -51,7 +52,8 @@ const TeacherProfileSummary = ({ teacher }) => {
           </Link>
           <div
             className={styles.hire_now}
-            onClick={() => dispatch(showPaymentModal(TeacherDataForPayment))}
+            onClick={() => history.push("/customer/checkout")}
+          // onClick={() => dispatch(showPaymentModal(TeacherDataForPayment))}
           >
             <HireIcon />
             <span>Hire Now</span>

@@ -1,12 +1,12 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { PieChart } from "react-minimal-pie-chart";
 import StarRatings from "react-star-ratings";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import useSwr from "swr";
 
-import { showPaymentModal } from "store/customer/customer-actions";
+// import { showPaymentModal } from "store/customer/customer-actions";
 import { selectTeacherFromMap } from "store/customer/customer-actions";
 
 import Tags from "components/tags/tags.component";
@@ -21,7 +21,8 @@ import { chartLabelStyles } from "helpers/style-helpers";
 import styles from "./map-teacher-details.module.scss";
 
 const MapTeacherDetails = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  const history = useHistory();
   const selectedTeacherFromMap = useSelector(
     (state) => state.customer.selectedTeacherFromMap
   );
@@ -40,12 +41,12 @@ const MapTeacherDetails = () => {
 
   if (data && !error) {
     const { teacher, subjectSkills, techSkills } = data;
-    const TeacherDataForPayment = {
-      id: teacher._id,
-      fullname: teacher.firstname + " " + teacher.lastname,
-      email: teacher.email,
-      slug: teacher.slug,
-    };
+    // const TeacherDataForPayment = {
+    //   id: teacher._id,
+    //   fullname: teacher.firstname + " " + teacher.lastname,
+    //   email: teacher.email,
+    //   slug: teacher.slug,
+    // };
 
     return (
       <div className={`${styles.full_details_container} ${styles.opened}`}>
@@ -165,7 +166,8 @@ const MapTeacherDetails = () => {
         </div>
         <div className={styles.actions}>
           <button
-            onClick={() => dispatch(showPaymentModal(TeacherDataForPayment))}
+            onClick={() => history.push("/customer/checkout")}
+          // onClick={() => dispatch(showPaymentModal(TeacherDataForPayment))}
           >
             Hire Now
           </button>

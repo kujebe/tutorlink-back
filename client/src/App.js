@@ -6,8 +6,8 @@ import { SWRConfig } from "swr";
 /** Import get user location action */
 import { getUserLocationStart } from "store/map/map-actions";
 
-import Modal from "components/modal/modal.component";
-import PaymentModal from "components/payment-modal/payment-modal.component";
+// import Modal from "components/modal/modal.component";
+// import PaymentModal from "components/payment-modal/payment-modal.component";
 import Spinner from "components/spinner/spinner.component";
 import ErrorBoundary from "components/error-boundary/error-boundary.component";
 import Layout from "components/layout/layout.component";
@@ -27,9 +27,9 @@ const fetcher = (...args) => fetch(...args).then((response) => response.json());
 
 const App = () => {
   const sessionData = useSelector((state) => state.user.sessionData);
-  const showPaymentModal = useSelector(
-    (state) => state.customer.showPaymentModal
-  );
+  // const showPaymentModal = useSelector(
+  //   (state) => state.customer.showPaymentModal
+  // );
 
   const dispatch = useDispatch();
   /** Get user location on app load */
@@ -83,11 +83,11 @@ const App = () => {
           </Switch>
         </Suspense>
       </ErrorBoundary>
-      {showPaymentModal && (
+      {/*} {showPaymentModal && (
         <Modal>
           <PaymentModal />
         </Modal>
-      )}
+     )}*/}
     </Layout>
   );
 };

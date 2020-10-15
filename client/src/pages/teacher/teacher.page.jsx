@@ -1,11 +1,11 @@
 import React, { useEffect, Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import StarRatings from "react-star-ratings";
 
 import { fetchSelectedTeacherDetailsStart } from "store/customer/customer-actions"
 
-import { showPaymentModal } from "store/customer/customer-actions";
+// import { showPaymentModal } from "store/customer/customer-actions";
 
 import InnerPagesLayout from "components/layout/inner-pages-layout.component";
 import Spinner from "components/spinner/spinner.component";
@@ -27,18 +27,19 @@ const TeacherPage = () => {
   const { slug } = useParams();
   const { selectedTeacherDetails, isLoading } = useSelector(state => state.customer)
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(fetchSelectedTeacherDetailsStart(slug))
   }, [fetchSelectedTeacherDetailsStart]);
 
   const { teacher, subjectSkills, techSkills } = selectedTeacherDetails ? selectedTeacherDetails : {};
-  const TeacherDataForPayment = {
-    id: teacher ? teacher._id : "",
-    fullname: teacher ? teacher.firstname + " " + teacher.lastname : "",
-    email: teacher ? teacher.email : "",
-    slug: teacher ? teacher.slug : "",
-  };
+  // const TeacherDataForPayment = {
+  //   id: teacher ? teacher._id : "",
+  //   fullname: teacher ? teacher.firstname + " " + teacher.lastname : "",
+  //   email: teacher ? teacher.email : "",
+  //   slug: teacher ? teacher.slug : "",
+  // };
 
   return (
     <Fragment>
@@ -180,9 +181,10 @@ const TeacherPage = () => {
                   N40,000.00<span> / Month</span>
                 </div>
                 <button
-                  onClick={() =>
-                    dispatch(showPaymentModal(TeacherDataForPayment))
-                  }
+                  onClick={() => history.push("/customer/checkout")}
+                // onClick={() =>
+                //   dispatch(showPaymentModal(TeacherDataForPayment))
+                // }
                 >
                   Hire Now
               </button>
@@ -191,7 +193,7 @@ const TeacherPage = () => {
           </div>
         </InnerPagesLayout>}
 
-    </Fragment>
+    </Fragment >
   );
 }
 
