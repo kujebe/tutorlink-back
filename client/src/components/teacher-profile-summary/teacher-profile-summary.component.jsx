@@ -53,7 +53,7 @@ const TeacherProfileSummary = ({ teacher }) => {
           </Link>
           <div
             className={styles.hire_now}
-            onClick={() => history.push("/customer/checkout")}
+            onClick={() => history.push(`/customer/checkout?_id=${teacher._id}`)}
           // onClick={() => dispatch(showPaymentModal(TeacherDataForPayment))}
           >
             <HireIcon />

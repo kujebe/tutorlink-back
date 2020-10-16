@@ -166,7 +166,7 @@ const MapTeacherDetails = () => {
         </div>
         <div className={styles.actions}>
           <button
-            onClick={() => history.push("/customer/checkout")}
+            onClick={() => history.push(`/customer/checkout?_id=${teacher._id}`)}
           // onClick={() => dispatch(showPaymentModal(TeacherDataForPayment))}
           >
             Hire Now

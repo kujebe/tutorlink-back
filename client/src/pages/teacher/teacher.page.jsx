@@ -25,7 +25,7 @@ import { ReactComponent as HiredIcon } from "assets/images/hired-icon.svg";
 
 const TeacherPage = () => {
   const { slug } = useParams();
-  const { selectedTeacherDetails, isLoading } = useSelector(state => state.customer)
+  const { selectedTeacherDetails } = useSelector(state => state.customer)
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -181,7 +181,7 @@ const TeacherPage = () => {
                   N40,000.00<span> / Month</span>
                 </div>
                 <button
-                  onClick={() => history.push("/customer/checkout")}
+                  onClick={() => history.push(`/customer/checkout?_id=${teacher._id}`)}
                 // onClick={() =>
                 //   dispatch(showPaymentModal(TeacherDataForPayment))
                 // }
