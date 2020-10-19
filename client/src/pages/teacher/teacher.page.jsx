@@ -181,7 +181,7 @@ const TeacherPage = () => {
                   N40,000.00<span> / Month</span>
                 </div>
                 <button
-                  onClick={() => history.push(`/customer/checkout?_id=${teacher._id}`)}
+                  onClick={() => history.push(`/customer/checkout?slug=${teacher.slug}&_id=${teacher._id}`)}
                 // onClick={() =>
                 //   dispatch(showPaymentModal(TeacherDataForPayment))
                 // }

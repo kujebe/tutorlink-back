@@ -38,6 +38,7 @@ app.use("/api/v1/auth", authRouter);
 /** End auth routes */
 /** Customer routes */
 app.use("/api/v1/customer", checkSession, customerRouter);
+// app.use("/api/v1/checkout", checkSession, checkoutRouter);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));

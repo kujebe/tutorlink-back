@@ -1,5 +1,10 @@
-import React, { Fragment, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import useQuery from "hooks/use-query";
+import { useDispatch, useSelector } from "react-redux";
 import StepWizard from 'react-step-wizard';
+
+import { fetchSelectedTeacherDetailsStart } from "store/customer/customer-actions"
 
 import Nav from './nav.component';
 
@@ -16,6 +21,11 @@ import transitions from "./transitions.module.scss";
 
 const CheckoutPage = () => {
 
+  const dispatch = useDispatch();
+
+  const query = useQuery();
+  const slug = query.get("slug");
+
   const [state, updateState] = useState({
     form: {},
     transitions: {
@@ -26,6 +36,10 @@ const CheckoutPage = () => {
       intro: `${transitions.animated} ${transitions.intro}`,
     },
   });
+
+  useEffect(() => {
+    dispatch(fetchSelectedTeacherDetailsStart(slug))
+  }, [fetchSelectedTeacherDetailsStart]);
 
   const updateForm = (key, value) => {
     const { form } = state;
