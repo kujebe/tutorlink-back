@@ -38,6 +38,7 @@ const ChildDataStep = () => {
     return (
         <Fragment>
             <div className={styles.wrapper}>
+                <div className={styles.title}>Child Data</div>
                 <Select
                     options={childrenOptions}
                     isMulti

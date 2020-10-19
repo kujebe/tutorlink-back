@@ -3,6 +3,15 @@
 .wrapper{
     display: flex;
     flex-direction: column;
+    .title{
+        width: 100%;
+        display: flex;
+        justify-content: center; 
+        padding: 10px 0;
+        font-size: 20px;
+        font-weight: 700;
+        text-transform: uppercase; 
+    }
     .two_cols{
         display: flex;  
         flex-wrap: wrap;  

@@ -88,6 +88,7 @@ const ScheduleStep = (props) => {
 
     return (
         <div className={styles.wrapper}>
+            <div className={styles.title}>Schedule</div>
             <div className={styles.two_cols}>
                 <div className={styles.col_one}>
                     <DatePicker
