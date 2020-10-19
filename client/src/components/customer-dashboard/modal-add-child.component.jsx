@@ -6,7 +6,7 @@ import { addChildStart } from "store/customer/customer-actions";
 import styles from "./left-section.module.scss";
 
 import ModalContainer from "./modal-container.component";
-import FormInput from "components/form-input/form-input.component";
+import CustomerChildForm from "components/customer-child-form/cutomer-child-form.component";
 import Button from "components/button/button.component";
 
 const AddChildModal = ({ closeModal }) => {
@@ -22,7 +22,7 @@ const AddChildModal = ({ closeModal }) => {
 
   const dispatch = useDispatch();
 
-  const handleChhange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setState({ ...state, [name]: value });
   };
@@ -47,46 +47,11 @@ const AddChildModal = ({ closeModal }) => {
       closeValue={false}
       modalTitle="Add Child Profile"
     >
-      <FormInput
-        type="text"
-        name="fullname"
-        value={state.fullname}
-        onChange={handleChhange}
-        label="Child full name"
-        required
+      <CustomerChildForm
+        state={state}
+        changeAction={handleChange}
       />
-      <FormInput
-        type="number"
-        name="age"
-        value={state.age}
-        onChange={handleChhange}
-        label="Child age"
-        required
-      />
-      <FormInput
-        type="text"
-        name="school"
-        value={state.school}
-        onChange={handleChhange}
-        label="Child school"
-        required
-      />
-      <FormInput
-        type="text"
-        name="class"
-        value={state.class}
-        onChange={handleChhange}
-        label="Child class"
-        required
-      />
-      <FormInput
-        type="text"
-        name="gender"
-        value={state.gender}
-        onChange={handleChhange}
-        label="Child Gender"
-        required
-      />
+
       <div className={styles.modal_button_wrapper}>
         <Button
           type="submit"
