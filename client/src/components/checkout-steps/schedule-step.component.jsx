@@ -9,7 +9,10 @@ import { ReactComponent as CalendarIcon } from "assets/images/calendar-icon.svg"
 import { ReactComponent as TimeIcon } from "assets/images/time-icon.svg";
 
 import styles from "./checkout-steps.module.scss";
+import { reactSelectStyles } from "helpers/style-helpers";
 import "react-datepicker/dist/react-datepicker.css";
+
+import { timeOptions, daysOptions } from "helpers/options"
 
 const ScheduleStep = (props) => {
     // console.log(props)
@@ -22,42 +25,6 @@ const ScheduleStep = (props) => {
     });
 
     const ref = React.createRef();
-    const timeOptions = [
-        { value: '1', label: '1 Hour' },
-        { value: '2', label: '2 Hour' },
-        { value: '3', label: '3 Hour' },
-        { value: '4', label: '4 Hour' },
-        { value: '5', label: '5 Hour' },
-        { value: '6', label: '6 Hour' },
-        { value: '7', label: '7 Hour' },
-        { value: '8', label: '8 Hour' },
-        { value: '8', label: '8 Hour' },
-        { value: '10', label: '9 Hour' },
-    ];
-    const daysOptions = [
-        { value: 'Monday', label: 'Monday' },
-        { value: 'Tuesday', label: 'Tuesday' },
-        { value: 'Wednesday', label: 'Wednesday' },
-        { value: 'Thursday', label: 'Thursday' },
-        { value: 'Friday', label: 'Friday' },
-        { value: 'Saturday', label: 'Saturday' },
-        { value: 'Sunday', label: 'Sunday' },
-    ];
-
-    const selectStyles = {
-        control: (styles) => (
-            {
-                ...styles,
-                margin: "20px 0",
-                borderTop: "none",
-                borderRight: "none",
-                borderBottom: "1px solid #aaaaaa",
-                borderLeft: "none",
-                borderRadius: "none",
-                boxShadow: "none"
-            }
-        )
-    }
 
     const StartDateInput = React.forwardRef((props, ref) => {
         return (
@@ -131,7 +98,7 @@ const ScheduleStep = (props) => {
                 <div className={styles.col_two}>
                     <Select
                         options={timeOptions}
-                        styles={selectStyles}
+                        styles={reactSelectStyles}
                         isClearable={true}
                         isSearchable={true}
                         placeholder="Choose Time"
@@ -143,7 +110,7 @@ const ScheduleStep = (props) => {
             <Select
                 options={daysOptions}
                 isMulti
-                styles={selectStyles}
+                styles={reactSelectStyles}
                 isClearable={true}
                 isSearchable={true}
                 placeholder="Choose Days"

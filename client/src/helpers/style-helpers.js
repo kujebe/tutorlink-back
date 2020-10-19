@@ -21,3 +21,18 @@ export const chartLabelStyles = {
   fill: "#fff",
   pointerEvents: "none",
 };
+
+export const reactSelectStyles = {
+  control: (styles) => (
+    {
+      ...styles,
+      margin: "20px 0",
+      borderTop: "none",
+      borderRight: "none",
+      borderBottom: "1px solid #aaaaaa",
+      borderLeft: "none",
+      borderRadius: "none",
+      boxShadow: "none"
+    }
+  )
+}

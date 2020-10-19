@@ -7,21 +7,7 @@ import Modal from "components/modal/modal.component";
 import AddChildModal from "components/customer-dashboard/modal-add-child.component";
 
 import styles from "./checkout-steps.module.scss";
-
-const selectStyles = {
-    control: (styles) => (
-        {
-            ...styles,
-            margin: "20px 0",
-            borderTop: "none",
-            borderRight: "none",
-            borderBottom: "1px solid #aaaaaa",
-            borderLeft: "none",
-            borderRadius: "none",
-            boxShadow: "none"
-        }
-    )
-}
+import { reactSelectStyles } from "helpers/style-helpers";
 
 const ChildDataStep = () => {
     const [state, setState] = useState({
@@ -42,7 +28,7 @@ const ChildDataStep = () => {
                 <Select
                     options={childrenOptions}
                     isMulti
-                    styles={selectStyles}
+                    styles={reactSelectStyles}
                     isClearable={true}
                     isSearchable={true}
                     placeholder="Select Children"
