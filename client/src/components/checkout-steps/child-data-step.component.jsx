@@ -6,6 +6,8 @@ import PlusIcon from "components/plus-icon/plus-icon.component";
 import Modal from "components/modal/modal.component";
 import AddChildModal from "components/customer-dashboard/modal-add-child.component";
 
+import styles from "./checkout-steps.module.scss";
+
 const selectStyles = {
     control: (styles) => (
         {
@@ -35,22 +37,28 @@ const ChildDataStep = () => {
 
     return (
         <Fragment>
-            <Select
-                options={childrenOptions}
-                isMulti
-                styles={selectStyles}
-                isClearable={true}
-                isSearchable={true}
-                placeholder="Select Children"
-                onChange={(selectedOptions) => setState({ ...state, children: selectedOptions })}
-            />
-            <PlusIcon action={setOpenAddChildModal} status={true} />
+            <div className={styles.wrapper}>
+                <Select
+                    options={childrenOptions}
+                    isMulti
+                    styles={selectStyles}
+                    isClearable={true}
+                    isSearchable={true}
+                    placeholder="Select Children"
+                    onChange={(selectedOptions) => setState({ ...state, children: selectedOptions })}
+                />
+                <div className={styles.child_select}>
+                    <PlusIcon action={setOpenAddChildModal} status={true} />
+                    <div className={styles.text}>Add Child</div>
+                </div>
+            </div>
 
             {openAddChildModal && (
                 <Modal>
                     <AddChildModal closeModal={setOpenAddChildModal} />
                 </Modal>
             )}
+
         </Fragment>
     )
 
