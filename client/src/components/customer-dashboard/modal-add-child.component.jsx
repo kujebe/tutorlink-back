@@ -41,6 +41,13 @@ const AddChildModal = ({ closeModal }) => {
     );
   };
 
+  const handleSelectChange = (fieldName, selectedOptions) => {
+    if (selectedOptions !== null) {
+      setState({ ...state, [fieldName]: selectedOptions })
+    }
+
+  };
+
   return (
     <ModalContainer
       closeAction={closeModal}
@@ -50,6 +57,7 @@ const AddChildModal = ({ closeModal }) => {
       <CustomerChildForm
         state={state}
         changeAction={handleChange}
+        handleSelectChange={handleSelectChange}
       />
 
       <div className={styles.modal_button_wrapper}>

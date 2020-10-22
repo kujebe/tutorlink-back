@@ -17,7 +17,6 @@ import transitions from "./transitions.module.scss";
 
 /** Demo of using instance */
 
-
 const CheckoutPage = () => {
 
   const dispatch = useDispatch();
