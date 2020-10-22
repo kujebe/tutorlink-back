@@ -6,7 +6,7 @@ import FormInput from "components/form-input/form-input.component";
 import styles from "./cutomer-child-form.module.scss";
 import { reactSelectStyles } from "helpers/style-helpers";
 
-import { academicLevels, curriculum, nigerianCurriculum, britishCurriculum, americanCurriculum, preSchoolSubjects, nurserySubjects, primarySubjects, lowerSecondarySubjects, upperSecondarySubjects } from "helpers/options";
+import { goalOptions, curriculum, nigerianCurriculum, britishCurriculum, americanCurriculum, preSchoolSubjects, nurserySubjects, primarySubjects, lowerSecondarySubjects, upperSecondarySubjects } from "helpers/options";
 
 const CustomerChildForm = ({ state, changeAction, handleSelectChange }) => {
 
@@ -129,8 +129,23 @@ const CustomerChildForm = ({ state, changeAction, handleSelectChange }) => {
                 placeholder="Subjects"
                 onChange={(selectedOptions) => handleSelectChange("subjects", selectedOptions)}
             />}
-
-            {/*
+            <Select
+                options={selectClassOptions()}
+                styles={reactSelectStyles}
+                isClearable={true}
+                isSearchable={true}
+                placeholder="Class"
+                defaultValue={nigerianCurriculum[0]}
+                onChange={(selectedOptions) => handleSelectChange("class", selectedOptions)}
+            />
+            <Select
+                options={goalOptions}
+                styles={reactSelectStyles}
+                isClearable={true}
+                isSearchable={true}
+                placeholder="Goal for this child"
+                onChange={(selectedOptions) => handleSelectChange("goal", selectedOptions)}
+            />
             <FormInput
                 type="text"
                 name="school"
@@ -141,20 +156,20 @@ const CustomerChildForm = ({ state, changeAction, handleSelectChange }) => {
             />
             <FormInput
                 type="text"
+                name="gender"
+                value={state.gender}
+                onChange={changeAction}
+                label="Child Gender"
+                required
+            />
+            <textarea
+                type="textarea"
                 name="class"
                 value={state.class}
                 onChange={changeAction}
                 label="Child class"
                 required
             />
-            <FormInput
-                type="text"
-                name="gender"
-                value={state.gender}
-                onChange={changeAction}
-                label="Child Gender"
-                required
-            /> */}
         </Fragment>
     )
 }

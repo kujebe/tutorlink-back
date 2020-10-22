@@ -22,6 +22,22 @@ export const daysOptions = [
     { value: 'Sunday', label: 'Sunday' },
 ];
 
+export const goalOptions = [
+    { value: "", label: "Select a goal" },
+    { value: "Checkpoint exam preparation", label: "Checkpoint exam preparation" },
+    { value: "Prepare for JSCE or BECE", label: "Prepare for JSCE / BECE" },
+    { value: "Prepare for school tests and exam", label: "Prepare for school tests and exam" },
+    { value: "Improve grades", label: "Improve grades" },
+    { value: "Help with assignments and school work", label: "Help with assignments and school work" },
+    { value: "Homeschooling", label: "Homeschooling" },
+    { value: "Special needs support", label: "Special needs support" },
+    { value: "IGCSE preparation", label: "IGCSE preparation" },
+    { value: "SSCE / NECO / GCE Preparation", label: "SSCE / NECO / GCE Preparation" },
+    { value: "UTME / JAMB Preparation", label: "UTME / JAMB Preparation" },
+    { value: "SAT exam preparation", label: "SAT exam preparation" },
+    { value: "ACT exam preparation ", label: "ACT exam preparation" }
+]
+
 // export const academicLevels = [
 //     { value: 'Pre School', label: 'Pre School' },
 //     { value: 'Elementary', label: 'Elementary' },
