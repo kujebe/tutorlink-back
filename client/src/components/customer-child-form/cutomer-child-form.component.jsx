@@ -162,12 +162,12 @@ const CustomerChildForm = ({ state, changeAction, handleSelectChange }) => {
                 label="Child Gender"
                 required
             />
-            <textarea
-                type="textarea"
-                name="class"
-                value={state.class}
+            <FormInput
+                type="textArea"
+                name="more"
+                value={state.more}
                 onChange={changeAction}
-                label="Child class"
+                label="Tell us more about this child"
                 required
             />
         </Fragment>
