@@ -33,7 +33,7 @@ const TeacherPage = () => {
     dispatch(fetchSelectedTeacherDetailsStart(slug))
   }, [fetchSelectedTeacherDetailsStart]);
 
-  const { teacher, subjectSkills, techSkills } = selectedTeacherDetails ? selectedTeacherDetails : {};
+  const { teacher, subjectSkills, techSkills } = selectedTeacherDetails;
   // const TeacherDataForPayment = {
   //   id: teacher ? teacher._id : "",
   //   fullname: teacher ? teacher.firstname + " " + teacher.lastname : "",
