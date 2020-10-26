@@ -50,18 +50,18 @@ const TeacherPage = () => {
               <div className={styles.photo}>
                 <img
                   src={
-                    process.env.PUBLIC_URL + "/images/profile/" + teacher.profile
+                    teacher && process.env.PUBLIC_URL + "/images/profile/" + teacher.profile
                   }
-                  alt={teacher.firstname}
+                  alt={teacher && teacher.firstname}
                 />
               </div>
               <div className={styles.highlights}>
                 <div className={styles.name_status_ratings}>
                   <h2 className={styles.name}>
-                    {teacher.firstname + " " + teacher.lastname}
+                    {teacher && teacher.firstname + " " + teacher.lastname}
                   </h2>
                   <StarRatings
-                    rating={teacher.rating}
+                    rating={teacher && teacher.rating}
                     starDimension="18px"
                     starSpacing="2px"
                     starRatedColor="#FEBF00"
@@ -72,15 +72,15 @@ const TeacherPage = () => {
                 <div className={styles.metas}>
                   <div className={styles.education}>
                     <EducationIcon className={styles.icon} />
-                    {teacher.education.join(", ")}
+                    {teacher && teacher.education.join(", ")}
                   </div>
                   <div className={styles.total_experience}>
                     <ExperienceIcon className={styles.icon} />
-                    {teacher.experience + " Years Experience"}
+                    {teacher && teacher.experience + " Years Experience"}
                   </div>
                 </div>
                 <div className={styles.levels}>
-                  {teacher.classes.map((level, idx) => (
+                  {teacher && teacher.classes.map((level, idx) => (
                     <div
                       key={level}
                       className={styles.level}
@@ -181,7 +181,7 @@ const TeacherPage = () => {
                   N40,000.00<span> / Month</span>
                 </div>
                 <button
-                  onClick={() => history.push(`/customer/checkout?slug=${teacher.slug}&_id=${teacher._id}`)}
+                  onClick={() => history.push(`/customer/checkout?slug=${teacher && teacher.slug}&_id=${teacher._id}`)}
                 // onClick={() =>
                 //   dispatch(showPaymentModal(TeacherDataForPayment))
                 // }

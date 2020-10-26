@@ -3,4 +3,34 @@
 .wrapper{
     width: 38%;
     padding-left: 30px;
+    flex-grow: 1;
+    .title{
+        font-size: 22px;
+        color: $theme_blue;
+        text-align: center;
+        padding: 14px 10px;
+        border-bottom: 1px solid $grey;
+        text-transform: uppercase;
+    }
+    .two_cols{
+        display: flex;  
+        flex-wrap: wrap; 
+        padding-top: 22px; 
+        .col_one, .col_two{
+            width: 50%;
+            > div{
+                width: 100%;
+            } 
+        } 
+        .col_one{
+            font-weight: 600;
+        }
+        .col_two{ 
+            color: $theme_blue; 
+        }
+        .col_two a{
+            color: $theme_blue; 
+            text-decoration: underline;
+        }
+    } 
 }
