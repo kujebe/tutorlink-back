@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import DatePicker from "react-datepicker";
 import Select from 'react-select'
 import { addDays } from "date-fns";
+
+import { updateCheckoutData } from "store/customer/customer-actions";
 
 import FormInput from "components/form-input/form-input.component";
 
@@ -15,16 +18,26 @@ import "react-datepicker/dist/react-datepicker.css";
 import { timeOptions, daysOptions } from "helpers/options"
 
 const ScheduleStep = (props) => {
-    // console.log(props)
+    // console.log(props);
     const [state, setState] = useState({
         startDate: new Date(),
-        enDate: "",
+        endDate: "",
         startTime: "",
         period: {},
         numberOfTimes: null
     });
 
+    const dispatch = useDispatch();
+
     const ref = React.createRef();
+
+    const handleChange = (label, data) => {
+        setState({ ...state, [label]: data });
+    }
+
+    useEffect(() => {
+        dispatch(updateCheckoutData(state))
+    }, [state])
 
     const StartDateInput = React.forwardRef((props, ref) => {
         return (
@@ -60,7 +73,7 @@ const ScheduleStep = (props) => {
                 <div className={styles.col_one}>
                     <DatePicker
                         selected={state.startDate}
-                        onChange={date => setState({ ...state, startDate: date })}
+                        onChange={date => handleChange("startDate", date)}
                         startDate={state.startDate}
                         endDate={state.endDate}
                         selectsStart
@@ -71,7 +84,7 @@ const ScheduleStep = (props) => {
                 <div className={styles.col_two}>
                     <DatePicker
                         selected={state.endDate}
-                        onChange={date => setState({ ...state, endDate: date })}
+                        onChange={date => handleChange("endDate", date)}
                         startDate={state.startDate}
                         endDate={state.endDate}
                         selectsEnd
@@ -85,7 +98,7 @@ const ScheduleStep = (props) => {
                 <div className={styles.col_one}>
                     <DatePicker
                         selected={state.startTime}
-                        onChange={date => setState({ ...state, startTime: date })}
+                        onChange={time => handleChange("startTime", time)}
                         showTimeSelect
                         showTimeSelectOnly
                         timeIntervals={60}
@@ -102,7 +115,7 @@ const ScheduleStep = (props) => {
                         isClearable={true}
                         isSearchable={true}
                         placeholder="Choose Time"
-                        onChange={(selectedOptions) => setState({ ...state, period: selectedOptions })}
+                        onChange={(selectedOptions) => handleChange("period", selectedOptions)}
                     />
                 </div>
             </div>
@@ -114,7 +127,7 @@ const ScheduleStep = (props) => {
                 isClearable={true}
                 isSearchable={true}
                 placeholder="Choose Days"
-                onChange={(selectedOptions) => setState({ ...state, numberOfTimes: selectedOptions })}
+                onChange={(selectedOptions) => handleChange("numberOfTimes", selectedOptions)}
             />
 
         </div>

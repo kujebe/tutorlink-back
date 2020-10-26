@@ -185,3 +185,8 @@ export const fetchSelectedTeacherDetailsSuccess = (teacherDetails) => ({
 export const fetchSelectedTeacherDetailsFailure = () => ({
   type: customerActionTypes.FETCH_SELECTED_TEACHER_DETAILS_FAILURE,
 });
+
+export const updateCheckoutData = (data) => ({
+  type: customerActionTypes.UPDATE_CHECKOUT_DATA,
+  payload: data
+});

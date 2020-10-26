@@ -10,6 +10,7 @@ const INITIAL_STATE = {
   lastTransaction: null,
   isLoading: false,
   customerData: {},
+  checkoutData: {},
 };
 
 const customerReducer = (state = INITIAL_STATE, { payload, type }) => {
@@ -105,6 +106,11 @@ const customerReducer = (state = INITIAL_STATE, { payload, type }) => {
         ...state,
         customerData: {},
       };
+    case customerActionTypes.UPDATE_CHECKOUT_DATA:
+      return {
+        ...state,
+        checkoutData: payload
+      }
     default:
       return state;
   }
