@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import Select from 'react-select'
 import { addDays } from "date-fns";
 
+
 import { updateCheckoutData } from "store/customer/customer-actions";
 
 import FormInput from "components/form-input/form-input.component";
@@ -22,7 +23,7 @@ const ScheduleStep = (props) => {
     const [state, setState] = useState({
         startDate: new Date(),
         endDate: "",
-        startTime: "",
+        startTime: null,
         period: {},
         numberOfTimes: null
     });
