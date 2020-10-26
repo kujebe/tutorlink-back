@@ -53,9 +53,6 @@ const ScheduleStep = (props) => {
         )
     });
 
-
-    console.log(state);
-
     return (
         <div className={styles.wrapper}>
             <div className={styles.title}>Schedule</div>

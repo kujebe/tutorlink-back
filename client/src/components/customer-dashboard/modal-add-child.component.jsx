@@ -15,7 +15,6 @@ const AddChildModal = ({ closeModal }) => {
     age: "",
     gender: "",
     school: "",
-    class: "",
   });
   const { token, id } = useSelector((state) => state.user.sessionData);
   const isLoading = useSelector((state) => state.customer.isLoading);
@@ -36,7 +35,6 @@ const AddChildModal = ({ closeModal }) => {
         age: state.age,
         gender: state.gender,
         school: state.school,
-        class: state.class,
       })
     );
   };
@@ -47,6 +45,8 @@ const AddChildModal = ({ closeModal }) => {
     }
 
   };
+
+  console.log(state);
 
   return (
     <ModalContainer

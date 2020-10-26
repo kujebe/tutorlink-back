@@ -46,6 +46,7 @@ $star-color: #febf00;
   align-items: center;
   justify-content: center;
   transition: all 0.25s ease;
+  overflow-y: scroll;
 }
 
 @mixin modal-content-wrapper {

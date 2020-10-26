@@ -10,8 +10,6 @@ import { goalOptions, curriculum, nigerianCurriculum, britishCurriculum, america
 
 const CustomerChildForm = ({ state, changeAction, handleSelectChange }) => {
 
-    console.log(state);
-
     const selectClassOptions = () => {
         if (state.curriculum) {
             switch (state.curriculum.value) {
@@ -45,7 +43,7 @@ const CustomerChildForm = ({ state, changeAction, handleSelectChange }) => {
             case "Year 2":
             case "Year 3":
             case "Year 4":
-            case "Year 6":
+            case "Year 5":
             case "1st grade":
             case "2nd grade":
             case "3rd grade":
@@ -56,6 +54,7 @@ const CustomerChildForm = ({ state, changeAction, handleSelectChange }) => {
             case "JSS 1":
             case "JSS 2":
             case "JSS 3":
+            case "Year 6":
             case "Year 7":
             case "Year 8":
             case "Year 9":
@@ -103,7 +102,7 @@ const CustomerChildForm = ({ state, changeAction, handleSelectChange }) => {
                         styles={reactSelectStyles}
                         isClearable={true}
                         isSearchable={true}
-                        placeholder="Curriculum"
+                        placeholder="School Curriculum"
                         defaultValue={curriculum[0]}
                         onChange={(selectedOptions) => handleSelectChange("curriculum", selectedOptions)}
                     />
@@ -114,7 +113,8 @@ const CustomerChildForm = ({ state, changeAction, handleSelectChange }) => {
                         styles={reactSelectStyles}
                         isClearable={true}
                         isSearchable={true}
-                        placeholder="Class"
+                        placeholder="Child's class"
+                        // value={state.class.label}
                         defaultValue={nigerianCurriculum[0]}
                         onChange={(selectedOptions) => handleSelectChange("class", selectedOptions)}
                     />
