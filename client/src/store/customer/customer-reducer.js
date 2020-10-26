@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   locationBeforeLogin: "",
   selectedTeacherFromMap: {},
   selectedTeacherForPayment: {},
-  selectedTeacherDetails: null,
+  selectedTeacherDetails: {},
   lastTransaction: null,
   isLoading: false,
   customerData: {},

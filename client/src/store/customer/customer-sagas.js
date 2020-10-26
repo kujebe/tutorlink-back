@@ -391,7 +391,6 @@ export function* fetchTeacherDetails({ payload }) {
       },
     });
     const response = yield result.json();
-    console.log(response)
     if (response.status === "error") {
       yield put(
         setErrors({

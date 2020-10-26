@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
-import useQuery from "hooks/use-query";
-import { useDispatch } from "react-redux";
 import StepWizard from 'react-step-wizard';
-
-import { fetchSelectedTeacherDetailsStart } from "store/customer/customer-actions"
 
 import Nav from './nav.component';
 
 import ScheduleStep from "components/checkout-steps/schedule-step.component";
+import CheckoutSummary from "components/checkout-summary/checkout-summary.component";
 import ChildDataStep from "components/checkout-steps/child-data-step.component";
 import StepThree from "components/checkout-steps/step-three.component";
 import Steps from "components/form-wizard-steps/form-wizard-steps.component"
@@ -19,11 +16,6 @@ import transitions from "./transitions.module.scss";
 
 const CheckoutPage = () => {
 
-  const dispatch = useDispatch();
-
-  const query = useQuery();
-  const slug = query.get("slug");
-
   const [state, updateState] = useState({
     form: {},
     transitions: {
@@ -34,10 +26,6 @@ const CheckoutPage = () => {
       intro: `${transitions.animated} ${transitions.intro}`,
     },
   });
-
-  useEffect(() => {
-    dispatch(fetchSelectedTeacherDetailsStart(slug))
-  }, [fetchSelectedTeacherDetailsStart]);
 
   const updateForm = (key, value) => {
     const { form } = state;
@@ -79,7 +67,7 @@ const CheckoutPage = () => {
         </StepWizard>
         {SW && <Steps SW={SW} />}
       </div>
-      <div className={styles.summary_wrapper}>Summary</div>
+      <CheckoutSummary />
     </div>
 
   )
