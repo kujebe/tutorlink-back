@@ -13,7 +13,6 @@ const AddChildModal = ({ closeModal }) => {
   const [state, setState] = useState({
     fullname: "",
     age: "",
-    gender: "",
     school: "",
   });
   const { token, id } = useSelector((state) => state.user.sessionData);

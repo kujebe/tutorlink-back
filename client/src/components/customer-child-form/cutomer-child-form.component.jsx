@@ -6,7 +6,7 @@ import FormInput from "components/form-input/form-input.component";
 import styles from "./cutomer-child-form.module.scss";
 import { reactSelectStyles } from "helpers/style-helpers";
 
-import { goalOptions, curriculum, nigerianCurriculum, britishCurriculum, americanCurriculum, preSchoolSubjects, nurserySubjects, primarySubjects, lowerSecondarySubjects, upperSecondarySubjects } from "helpers/options";
+import { goalOptions, curriculum, nigerianCurriculum, britishCurriculum, americanCurriculum, preSchoolSubjects, nurserySubjects, primarySubjects, lowerSecondarySubjects, upperSecondarySubjects, genderOptions } from "helpers/options";
 
 const CustomerChildForm = ({ state, changeAction, handleSelectChange }) => {
 
@@ -95,31 +95,24 @@ const CustomerChildForm = ({ state, changeAction, handleSelectChange }) => {
                 label="Child age"
                 required
             />
-            <div className={styles.two_cols}>
-                <div className={styles.col_1}>
-                    <Select
-                        options={curriculum}
-                        styles={reactSelectStyles}
-                        isClearable={true}
-                        isSearchable={true}
-                        placeholder="School Curriculum"
-                        defaultValue={curriculum[0]}
-                        onChange={(selectedOptions) => handleSelectChange("curriculum", selectedOptions)}
-                    />
-                </div>
-                <div className={styles.col_2}>
-                    <Select
-                        options={selectClassOptions()}
-                        styles={reactSelectStyles}
-                        isClearable={true}
-                        isSearchable={true}
-                        placeholder="Child's class"
-                        // value={state.class.label}
-                        defaultValue={nigerianCurriculum[0]}
-                        onChange={(selectedOptions) => handleSelectChange("class", selectedOptions)}
-                    />
-                </div>
-            </div>
+            <Select
+                options={curriculum}
+                styles={reactSelectStyles}
+                isClearable={true}
+                isSearchable={true}
+                placeholder="School Curriculum"
+                defaultValue={curriculum[0]}
+                onChange={(selectedOptions) => handleSelectChange("curriculum", selectedOptions)}
+            />
+            <Select
+                options={selectClassOptions()}
+                styles={reactSelectStyles}
+                isClearable={true}
+                isSearchable={true}
+                placeholder="Child's class"
+                value={state.class ? state.class : null}
+                onChange={(selectedOptions) => handleSelectChange("class", selectedOptions)}
+            />
             {state.class && <Select
                 options={selectSubjectOptions()}
                 styles={reactSelectStyles}
@@ -129,37 +122,34 @@ const CustomerChildForm = ({ state, changeAction, handleSelectChange }) => {
                 placeholder="Subjects"
                 onChange={(selectedOptions) => handleSelectChange("subjects", selectedOptions)}
             />}
-            <Select
-                options={selectClassOptions()}
-                styles={reactSelectStyles}
-                isClearable={true}
-                isSearchable={true}
-                placeholder="Class"
-                defaultValue={nigerianCurriculum[0]}
-                onChange={(selectedOptions) => handleSelectChange("class", selectedOptions)}
-            />
-            <Select
-                options={goalOptions}
-                styles={reactSelectStyles}
-                isClearable={true}
-                isSearchable={true}
-                placeholder="Goal for this child"
-                onChange={(selectedOptions) => handleSelectChange("goal", selectedOptions)}
-            />
+
+            <div className={styles.two_cols}>
+                <div className={styles.col_1}>
+                    <Select
+                        options={goalOptions}
+                        styles={reactSelectStyles}
+                        isClearable={true}
+                        isSearchable={true}
+                        placeholder="Goal for this child"
+                        onChange={(selectedOptions) => handleSelectChange("goal", selectedOptions)}
+                    />
+                </div>
+                <div className={styles.col_2}>
+                    <Select
+                        options={genderOptions}
+                        styles={reactSelectStyles}
+                        placeholder="Child's gender"
+                        value={state.gender ? state.gender : null}
+                        onChange={(selectedOptions) => handleSelectChange("gender", selectedOptions)}
+                    />
+                </div>
+            </div>
             <FormInput
                 type="text"
                 name="school"
                 value={state.school}
                 onChange={changeAction}
                 label="Child school"
-                required
-            />
-            <FormInput
-                type="text"
-                name="gender"
-                value={state.gender}
-                onChange={changeAction}
-                label="Child Gender"
                 required
             />
             <FormInput

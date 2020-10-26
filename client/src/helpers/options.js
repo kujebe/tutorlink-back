@@ -159,7 +159,10 @@ export const upperSecondarySubjects = [
     { value: "History", label: "History" },
 ];
 
-
+export const genderOptions = [
+    { value: 'Female', label: 'Female' },
+    { value: 'Male', label: 'Male' },
+];
 
 
 
